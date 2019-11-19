@@ -1,10 +1,10 @@
 package ada.spd.startup.Domains;
 
 import javax.persistence.*;
-import java.util.Optional;
 
 
 @Entity
+@Table(name = "STARTUP")
 public class Startup {
     @Id()
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -14,7 +14,7 @@ public class Startup {
     private String briefInfo;
     private String information;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Startupper startupper;
 
 
@@ -77,6 +77,12 @@ public class Startup {
     public void setStartupper(Startupper startupper) {
         this.startupper = startupper;
     }
+
+
+
+
+
+
 }
 
 

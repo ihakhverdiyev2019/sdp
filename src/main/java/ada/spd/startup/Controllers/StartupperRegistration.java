@@ -14,8 +14,7 @@ public class StartupperRegistration {
         this.startupperRepository = startupperRepository;
     }
 
-    @PostMapping(
-            value = "startupper/registration", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "startupper/registration", consumes = "application/json", produces = "application/json")
     public Startupper registerStartupper(@RequestBody Startupper startupper) {
         return startupperRepository.save(startupper);
     }

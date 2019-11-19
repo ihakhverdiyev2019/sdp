@@ -26,7 +26,7 @@ public class Startupper {
     private String password;
 
     @OneToMany(mappedBy="startupper",cascade=CascadeType.ALL)
-    private List<Startup> startups = new ArrayList<Startup>();
+    private List<Startup> startups = new ArrayList<>();
 
 
 
@@ -162,7 +162,17 @@ public class Startupper {
         this.password = password;
     }
 
+    public List<Startup> getStartups() {
+        return startups;
+    }
+
+    public void setStartups(List<Startup> startups) {
+        this.startups = startups;
+    }
 
 
+    public void addStartup(Startup startup) {
+        startups.add(startup);
+    }
 
 }
