@@ -35,6 +35,7 @@ public class InvestorLogin {
             investorDAO.setId(investor1.get().getId());
         investorDAO.setName(investor1.get().getName());
         investorDAO.setSurname(investor1.get().getSurname());
+        investorDAO.setCompanyName(investor1.get().getCompanyName());
         session.setAttribute("Investor", investorDAO);
         return investorDAO;
 
