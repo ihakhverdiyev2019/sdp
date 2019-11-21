@@ -12,7 +12,11 @@ public class StartupperRegistration {
 
     public StartupperRegistration(StartupperRepository startupperRepository) {
         this.startupperRepository = startupperRepository;
+
     }
+
+
+
 
     @PostMapping(value = "startupper/registration", consumes = "application/json", produces = "application/json")
     public Startupper registerStartupper(@RequestBody Startupper startupper) {

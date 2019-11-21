@@ -1,18 +1,9 @@
-package ada.spd.startup.Domains;
+package ada.spd.startup.DAO;
+
+public class InvestorDAO {
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class Investor {
-
-
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private int id;
+private long id;
     private String name;
     private String surname;
     private String birth;
@@ -22,31 +13,7 @@ public class Investor {
     private String email;
     private String nationallity;
     private String country;
-    private String login;
-    private String password;
 
-
-    public Investor(String name, String surname, String birth, String VOEN, String companyName, String phoneNo, String email, String nationallity, String country, String login, String password) {
-        this.name = name;
-        this.surname = surname;
-        this.birth = birth;
-        this.VOEN = VOEN;
-        this.companyName = companyName;
-        this.phoneNo = phoneNo;
-        this.email = email;
-        this.nationallity = nationallity;
-        this.country = country;
-        this.login = login;
-        this.password = password;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -121,19 +88,11 @@ public class Investor {
     }
 
 
-    public String getLogin() {
-        return login;
+    public long getId() {
+        return id;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setId(long id) {
+        this.id = id;
     }
 }
