@@ -30,7 +30,7 @@ public class StartupperLogin {
             startupperDAO.setId(startupper1.get().getId());
         startupperDAO.setName(startupper1.get().getName());
         startupperDAO.setSurname(startupper1.get().getSurname());
-        session.setAttribute("Startupper", startupperDAO);
+        session.setAttribute("Startupper", startupper1);
         return startupperDAO;
 
     }

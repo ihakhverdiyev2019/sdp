@@ -1,1 +1,0 @@
-insert into STARTUPPER values (1,'admin','admin','admin','admin','admin','admin','admin','admin','admin','admin','admin','admin','admin')

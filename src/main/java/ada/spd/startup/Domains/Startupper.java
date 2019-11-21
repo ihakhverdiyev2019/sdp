@@ -1,5 +1,7 @@
 package ada.spd.startup.Domains;
 
+import ada.spd.startup.ENUMS.Status;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +26,8 @@ public class Startupper {
     private String role;
     private String login;
     private String password;
+    private Status status;
+    private int code;
 
     @OneToMany(mappedBy="startupper",cascade=CascadeType.ALL)
     private List<Startup> startups = new ArrayList<>();
@@ -162,6 +166,22 @@ public class Startupper {
         this.password = password;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
     public List<Startup> getStartups() {
         return startups;
     }
@@ -174,5 +194,9 @@ public class Startupper {
     public void addStartup(Startup startup) {
         startups.add(startup);
     }
+
+
+
+
 
 }
