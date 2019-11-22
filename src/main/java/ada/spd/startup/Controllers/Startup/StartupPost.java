@@ -1,4 +1,4 @@
-package ada.spd.startup.Controllers;
+package ada.spd.startup.Controllers.Startup;
 
 import ada.spd.startup.DAO.StartupperDAO;
 import ada.spd.startup.Domains.Startup;
@@ -13,18 +13,18 @@ import java.util.List;
 
 
 @RestController
-public class StartupRegistration {
+public class StartupPost {
 
 
     private StartupRepository startupRepository;
     private StartupperRepository startupperRepository;
 
-    public StartupRegistration(StartupRepository startupRepository, StartupperRepository startupperRepository) {
+    public StartupPost(StartupRepository startupRepository, StartupperRepository startupperRepository) {
         this.startupRepository = startupRepository;
         this.startupperRepository = startupperRepository;
     }
 
-    @PostMapping(value = "startup/registration",  produces = "application/json")
+    @PostMapping(value = "startup/post",  produces = "application/json")
     public void registerStartup(@RequestBody Startup startup, HttpSession httpSession) {
         StartupperDAO startupperDAO = (StartupperDAO) httpSession.getAttribute("Startupper");
         if (startupperRepository.findById(startupperDAO.getId()).isPresent()) {

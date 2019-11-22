@@ -1,4 +1,4 @@
-package ada.spd.startup.Controllers;
+package ada.spd.startup.Controllers.Startupper;
 
 
 import ada.spd.startup.DAO.StartupperDAO;
@@ -26,7 +26,7 @@ public class StartupperVerify {
     @PostMapping(value = "startupper/verify", produces = "application/json")
     public void verifyProfile (@RequestBody SMS sms, HttpSession httpSession) {
         Startupper startupper = (Startupper) httpSession.getAttribute("Startupper");
-if(startupper.getCode()==sms.getSmsCode()){
+    if(startupper.getCode()==sms.getSmsCode()){
     startupper.setStatus(Status.Active);
     startupperRepository.save(startupper);
 }

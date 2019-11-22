@@ -1,4 +1,4 @@
-package ada.spd.startup.Controllers;
+package ada.spd.startup.Controllers.Startupper;
 
 
 import ada.spd.startup.Domains.Startupper;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import ada.spd.startup.Repositories.StartupperRepository;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @RestController
@@ -24,7 +25,9 @@ public class StartupperRegistration {
     }
     @PostMapping(value = "startupper/registration", consumes = "application/json", produces = "application/json")
     public Startupper registerStartupper(@RequestBody Startupper startupper, HttpSession httpSession) {
-        int smsCode = GenerateCode.codeSMS();
+        int smsCode;
+        smsCode = GenerateCode.codeSMS();
+
         startupper.setStatus(Status.Hold);
         startupper.setCode(smsCode);
         httpSession.setAttribute("Startupper",startupper);

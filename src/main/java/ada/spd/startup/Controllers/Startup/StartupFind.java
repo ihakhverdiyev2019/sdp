@@ -1,4 +1,4 @@
-package ada.spd.startup.Controllers;
+package ada.spd.startup.Controllers.Startup;
 
 
 import ada.spd.startup.DAO.StartupperDAO;
@@ -21,9 +21,6 @@ public class StartupFind {
     public StartupFind(StartupRepository startupRepository) {
         this.startupRepository = startupRepository;
     }
-
-
-
 
     @PostMapping(value = "startup/find", produces = "application/json")
     public Iterable<Startup> findByStartupperID (HttpSession httpSession) {

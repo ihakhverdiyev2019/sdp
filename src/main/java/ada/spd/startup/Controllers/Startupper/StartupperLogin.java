@@ -1,4 +1,4 @@
-package ada.spd.startup.Controllers;
+package ada.spd.startup.Controllers.Startupper;
 
 import ada.spd.startup.DAO.StartupperDAO;
 import ada.spd.startup.Domains.Startupper;
@@ -32,7 +32,6 @@ public class StartupperLogin {
         startupperDAO.setSurname(startupper1.get().getSurname());
         session.setAttribute("Startupper", startupper1);
         return startupperDAO;
-
     }
 
 

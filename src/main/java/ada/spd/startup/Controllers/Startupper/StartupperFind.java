@@ -1,4 +1,4 @@
-package ada.spd.startup.Controllers;
+package ada.spd.startup.Controllers.Startupper;
 
 import ada.spd.startup.Domains.Startupper;
 import ada.spd.startup.Repositories.StartupperRepository;

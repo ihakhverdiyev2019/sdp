@@ -1,4 +1,4 @@
-package ada.spd.startup.Controllers;
+package ada.spd.startup.Controllers.Investor;
 
 
 import ada.spd.startup.DAO.InvestorDAO;

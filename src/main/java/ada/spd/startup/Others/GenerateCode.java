@@ -7,8 +7,7 @@ public class GenerateCode {
 
     public static int codeSMS(){
         Random sc = new Random();
-        return (sc.nextInt(8999)+1000);
-
+        return (sc.nextInt(89999)+10000);
     }
 
 
