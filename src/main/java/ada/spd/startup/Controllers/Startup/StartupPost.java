@@ -3,6 +3,7 @@ package ada.spd.startup.Controllers.Startup;
 import ada.spd.startup.DAO.StartupperDAO;
 import ada.spd.startup.Domains.Startup;
 import ada.spd.startup.Domains.Startupper;
+import ada.spd.startup.Others.RefferalCode;
 import ada.spd.startup.Repositories.StartupRepository;
 import ada.spd.startup.Repositories.StartupperRepository;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,9 @@ public class StartupPost {
     @PostMapping(value = "startup/post",  produces = "application/json")
     public void registerStartup(@RequestBody Startup startup, HttpSession httpSession) {
         StartupperDAO startupperDAO = (StartupperDAO) httpSession.getAttribute("Startupper");
+        RefferalCode refferalCode = new RefferalCode();
         if (startupperRepository.findById(startupperDAO.getId()).isPresent()) {
+            startup.setRefferalCode(refferalCode.createRandomCode());
             startup.setStartupper(startupperRepository.findById(startupperDAO.getId()).get());
             startup.getStartupper().addStartup(startup);
             startupRepository.save(startup);

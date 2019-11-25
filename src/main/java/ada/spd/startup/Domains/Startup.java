@@ -13,6 +13,7 @@ public class Startup {
     private String duration;
     private String briefInfo;
     private String information;
+    private String refferalCode;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Startupper startupper;
@@ -69,6 +70,13 @@ public class Startup {
         this.information = information;
     }
 
+    public String getRefferalCode() {
+        return refferalCode;
+    }
+
+    public void setRefferalCode(String refferalCode) {
+        this.refferalCode = refferalCode;
+    }
 
     public Startupper getStartupper() {
         return startupper;
