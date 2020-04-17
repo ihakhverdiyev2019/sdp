@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- BEGIN: Head-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description"
+          content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords"
+          content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Advance Card - Vuexy - Bootstrap HTML admin template</title>
+    <link rel="apple-touch-icon" href="../static/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/vendors.min.css"
+          th:href="@{/vendors/css/vendors.min.css}">
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap-extended.css"
+          th:href="@{/css/bootstrap-extended.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/colors.css" th:href="@{/css/colors.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/components.css" th:href="@{/css/components.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/themes/dark-layout.css"
+          th:href="@{/css/themes/dark-layout.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/themes/semi-dark-layout.css"
+          th:href="@{/css/themes/semi-dark-layout.css}">
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="../static/css/core/menu/menu-types/vertical-menu.css"
+          th:href="@{/css/core/menu/menu-types/vertical-menu.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/core/colors/palette-gradient.css"
+          th:href="@{/css/core/colors/palette-gradient.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/pages/dashboard-ecommerce.css"
+          th:href="@{/css/pages/dashboard-ecommerce.css}">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/style.css" th:href="@{/assets/css/style.css}">
+    <!-- END: Custom CSS-->
+
+
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click"
+      data-menu="vertical-menu-modern" data-col="2-columns">
+
+<!-- BEGIN: Header-->
+<nav class="header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-light navbar-shadow">
+    <div class="navbar-wrapper">
+        <div class="navbar-container content">
+            <div class="navbar-collapse" id="navbar-mobile">
+                <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item mobile-menu d-xl-none mr-auto"><a
+                                class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
+                                class="ficon feather icon-menu"></i></a></li>
+                    </ul>
+                    <ul class="nav navbar-nav bookmark-icons">
+                        <a th:href="@{/startup/create}"
+                           class="btn gradient-light-primary text-white">Post Startup</a>
+                    </ul>
+
+                </div>
+
+
+                <ul class="nav navbar-nav float-right">
+
+                    <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
+                                                                   href="#" data-toggle="dropdown">
+                        <div class="user-nav d-sm-flex d-none"><span
+                                class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
+                            <div class="badge badge-success mr-1 mb-1">
+                                <i class="feather icon-award white"></i>
+                                <span>New User</span>
+                            </div>
+                        </div>
+                        <span><img class="round" src="../static/images/portrait/small/avatar-s-11.jpg" alt="avatar"
+                                   height="40" width="40"></span>
+                    </a>
+                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
+                                                                          href="page-user-profile.html"><i
+                                class="feather icon-user"></i> Edit Profile</a><a class="dropdown-item"
+                                                                                  href="app-email.html"><i
+                                class="feather icon-mail"></i> My Inbox</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="auth-login.html"><i class="feather icon-power"></i>
+                                Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- END: Header-->
+
+
+<!-- BEGIN: Main Menu-->
+<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+    <div class="navbar-header">
+        <ul class="nav navbar-nav flex-row">
+            <li class="nav-item mr-auto"><a class="navbar-brand"
+                                            href="../../../html/ltr/vertical-menu-template/index.html">
+                <div class="brand-logo"></div>
+                <h2 class="brand-text mb-0">StartUP</h2>
+            </a></li>
+        </ul>
+    </div>
+    <div class="shadow-bottom"></div>
+    <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class=" nav-item"><a href="index.html"><i class="feather icon-home"></i><span class="menu-title"
+                                                                                              data-i18n="Dashboard">Dashboard</span></a>
+            </li>
+            <li class=" navigation-header"><span>Menu</span>
+            </li>
+            <li class=" nav-item"><a href="app-chat.html"><i class="feather icon-mail"></i><span class="menu-title"
+                                                                                                 data-i18n="Chat">E-mail</span></a>
+            </li>
+            <li class="active nav-item"><a href="app-todo.html"><i class="feather icon-file"></i><span
+                    class="menu-title" data-i18n="Todo">My Projects</span></a>
+            </li>
+            <li><a href="../../../../../Startup_Pages/startupDescription.html"><i class="feather icon-user"></i><span
+                    class="menu-title" data-i18n="User">List of Contributors</span></a>
+            </li>
+
+
+            <li class=" navigation-header"><span>Support</span>
+            </li>
+            <li class=" nav-item"><a href="https://pixinvent.ticksy.com/"><i class="feather icon-life-buoy"></i><span
+                    class="menu-title" data-i18n="Raise Support">Customer Support</span></a>
+            </li>
+        </ul>
+    </div>
+</div><!-- END: Main Menu-->
+<!-- END: Main Menu-->
+
+<!-- BEGIN: Content-->
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-left mb-0">My Projects</h2>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item active">My Projects
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="content-body">
+            <!-- Basic example and Profile cards section start -->
+            <section id="basic-examples">
+                <div class="row match-height">
+                    <div class="col-xl-4 col-md-6 col-sm-12" th:each="startup : ${startupList}"
+                         th:attr="data-value=${startup.id}">
+                        <div class="card">
+                            <div class="card-content">
+                                <img class="card-img-top img-fluid" th:src="@{${startup.picture}}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 th:text="${startup.startupName}">Vuexy Admin</h5>
+                                    <p class="card-text  mb-0">By Pixinvent Creative Studio</p>
+                                    <span class="card-text">Elite Author</span>
+                                    <div class="d-flex justify-content-between mt-2">
+                                        <div class="float-left">
+                                            <p class="font-medium-2 mb-0">$ <span
+                                                    th:text="${startup.investAmount}"></span></p>
+                                            <p class="">Income</p>
+                                        </div>
+                                        <div class="float-right">
+                                            <p class="font-medium-2 mb-0"><span th:text="${startup.duration}"></span>
+                                            </p>
+                                            <p class="">Delivery Date</p>
+                                        </div>
+                                    </div>
+                                    <div class="card-btns d-flex justify-content-between mt-2">
+                                        <a th:href="@{'/startup/' + ${startup.id}}"
+                                           class="btn gradient-light-primary text-white">Enter The Project</a>
+                                        <!--                                        <a href="/todo/"th:="" "/list" class="btn btn-outline-primary">View All</a>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+            <!-- // Basic example and Profile cards section end -->
+
+
+        </div>
+    </div>
+</div>
+<!-- END: Content-->
+
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+
+<!-- BEGIN: Footer-->
+<!-- END: Footer-->
+
+
+<!-- BEGIN: Vendor JS-->
+<script src="../static/vendors/js/vendors.min.js" th:src="@{/vendors/js/vendors.min.js}"></script>
+<!-- BEGIN Vendor JS-->
+
+<!-- BEGIN: Page Vendor JS-->
+<!-- END: Page Vendor JS-->
+
+<!-- BEGIN: Theme JS-->
+<script src="../static/js/core/app-menu.js" th:src="@{/js/core/app-menu.js}"></script>
+<script src="../static/js/core/app.js" th:src="@{/js/core/app.js}"></script>
+<script src="../static/js/scripts/components.js" th:src="@{/js/scripts/components.js}"></script>
+<!-- END: Theme JS-->
+
+
+<!-- BEGIN: Page JS-->
+<script src="../static/js/scripts/pages/app-chat.js" th:src="@{/js/scripts/pages/app-chat.js}"></script>
+
+</body>
+
+</html>

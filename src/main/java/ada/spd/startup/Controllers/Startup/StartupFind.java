@@ -1,12 +1,12 @@
 package ada.spd.startup.Controllers.Startup;
 
 
-import ada.spd.startup.DAO.StartupperDAO;
+import ada.spd.startup.DAO.UserDAO;
 import ada.spd.startup.Domains.Startup;
-import ada.spd.startup.Domains.Startupper;
 import ada.spd.startup.Repositories.StartupRepository;
+
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -22,13 +22,16 @@ public class StartupFind {
         this.startupRepository = startupRepository;
     }
 
-    @PostMapping(value = "startup/find", produces = "application/json")
-    public Iterable<Startup> findByStartupperID (HttpSession httpSession) {
-        StartupperDAO startupperDAO = (StartupperDAO) httpSession.getAttribute("Startupper");
-        return startupRepository.findByStartupperId(startupperDAO.getId());
+//    @PostMapping(value = "startup/find", produces = "application/json")
+//    public Iterable<Startup> findByUserId(HttpSession httpSession) {
+//        UserDAO startupperDAO = (UserDAO) httpSession.getAttribute("User");
+//        return startupRepository.findByUserId(startupperDAO.getId());
+//    }
+
+    @RequestMapping(value = "startup/all")
+    public Iterable<Startup> findAll() {
+        return startupRepository.findAll();
     }
-
-
 
 
 }

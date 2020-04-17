@@ -1,30 +1,52 @@
 package ada.spd.startup.Domains;
 
+import org.springframework.data.elasticsearch.annotations.Document;
+
 import javax.persistence.*;
+import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
 @Table(name = "STARTUP")
+//@Document(indexName= "startup", type= "startup")
 public class Startup {
     @Id()
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String startupName;
     private String duration;
     private String briefInfo;
     private String information;
+    private double investAmount;
+    private String picture;
     private String refferalCode;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Startupper startupper;
+    private String clickcount;
 
 
-    public Startup(long id,String startupName, String duration, String briefInfo, String information) {
-       this.id = id;
+    @OneToMany(mappedBy = "startup", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<UserStartup> userStartups = new ArrayList<>();
+
+    @OneToMany(mappedBy = "startup", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<JoinStartup> joinStartups = new ArrayList<>();
+
+    @OneToMany(mappedBy = "startup", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<ToDo> toDos = new ArrayList<>();
+
+
+    public Startup(String startupName, String duration, String briefInfo, String information, double investAmount, String picture, String refferalCode, String clickcount) {
         this.startupName = startupName;
         this.duration = duration;
         this.briefInfo = briefInfo;
         this.information = information;
+        this.investAmount = investAmount;
+        this.picture = picture;
+        this.refferalCode = refferalCode;
+        this.clickcount = clickcount;
     }
 
     public Startup() {
@@ -78,17 +100,42 @@ public class Startup {
         this.refferalCode = refferalCode;
     }
 
-    public Startupper getStartupper() {
-        return startupper;
+    public double getInvestAmount() {
+        return investAmount;
     }
 
-    public void setStartupper(Startupper startupper) {
-        this.startupper = startupper;
+    public void setInvestAmount(double investAmount) {
+        this.investAmount = investAmount;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getClickcount() {
+        return clickcount;
+    }
+
+    public void setClickcount(String clickcount) {
+        this.clickcount = clickcount;
+    }
+
+    public List<UserStartup> getUserStartups() {
+        return userStartups;
+    }
+
+    public void setStartupList(List<UserStartup> userStartups) {
+        this.userStartups = userStartups;
     }
 
 
-
-
+    public void addStartupList(UserStartup userStartup) {
+        userStartups.add(userStartup);
+    }
 
 
 }

@@ -1,42 +1,50 @@
 package ada.spd.startup.Controllers.Startup;
 
-import ada.spd.startup.DAO.StartupperDAO;
+
 import ada.spd.startup.Domains.Startup;
-import ada.spd.startup.Domains.Startupper;
-import ada.spd.startup.Others.RefferalCode;
+
+import ada.spd.startup.Domains.User;
+import ada.spd.startup.Domains.UserStartup;
+
+import ada.spd.startup.ENUMS.RoleENUM;
 import ada.spd.startup.Repositories.StartupRepository;
-import ada.spd.startup.Repositories.StartupperRepository;
+import ada.spd.startup.Repositories.UserRepository;
+import ada.spd.startup.Repositories.UserStartupRepository;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
 
 
-@RestController
+@Controller
 public class StartupPost {
 
 
     private StartupRepository startupRepository;
-    private StartupperRepository startupperRepository;
+    private UserStartupRepository userStartupRepository;
+    private UserRepository userRepository;
 
-    public StartupPost(StartupRepository startupRepository, StartupperRepository startupperRepository) {
+    public StartupPost(StartupRepository startupRepository, UserStartupRepository userStartupRepository, UserRepository userRepository) {
         this.startupRepository = startupRepository;
-        this.startupperRepository = startupperRepository;
+        this.userStartupRepository = userStartupRepository;
+        this.userRepository = userRepository;
     }
 
-    @PostMapping(value = "startup/post",  produces = "application/json")
-    public void registerStartup(@RequestBody Startup startup, HttpSession httpSession) {
-        StartupperDAO startupperDAO = (StartupperDAO) httpSession.getAttribute("Startupper");
-        RefferalCode refferalCode = new RefferalCode();
-        if (startupperRepository.findById(startupperDAO.getId()).isPresent()) {
-            startup.setRefferalCode(refferalCode.createRandomCode());
-            startup.setStartupper(startupperRepository.findById(startupperDAO.getId()).get());
-            startup.getStartupper().addStartup(startup);
-            startupRepository.save(startup);
-            startupperRepository.save(startup.getStartupper());
+    @PostMapping(value = "/startup/post")
+    public String registerStartup(@Valid @ModelAttribute Startup startup, Model model, HttpSession httpSession) {
+        User startupper = (User) httpSession.getAttribute("user");
+        UserStartup userStartup = new UserStartup();
+        userStartup.setRights(RoleENUM.Founder);
+        userStartup.setStartup(startup);
+        userStartup.setUser(startupper);
+        startupRepository.save(startup);
+        userStartupRepository.save(userStartup);
+        return "redirect:/startup/list";
 
-        }
+
     }
 
 
