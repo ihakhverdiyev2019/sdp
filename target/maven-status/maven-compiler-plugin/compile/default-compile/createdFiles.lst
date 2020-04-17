@@ -7,6 +7,7 @@ ada/spd/startup/CROSAdvice/CORSAdvice.class
 ada/spd/startup/ENUMS/RoleENUM.class
 ada/spd/startup/Controllers/Startup/ListOfInvitationStartup.class
 ada/spd/startup/Controllers/Startup/StartupPost.class
+ada/spd/startup/Domains/Category.class
 ada/spd/startup/Controllers/Startup/StartupNew.class
 ada/spd/startup/Controllers/Startup/StartupRefferal.class
 ada/spd/startup/Others/RefferalCode.class
@@ -55,6 +56,7 @@ ada/spd/startup/Controllers/Startupper/StartupperFind.class
 ada/spd/startup/Controllers/Startup/ListOfContributor.class
 ada/spd/startup/Repositories/StartupRepository.class
 ada/spd/startup/Controllers/ToDo/ToDoCancel.class
+ada/spd/startup/Repositories/CategoryRepository.class
 ada/spd/startup/Controllers/User/UserDashboard.class
 ada/spd/startup/Repositories/UserStartupRepository.class
 ada/spd/startup/Controllers/Startup/StartupReject.class

@@ -58,16 +58,7 @@
         <div class="navbar-container content">
             <div class="navbar-collapse" id="navbar-mobile">
                 <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
-                        </ul>
-                        <ul class="nav navbar-nav bookmark-icons">
-                            <!-- li.nav-item.mobile-menu.d-xl-none.mr-auto-->
-                            <!--   a.nav-link.nav-menu-main.menu-toggle.hidden-xs(href='#')-->
-                            <!--     i.ficon.feather.icon-menu-->
-                            <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-todo.html" data-toggle="tooltip" data-placement="top" title="Todo"><i class="ficon feather icon-check-square"></i></a></li>
-                            <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-chat.html" data-toggle="tooltip" data-placement="top" title="Chat"><i class="ficon feather icon-message-square"></i></a></li>
-                        </ul>
+
                        
                     </div>
 				
@@ -78,10 +69,10 @@
                         <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span><div class="badge badge-success mr-1 mb-1">
                                             <i class="feather icon-award white"></i>
                                             <span>New User</span>
-                                        </div></div><span><img class="round" src="../static/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"></span>
+                                        </div></div><span><img class="round" th:src="@{${user.avatar}}" alt="avatar" height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="page-user-profile.html"><i class="feather icon-user"></i> Edit Profile</a><a class="dropdown-item" href="app-email.html"><i class="feather icon-mail"></i> My Inbox</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" href="auth-login.html"><i class="feather icon-power"></i> Logout</a>
+                            <div class="dropdown-divider"></div><a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i> Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -104,19 +95,25 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item"><a href="index.html"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+                <li class="active nav-item"><a th:href="@{'/startup/' + ${startup.id}}"><i
+                        class="feather icon-home"></i><span class="menu-title"
+                                                            data-i18n="Dashboard">Dashboard</span></a>
                 </li>
                 <li class=" navigation-header"><span>Menu</span>
                 </li>
-                <li class=" nav-item"><a href="app-chat.html"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
+                <li class=" nav-item"><a th:href="@{'/startup/' + ${startup.id} +'/chat'}"><i
+                        class="feather icon-message-square"></i><span
+                        class="menu-title" data-i18n="Chat">Chat</span></a>
                 </li>
-				<li class="active nav-item"><a href="app-todo.html"><i class="feather icon-check-square"></i><span class="menu-title" data-i18n="Todo">Todo</span></a>
+                <li class=" nav-item"><a  th:href="@{'/startup/' + ${startup.id} +'/todo'}"><i class="feather icon-check-square"></i><span
+                        class="menu-title" data-i18n="Todo">Todo</span></a>
                 </li>
-                <li><a href="../../../../../Startup_Pages/startupDescription.html"><i class="feather icon-user"></i><span class="menu-title" data-i18n="User">Startup Page</span></a>
+                <li><a th:href="@{'/startup/' + ${startup.id} +'/profile'}"><i class="feather icon-user"></i><span
+                        class="menu-title" data-i18n="User">Startup Page</span></a>
                 </li>
 				<li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="User">Users</span></a>
                     <ul class="menu-content">
-                        <li ><a href="../../../../../Startup_Pages/usersList.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">Contributors List</span></a>
+                        <li ><a th:href="@{'/startup/' + ${startup.id} +'/contributor'}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">Contributors List</span></a>
                         </li>
                         <li><a href="../../../../../Startup_Pages/pendingRequests.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="View">Pending Requests</span></a>
                         </li>
@@ -270,7 +267,7 @@
 
 
 <!-- BEGIN: Vendor JS-->
-<script src="../static/vendors/js/vendors.min.js"></script>
+<script src="../static/vendors/js/vendors.min.js" th:src="@{/vendors/js/vendors.min.js}"></script>
 <!-- BEGIN Vendor JS-->
 
 <!-- BEGIN: Page Vendor JS-->

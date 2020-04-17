@@ -59,24 +59,7 @@
         <div class="navbar-container content">
             <div class="navbar-collapse" id="navbar-mobile">
                 <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item mobile-menu d-xl-none mr-auto"><a
-                                class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
-                                class="ficon feather icon-menu"></i></a></li>
-                    </ul>
-                    <ul class="nav navbar-nav bookmark-icons">
-                        <!-- li.nav-item.mobile-menu.d-xl-none.mr-auto-->
-                        <!--   a.nav-link.nav-menu-main.menu-toggle.hidden-xs(href='#')-->
-                        <!--     i.ficon.feather.icon-menu-->
-                        <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-todo.html"
-                                                                  data-toggle="tooltip" data-placement="top"
-                                                                  title="Todo"><i
-                                class="ficon feather icon-check-square"></i></a></li>
-                        <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-chat.html"
-                                                                  data-toggle="tooltip" data-placement="top"
-                                                                  title="Chat"><i
-                                class="ficon feather icon-message-square"></i></a></li>
-                    </ul>
+
 
                 </div>
 
@@ -92,7 +75,7 @@
                                 <span>New User</span>
                             </div>
                         </div>
-                        <span><img class="round" src="../static/images/portrait/small/avatar-s-11.jpg" alt="avatar"
+                        <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
                                    height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
@@ -101,7 +84,7 @@
                                                                                   href="app-email.html"><i
                                 class="feather icon-mail"></i> My Inbox</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="auth-login.html"><i class="feather icon-power"></i>
+                            <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
                                 Logout</a>
                         </div>
                     </li>
@@ -126,7 +109,7 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="active nav-item"><a th:href="@{'/startup/' + ${detail.id} +'/profile'}"><i
+            <li class=" nav-item"><a th:href="@{'/startup/' + ${detail.id}}"><i
                     class="feather icon-home"></i><span class="menu-title"
                                                         data-i18n="Dashboard">Dashboard</span></a>
             </li>
@@ -136,7 +119,7 @@
                     class="feather icon-message-square"></i><span
                     class="menu-title" data-i18n="Chat">Chat</span></a>
             </li>
-            <li class=" nav-item"><a th:href="@{'/startup/' + ${detail.id} +'/todo'}"><i
+            <li class=" active nav-item"><a th:href="@{'/startup/' + ${detail.id} +'/todo'}"><i
                     class="feather icon-check-square"></i><span
                     class="menu-title" data-i18n="Todo">Todo</span></a>
             </li>
@@ -146,7 +129,8 @@
             <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title"
                                                                                      data-i18n="User">Users</span></a>
                 <ul class="menu-content">
-                    <li><a href="../../../../../Startup_Pages/usersList.html"><i class="feather icon-circle"></i><span
+                    <li><a th:href="@{'/startup/' + ${detail.id} +'/contributor'}"><i
+                            class="feather icon-circle"></i><span
                             class="menu-item" data-i18n="List">Contributors List</span></a>
                     </li>
                     <li><a href="../../../../../Startup_Pages/pendingRequests.html"><i
@@ -263,7 +247,7 @@
                                                         <div class="chip mb-0">
                                                             <div class="chip-body">
                                                                 <span class="chip-text" data-value="Doc"><span
-                                                                        class="bullet bullet-primary bullet-xs"></span> All<span
+                                                                        class="bullet bullet-primary bullet-xs"></span> <span
                                                                         th:text="${todo.progress}"></span></span>
                                                             </div>
                                                         </div>
@@ -274,7 +258,7 @@
                                             </div>
                                             <p class="todo-desc truncate mb-0" th:text="${todo.description}"></p>
                                             <br>
-                                            <p>
+                                            <p th:if="${todo.progress == T(ada.spd.startup.ENUMS.ToDoEnum).New}">
                                                 <button type="button" class="btn btn-success mr- mb-1"><a
                                                         th:href="@{/startup/{id}/done/{tid}(id=${detail.id},tid=${todo.id})}"
                                                         style="color: white">Complete</a></button>
@@ -312,7 +296,7 @@
 
 
 <!-- BEGIN: Vendor JS-->
-<script src="../static/vendors/js/vendors.min.js"></script>
+<script src="../static/vendors/js/vendors.min.js" th:src="@{/vendors/js/vendors.min.js}"></script>
 <!-- BEGIN Vendor JS-->
 
 <!-- BEGIN: Page Vendor JS-->

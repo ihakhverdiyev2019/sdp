@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="h2-console@localhost" uuid="8409e31d-bd6c-4498-9acd-47b92350e39a">
-      <driver-ref>h2.unified</driver-ref>
+    <data-source source="LOCAL" name="sdp@31.171.108.141" uuid="fa624b73-1bcd-499a-8e47-6ce4435b96f4">
+      <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.h2.Driver</jdbc-driver>
-      <jdbc-url>jdbc:h2:tcp://localhost:8080/h2-console</jdbc-url>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://31.171.108.141:5432/sdp</jdbc-url>
     </data-source>
   </component>
 </project>

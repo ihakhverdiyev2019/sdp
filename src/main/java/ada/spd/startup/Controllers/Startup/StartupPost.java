@@ -33,9 +33,10 @@ public class StartupPost {
         this.userRepository = userRepository;
     }
 
-    @PostMapping(value = "/startup/post")
-    public String registerStartup(@Valid @ModelAttribute Startup startup, Model model, HttpSession httpSession) {
+    @RequestMapping(value = "/startup/post")
+    public String registerStartup(@Valid @ModelAttribute Startup startup, @RequestParam("category") String category, Model model, HttpSession httpSession) {
         User startupper = (User) httpSession.getAttribute("user");
+        startup.setCategory(category);
         UserStartup userStartup = new UserStartup();
         userStartup.setRights(RoleENUM.Founder);
         userStartup.setStartup(startup);

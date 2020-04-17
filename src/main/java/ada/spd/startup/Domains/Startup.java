@@ -23,6 +23,7 @@ public class Startup {
     private String picture;
     private String refferalCode;
     private String clickcount;
+    private String category;
 
 
     @OneToMany(mappedBy = "startup", fetch = FetchType.LAZY,
@@ -38,7 +39,7 @@ public class Startup {
     private List<ToDo> toDos = new ArrayList<>();
 
 
-    public Startup(String startupName, String duration, String briefInfo, String information, double investAmount, String picture, String refferalCode, String clickcount) {
+    public Startup(String startupName, String duration, String briefInfo, String information, double investAmount, String picture, String refferalCode, String clickcount, String category) {
         this.startupName = startupName;
         this.duration = duration;
         this.briefInfo = briefInfo;
@@ -47,6 +48,7 @@ public class Startup {
         this.picture = picture;
         this.refferalCode = refferalCode;
         this.clickcount = clickcount;
+        this.category = category;
     }
 
     public Startup() {
@@ -137,7 +139,13 @@ public class Startup {
         userStartups.add(userStartup);
     }
 
+    public String getCategory() {
+        return category;
+    }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }
 
 

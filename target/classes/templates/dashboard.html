@@ -12,8 +12,8 @@
           content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>Dashboard analytics - Vuexy - Bootstrap HTML admin template</title>
-    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
+    <link rel="apple-touch-icon" href="../static/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
     <!-- BEGIN: Theme CSS-->
@@ -56,8 +56,8 @@
     <!-- END: Vendor CSS-->
 
 
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/card-analytics.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/tour/tour.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/pages/card-analytics.css"
+          th:href="@{/css/pages/card-analytics.css}">
     <!-- END: Page CSS-->
 
 
@@ -65,6 +65,7 @@
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
+
 
 <body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click"
       data-menu="vertical-menu-modern" data-col="2-columns">
@@ -81,29 +82,30 @@
                                 class="ficon feather icon-menu"></i></a></li>
                     </ul>
 
-
                 </div>
+
+
                 <ul class="nav navbar-nav float-right">
 
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
                                                                    href="#" data-toggle="dropdown">
-                        <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600"
-                                                                     th:text="${user.name} + ' ' + ${user.surname}"></span><span
-                                class="user-status" th:text="${user.statusEnum}"></span></div>
-                        <span><img class="round" src="../../../app-assets/images/portrait/small/avatar-s-11.jpg"
-                                   alt="avatar" height="40" width="40"></span>
+                        <div class="user-nav d-sm-flex d-none"><span
+                                class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
+                            <div class="badge badge-success mr-1 mb-1">
+                                <i class="feather icon-award white"></i>
+                                <span>New User</span>
+                            </div>
+                        </div>
+                        <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
+                                   height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
                                                                           href="page-user-profile.html"><i
                                 class="feather icon-user"></i> Edit Profile</a><a class="dropdown-item"
-                                                                                  href="email.html"><i
-                                class="feather icon-mail"></i> My Inbox</a><a class="dropdown-item"
-                                                                              href="app-todo.html"><i
-                                class="feather icon-check-square"></i> Task</a><a class="dropdown-item"
-                                                                                  href="app-chat.html"><i
-                                class="feather icon-message-square"></i> Chats</a>
+                                                                                  href="app-email.html"><i
+                                class="feather icon-mail"></i> My Inbox</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="auth-login.html"><i class="feather icon-power"></i>
+                            <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
                                 Logout</a>
                         </div>
                     </li>
@@ -123,32 +125,37 @@
             <li class="nav-item mr-auto"><a class="navbar-brand"
                                             href="../../../html/ltr/vertical-menu-template/index.html">
                 <div class="brand-logo"></div>
-                <h2 class="brand-text mb-0">Vuexy</h2>
+                <h2 class="brand-text mb-0">StartUP</h2>
             </a></li>
-            <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i
-                    class="feather icon-x d-block d-xl-none font-medium-4 primary toggle-icon"></i><i
-                    class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary"
-                    data-ticon="icon-disc"></i></a></li>
         </ul>
     </div>
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span class="menu-title"
-                                                                                              data-i18n="Dashboard">Dashboard</span><span
-                    class="badge badge badge-warning badge-pill float-right mr-2">2</span></a>
-
+            <li class="active nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
+                    class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+            </li>
+            <li class=" navigation-header"><span>Menu</span>
+            </li>
+            <li class=" nav-item"><a href="app-chat.html"><i class="feather icon-mail"></i><span class="menu-title"
+                                                                                                 data-i18n="Chat">E-mail</span></a>
+            </li>
+            <li class="nav-item"><a th:href="@{/startup/list}"><i class="feather icon-file"></i><span class="menu-title"
+                                                                                                      data-i18n="Todo">My Projects</span></a>
+            </li>
+            <li><a href="startupDescription.html"><i class="feather icon-user"></i><span class="menu-title"
+                                                                                         data-i18n="User">List of Contributors</span></a>
             </li>
 
-            <li class=" nav-item"><a th:href="@{/startup/list}"><i class="feather icon-mail"></i><span
-                    class="menu-title"
-                    data-i18n="Email">Projects</span></a>
+
+            <li class=" navigation-header"><span>Support</span>
             </li>
-
-
+            <li class=" nav-item"><a href="https://pixinvent.ticksy.com/"><i class="feather icon-life-buoy"></i><span
+                    class="menu-title" data-i18n="Raise Support">Customer Support</span></a>
+            </li>
         </ul>
     </div>
-</div>
+</div><!-- END: Main Menu-->
 <!-- END: Main Menu-->
 
 <!-- BEGIN: Content-->
@@ -166,12 +173,16 @@
                         <div class="card bg-analytics text-white">
                             <div class="card-content">
                                 <div class="card-body text-center">
-                                    <img src="../../../app-assets/images/elements/decore-left.png" class="img-left"
+                                    <img src="../static/images/elements/decore-left.png"
+                                         th:src="@{/images/elements/decore-left.png}" class="img-left"
                                          alt="
             card-img-left">
-                                    <img src="../../../app-assets/images/elements/decore-right.png" class="img-right"
+                                    <img src="../static/images/elements/decore-right.png"
+                                         th:src="@{/images/elements/decore-right.png}" class="img-right"
                                          alt="
             card-img-right">
+
+
                                     <div class="avatar avatar-xl bg-primary shadow mt-0">
                                         <div class="avatar-content">
                                             <i class="feather icon-award white font-large-1"></i>
@@ -351,36 +362,30 @@
 <div class="drag-target"></div>
 
 <!-- BEGIN: Footer-->
-<footer class="footer footer-static footer-light">
-    <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2019<a
-            class="text-bold-800 grey darken-2" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent,</a>All rights Reserved</span><span
-            class="float-md-right d-none d-md-block">Hand-crafted & Made with<i
-            class="feather icon-heart pink"></i></span>
-        <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="feather icon-arrow-up"></i></button>
-    </p>
-</footer>
 <!-- END: Footer-->
 
 
 <!-- BEGIN: Vendor JS-->
-<script src="../../../app-assets/vendors/js/vendors.min.js"></script>
+<script src="../static/vendors/js/vendors.min.js" th:src="@{/vendors/js/vendors.min.js}"></script>
 <!-- BEGIN Vendor JS-->
 
 <!-- BEGIN: Page Vendor JS-->
-<script src="../../../app-assets/vendors/js/charts/apexcharts.min.js"></script>
-<script src="../../../app-assets/vendors/js/extensions/tether.min.js"></script>
-<script src="../../../app-assets/vendors/js/extensions/shepherd.min.js"></script>
+<script src="../static/vendors/js/charts/apexcharts.min.js" th:src="@{/vendors/js/charts/apexcharts.min.js}"></script>
+<script src="../static/vendors/js/extensions/tether.min.js" th:src="@{/vendors/js/extensions/tether.min.js}"></script>
+
 <!-- END: Page Vendor JS-->
 
 <!-- BEGIN: Theme JS-->
-<script src="../../../app-assets/js/core/app-menu.js"></script>
-<script src="../../../app-assets/js/core/app.js"></script>
-<script src="../../../app-assets/js/scripts/components.js"></script>
+<script src="../static/js/core/app-menu.js" th:src="@{/js/core/app-menu.js}"></script>
+<script src="../static/js/core/app.js" th:src="@{/js/core/app.js}"></script>
+<script src="../static/js/scripts/components.js" th:src="@{/js/scripts/components.js}"></script>
 <!-- END: Theme JS-->
 
 <!-- BEGIN: Page JS-->
-<script src="../../../app-assets/js/scripts/pages/dashboard-analytics.js"></script>
+<script src="../static/js/scripts/pages/dashboard-analytics.js"
+        th:src="@{/js/scripts/pages/dashboard-analytics.js}"></script>
 <!-- END: Page JS-->
+
 
 </body>
 <!-- END: Body-->

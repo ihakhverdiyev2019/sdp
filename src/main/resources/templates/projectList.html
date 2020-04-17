@@ -82,7 +82,7 @@
                                 <span>New User</span>
                             </div>
                         </div>
-                        <span><img class="round" src="../static/images/portrait/small/avatar-s-11.jpg" alt="avatar"
+                        <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
                                    height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
@@ -91,7 +91,7 @@
                                                                                   href="app-email.html"><i
                                 class="feather icon-mail"></i> My Inbox</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="auth-login.html"><i class="feather icon-power"></i>
+                            <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
                                 Logout</a>
                         </div>
                     </li>
@@ -178,8 +178,7 @@
                                 <img class="card-img-top img-fluid" th:src="@{${startup.picture}}" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 th:text="${startup.startupName}">Vuexy Admin</h5>
-                                    <p class="card-text  mb-0">By Pixinvent Creative Studio</p>
-                                    <span class="card-text">Elite Author</span>
+                                    <p class="card-text  mb-0" th:text="${startup.briefInfo}"></p>
                                     <div class="d-flex justify-content-between mt-2">
                                         <div class="float-left">
                                             <p class="font-medium-2 mb-0">$ <span
