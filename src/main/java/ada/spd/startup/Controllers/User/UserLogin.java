@@ -25,6 +25,7 @@ public class UserLogin {
 //        if (userRightsRepository.findByUser(user1)== RoleENUM.Founder)
         httpSession.setAttribute("user", user1);
         user1.setStatusEnum(StatusEnum.Online);
+        userRepository.save(user1);
 
 
         return "redirect:/dashboard";

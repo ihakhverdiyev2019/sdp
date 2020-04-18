@@ -15,6 +15,9 @@ public class UserStartup {
     private RoleENUM rights;
 
 
+    private String role;
+
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -24,10 +27,9 @@ public class UserStartup {
     private Startup startup;
 
 
-
-
-    public UserStartup(RoleENUM rights, User user, Startup startup) {
+    public UserStartup(RoleENUM rights, String role, User user, Startup startup) {
         this.rights = rights;
+        this.role = role;
         this.user = user;
         this.startup = startup;
     }
@@ -56,4 +58,27 @@ public class UserStartup {
     public void setRights(RoleENUM rights) {
         this.rights = rights;
     }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Startup getStartup() {
+        return startup;
+    }
+
+
+
 }

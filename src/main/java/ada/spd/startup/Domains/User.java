@@ -20,6 +20,7 @@ public class User {
     private String surname;
     private String phoneNo;
     private String email;
+    private String emailPAss;
     private String birth;
     private String country;
     private String city;
@@ -47,7 +48,7 @@ public class User {
             cascade = CascadeType.ALL)
     private List<JoinStartup> joinStartups = new ArrayList<>();
 
-    public User(String name, String surname, String phoneNo, String email, String birth, String country, String city, String nationallity, String address, String gender, String login, String password, String VOEN, String companyName, String avatar, StatusEnum statusEnum, String joinDate, Status status, int code) {
+    public User(String name, String surname, String emailPAss, String phoneNo, String email, String birth, String country, String city, String nationallity, String address, String gender, String login, String password, String VOEN, String companyName, String avatar, StatusEnum statusEnum, String joinDate, Status status, int code) {
         this.name = name;
         this.surname = surname;
         this.phoneNo = phoneNo;
@@ -67,6 +68,7 @@ public class User {
         this.joinDate = joinDate;
         this.status = status;
         this.code = code;
+        this.emailPAss = emailPAss;
     }
 
     public User() {
@@ -245,5 +247,13 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getEmailPAss() {
+        return emailPAss;
+    }
+
+    public void setEmailPAss(String emailPAss) {
+        this.emailPAss = emailPAss;
     }
 }

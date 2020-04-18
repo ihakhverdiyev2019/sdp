@@ -11,28 +11,14 @@
     <meta name="keywords"
           content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>User List</title>
+    <title>User View - Vuexy - Bootstrap HTML admin template</title>
     <link rel="apple-touch-icon" href="../static/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../static/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/vendors.min.css"
-          th:href="@{/vendors/css/vendors.min.css}">
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/tables/ag-grid/ag-grid.css"
-          th:href="@{/vendors/css/tables/ag-grid/ag-grid.css}">
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/tables/ag-grid/ag-theme-material.css"
-          th:href="@{/vendors/css/tables/ag-grid/ag-theme-material.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/vendors.min.css" th:href="@{/vendors/css/vendors.min.css}">
     <!-- END: Vendor CSS-->
-
-
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/tables/datatable/datatables.min.css"
-          th:href="@{/vendors/css/tables/datatable/datatables.min.css}">
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/file-uploaders/dropzone.min.css"
-          th:href="@{/vendors/css/file-uploaders/dropzone.min.css}">
-    <link rel="stylesheet" type="text/css"
-          href="../static/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css"
-          th:href="@{/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css}">
 
     <!-- BEGIN: Theme CSS-->
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
@@ -46,7 +32,6 @@
           th:href="@{/css/themes/semi-dark-layout.css}">
 
     <!-- BEGIN: Page CSS-->
-    <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="../static/css/core/menu/menu-types/vertical-menu.css"
           th:href="@{/css/core/menu/menu-types/vertical-menu.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/core/colors/palette-gradient.css"
@@ -54,13 +39,6 @@
 
     <link rel="stylesheet" type="text/css" href="../static/css/pages/app-user.css"
           th:href="@{/css/pages/app-user.css}">
-    <link rel="stylesheet" type="text/css" href="../static/css/pages/aggrid.css"
-          th:href="@{/css/pages/aggrid.css}">
-
-    <link rel="stylesheet" type="text/css" href="../static/css/plugins/file-uploaders/dropzone.css"
-          th:href="@{/css/plugins/file-uploaders/dropzone.css}">
-    <link rel="stylesheet" type="text/css" href="../static/css/pages/data-list-view.css"
-          th:href="@{/css/pages/data-list-view.css}">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
@@ -76,12 +54,12 @@
 <body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click"
       data-menu="vertical-menu-modern" data-col="2-columns">
 
-<!-- BEGIN: Header-->
 <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-light navbar-shadow">
     <div class="navbar-wrapper">
         <div class="navbar-container content">
             <div class="navbar-collapse" id="navbar-mobile">
                 <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
+
 
                 </div>
 
@@ -97,7 +75,7 @@
                                 <span>New User</span>
                             </div>
                         </div>
-                        <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
+                        <span><img class="round" src="../static/images/portrait/small/avatar-s-11.jpg" alt="avatar"
                                    height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
@@ -177,110 +155,74 @@
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper">
         <div class="content-header row">
-            <div class="content-header-left col-md-9 col-12 mb-2">
-                <div class="row breadcrumbs-top">
-                    <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0">Contributors List</h2>
-
-                    </div>
-                </div>
-            </div>
-
         </div>
         <div class="content-body">
-            <!-- Data list view starts -->
-            <section id="data-list-view" class="data-list-view-header">
-                <!-- DataTable starts -->
-                <div class="table-responsive">
-                    <table class="table data-list-view">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th>NAME</th>
-                            <th>ROLE</th>
-                            <th>DATE JOINED</th>
-                            <th>ACTIVITY</th>
-                            <th>ACTION</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="cont : ${contributor}">
+            <!-- users edit start -->
+            <section class="users-edit">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <ul class="nav nav-tabs mb-3" role="tablist">
+                                <li class="nav-item">
+                                    <a th:href="@{'/startup/'+${startup.id}+'/contributor'}"
+                                       class="btn btn-outline-primary mr-1 mb-1"><i
+                                            class="feather icon-corner-down-left"></i>Back</a>
 
-                            <td class="product-action">
-                                <button type="button" class="btn btn-icon btn-flat-danger mr-1 mb-1"><a
-                                        th:href="@{'/startup/'+${startup.id}+'/contributor/'+${cont.id}+'/delete'}"> <i
-                                        title="Remove"
-                                        data-toggle="tooltip"
-                                        data-placement="top"
-                                        class="feather icon-x"></i>
-                                </a></button>
-                            </td>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center active" id="account-tab"
+                                       data-toggle="tab" href="#account" aria-controls="account" role="tab"
+                                       aria-selected="true">
+                                        <i class="feather icon-user mr-25"></i><span class="d-none d-sm-block">Contributor Role</span>
+                                    </a>
+                                </li>
 
-                            <td class="product-name">
-                                 <span><img class="round" th:src="@{${cont.user?.avatar}}" alt="avatar"
-                                            height="40" width="40" th:text="${cont.user?.name} + ' ' + ${cont.user?.surname}"></span>
-                            </td>
-                            <td class="product-category" th:text="${cont.role}">Front-end developer</td>
 
-                            <td th:text="${cont.user?.joinDate}">03/03/2020</td>
-                            <td th:text="${cont.user?.statusEnum}">Online
-                                <span class="mr-1 bullet bullet-success bullet-sm"></span>
-                            </td>
-                            <td class="product-action">
-                                    <a th:href="@{'/startup/'+${startup.id}+'/contributor/'+${cont.id}+'/edit'}" type="button" class="btn btn-outline-primary ">
-                                       Edit Role
-                                </a></button>
-                            </td>
-
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-                <!-- DataTable ends -->
-
-                <!-- add new sidebar starts -->
-                <div class="add-new-data-sidebar">
-                    <div class="overlay-bg"></div>
-                    <div class="add-new-data">
-                        <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
-                            <div>
-                                <h4 class="text-uppercase">Invite Contributor</h4>
-                            </div>
-                            <div class="hide-data-sidebar">
-                                <i class="feather icon-x"></i>
-                            </div>
-                        </div>
-                        <div class="data-items pb-3">
-                            <div class="data-fields px-2 mt-3">
-                                <div class="row">
-                                    <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">E-mail</label>
-                                        <input type="text" class="form-control" id="data-name">
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="account" aria-labelledby="account-tab" role="tabpanel">
+                                    <!-- users edit media object start -->
+                                    <div class="media mb-2">
+                                        <a class="mr-2 my-25" href="#">
+                                            <img th:src="@{${contributor.avatar}}" alt="users avatar"
+                                                 class="users-avatar-shadow rounded" height="90" width="90">
+                                        </a>
+                                        <div class="media-body mr-200 mt-50">
+                                            <h4 class="media-heading"
+                                                th:text="${contributor.name} + ' ' + ${contributor.surname}"></h4>
+                                        </div>
                                     </div>
-
-
-                                    <div class="col-sm-12 data-field-col">
-                                        <label for="data-price">Role</label>
-                                        <input type="text" class="form-control" id="data-price">
-                                    </div>
-
+                                    <!-- users edit media object ends -->
+                                    <!-- users edit account form start -->
+                                    <form novalidate th:action="@{'/startup/' + ${startup.id} + '/contributor/' +${userStartup.id} +'/save'}">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label>Contributor Role</label>
+                                                        <input type="text" class="form-control" placeholder="Role"
+                                                               th:value="${userStartup.role}" name="role" required
+                                                               data-validation-required-message="This username field is required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12 col-sm-6  d-flex flex-sm-row flex-column justify-content-end mt-1">
+                                                <button type="submit"
+                                                        class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">Save
+                                                    Changes
+                                                </button>
+                                                <button type="reset" class="btn btn-outline-warning">Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- users edit account form ends -->
                                 </div>
                             </div>
                         </div>
-                        <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
-                            <div class="add-data-btn">
-                                <button class="btn btn-primary">Send Invitation</button>
-                            </div>
-                            <div class="cancel-data-btn">
-                                <button class="btn btn-outline-danger">Cancel</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <!-- add new sidebar ends -->
             </section>
-            <!-- Data list view end -->
+            <!-- users edit ends -->
 
         </div>
     </div>
@@ -296,28 +238,7 @@
 <!-- BEGIN Vendor JS-->
 
 <!-- BEGIN: Page Vendor JS-->
-
-<script src="../static/vendors/js/tables/ag-grid/ag-grid-community.min.noStyle.js"
-        th:src="@{/vendors/js/tables/ag-grid/ag-grid-community.min.noStyle.js}"></script>
-
-<script src="../static/vendors/js/extensions/dropzone.min.js"
-        th:src="@{/vendors/js/extensions/dropzone.min.js}"></script>
-<script src="../static/vendors/js/tables/datatable/datatables.min.js"
-        th:src="@{/vendors/js/tables/datatable/datatables.min.js}"></script>
-<script src="../static/vendors/js/tables/datatable/datatables.buttons.min.js"
-        th:src="@{/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
-<script src="../static/vendors/js/tables/datatable/datatables.bootstrap4.min.js"
-        th:src="@{/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
-<script src="../static/vendors/js/tables/datatable/buttons.bootstrap.min.js"
-        th:src="@{/vendors/js/tables/datatable/buttons.bootstrap.min.js}"></script>
-<script src="../static/vendors/js/tables/datatable/dataTables.select.min.js"
-        th:src="@{/vendors/js/tables/datatable/dataTables.select.min.js}"></script>
-
 <!-- END: Page Vendor JS-->
-
-
-<!-- END: Page Vendor JS-->
-
 
 <!-- BEGIN: Theme JS-->
 <script src="../static/js/core/app-menu.js" th:src="@{/js/core/app-menu.js}"></script>
@@ -326,7 +247,6 @@
 <!-- END: Theme JS-->
 
 <!-- BEGIN: Page JS-->
-<script src="../static/js/scripts/ui/data-list-view.js" th:src="@{/js/scripts/ui/data-list-view.js}"></script>
 <script src="../static/js/scripts/pages/app-user.js" th:src="@{/js/scripts/pages/app-user.js}"></script>
 <!-- END: Page JS-->
 

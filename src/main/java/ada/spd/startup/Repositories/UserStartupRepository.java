@@ -30,9 +30,11 @@ public interface UserStartupRepository extends CrudRepository<UserStartup, Long>
     List<User> findByStartupIdAndUserRights(long startupId, RoleENUM roleENUM);
 
 
-
     @Query(value = "select u.user from UserStartup u where u.startup.id=:startupId and u.rights =:roleENUM")
     User findFounderByStartupIdAndUserRights(long startupId, RoleENUM roleENUM);
 
+
+    @Query(value = "select u from UserStartup u where u.startup.id=:startupId and u.rights =:roleENUM")
+    List<UserStartup> findUserStartupByStartupId(long startupId, RoleENUM roleENUM);
 
 }
