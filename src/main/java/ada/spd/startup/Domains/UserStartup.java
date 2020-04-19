@@ -2,6 +2,7 @@ package ada.spd.startup.Domains;
 
 
 import ada.spd.startup.ENUMS.RoleENUM;
+import ada.spd.startup.ENUMS.StartupJoin;
 
 import javax.persistence.*;
 
@@ -17,6 +18,8 @@ public class UserStartup {
 
     private String role;
 
+    private StartupJoin startupJoin;
+
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -27,11 +30,10 @@ public class UserStartup {
     private Startup startup;
 
 
-    public UserStartup(RoleENUM rights, String role, User user, Startup startup) {
+    public UserStartup(RoleENUM rights, String role, StartupJoin startupJoin) {
         this.rights = rights;
         this.role = role;
-        this.user = user;
-        this.startup = startup;
+        this.startupJoin = startupJoin;
     }
 
     public UserStartup() {
@@ -79,6 +81,11 @@ public class UserStartup {
         return startup;
     }
 
+    public StartupJoin getStartupJoin() {
+        return startupJoin;
+    }
 
-
+    public void setStartupJoin(StartupJoin startupJoin) {
+        this.startupJoin = startupJoin;
+    }
 }

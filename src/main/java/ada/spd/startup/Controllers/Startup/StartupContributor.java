@@ -21,7 +21,7 @@ public class StartupContributor {
 
     @RequestMapping(value = "/startup/{id}/chat")
     public String findAll(@PathVariable String id, Model model) {
-        model.addAttribute("contributor", userStartupRepository.findByStartupIdAndUserRights(1, RoleENUM.Contributor));
+//        model.addAttribute("contributor", userStartupRepository.findByStartupIdAndUserRights(1, RoleENUM.Contributor));
         return "chat";
 
     }

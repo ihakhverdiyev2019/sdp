@@ -223,8 +223,11 @@
                             <td class="product-category" th:text="${cont.role}">Front-end developer</td>
 
                             <td th:text="${cont.user?.joinDate}">03/03/2020</td>
-                            <td th:text="${cont.user?.statusEnum}">Online
+                            <td th:if="${cont.user?.statusEnum == T(ada.spd.startup.ENUMS.StatusEnum).Online}">Online
                                 <span class="mr-1 bullet bullet-success bullet-sm"></span>
+                            </td>
+                            <td th:if="${cont.user?.statusEnum == T(ada.spd.startup.ENUMS.StatusEnum).Offline}">Offline
+                                <span class="mr-1 bullet bullet-danger bullet-sm"></span>
                             </td>
                             <td class="product-action">
                                     <a th:href="@{'/startup/'+${startup.id}+'/contributor/'+${cont.id}+'/edit'}" type="button" class="btn btn-outline-primary ">

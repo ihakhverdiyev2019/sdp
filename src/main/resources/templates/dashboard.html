@@ -139,15 +139,28 @@
             <li class=" navigation-header"><span>Menu</span>
             </li>
             <li class=" nav-item"><a th:href="@{/email}"><i class="feather icon-mail"></i><span class="menu-title"
-                                                                                                 data-i18n="Chat">E-mail</span></a>
+                                                                                                data-i18n="Chat">E-mail</span></a>
             </li>
             <li class="nav-item"><a th:href="@{/startup/list}"><i class="feather icon-file"></i><span class="menu-title"
                                                                                                       data-i18n="Todo">My Projects</span></a>
             </li>
-            <li><a href="startupDescription.html"><i class="feather icon-user"></i><span class="menu-title"
-                                                                                         data-i18n="User">List of Contributors</span></a>
+            <li class=" nav-item"><a ><i class="feather icon-user"></i><span class="menu-title"
+                                                                             data-i18n="User">List of Contributors</span></a>
             </li>
-
+            <li class=" nav-item"><a th:href="@{/startups}" ><i class="feather icon-folder"></i><span class="menu-title"
+                                                                                                            data-i18n="User">List of Startups</span></a>
+            </li>
+            <li class=" nav-item"><a ><i class="fa fa-graduation-cap"></i><span class="menu-title"
+                                                                                data-i18n="User">List of Quizzes</span></a>
+            </li>
+            <li class=" nav-item"><a ><i class="fa fa-envelope-o"></i><span class="menu-title"
+                                                                            data-i18n="User">Requests</span></a>
+                <ul class=" menu-content">
+                    <li><a ><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">Sent</span></a>
+                    </li>
+                    <li><a ><i class="feather icon-circle"></i><span class="menu-item" data-i18n="View">Received</span></a>
+                    </li>
+                </ul> </li>
 
             <li class=" navigation-header"><span>Support</span>
             </li>

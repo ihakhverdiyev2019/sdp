@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- BEGIN: Head-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description"
+          content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords"
+          content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>List of Startups</title>
+    <link rel="apple-touch-icon" href="../static/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/vendors.min.css"
+          th:href="@{/vendors/css/vendors.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/extensions/nouislider.min.css"
+          th:href="@{/vendors/css/extensions/nouislider.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/ui/prism.min.css"
+          th:href="@{/vendors/css/ui/prism.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/forms/select/select2.min.css"
+          th:href="@{/vendors/css/forms/select/select2.min.css}">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap-extended.css"
+          th:href="@{/css/bootstrap-extended.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/colors.css" th:href="@{/css/colors.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/components.css" th:href="@{/css/components.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/themes/dark-layout.css"
+          th:href="@{/css/themes/dark-layout.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/themes/semi-dark-layout.css"
+          th:href="@{/css/themes/semi-dark-layout.css}">
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="../static/css/core/menu/menu-types/vertical-menu.css"
+          th:href="@{/css/core/menu/menu-types/vertical-menu.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/core/colors/palette-gradient.css"
+          th:href="@{/css/core/colors/palette-gradient.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/plugins/extensions/noui-slider.min.css"
+          th:href="@{/css/plugins/extensions/noui-slider.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/pages/app-ecommerce-shop.css"
+          th:href="@{/css/pages/app-ecommerce-shop.css}">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/style.css"
+          th:href="@{/assets/css/style.css}">
+    <!-- END: Custom CSS-->
+
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern content-detached-left-sidebar ecommerce-application navbar-floating footer-static  "
+      data-open="click" data-menu="vertical-menu-modern" data-col="content-detached-left-sidebar">
+
+<!-- BEGIN: Header-->
+<nav class="header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-light navbar-shadow">
+    <div class="navbar-wrapper">
+        <div class="navbar-container content">
+            <div class="navbar-collapse" id="navbar-mobile">
+                <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item mobile-menu d-xl-none mr-auto"><a
+                                class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
+                                class="ficon feather icon-menu"></i></a></li>
+                    </ul>
+
+                </div>
+
+
+                <ul class="nav navbar-nav float-right">
+
+                    <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
+                                                                   href="#" data-toggle="dropdown">
+                        <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600"
+                                                                     th:text="${user.name} + ' ' + ${user.surname}"></span>
+                            <div class="badge badge-success mr-1 mb-1">
+                                <i class="feather icon-award white"></i>
+                                <span>New User</span>
+                            </div>
+                        </div>
+                        <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
+                                   height="40" width="40"></span>
+                    </a>
+                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
+                                                                          href="page-user-profile.html"><i
+                                class="feather icon-user"></i> Edit Profile</a>
+                            <a class="dropdown-item"
+                               href="app-email.html"><i
+                                    class="feather icon-mail"></i> My Inbox</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
+                                Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- END: Header-->
+
+
+<!-- BEGIN: Main Menu-->
+<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+    <div class="navbar-header">
+        <ul class="nav navbar-nav flex-row">
+            <li class="nav-item mr-auto"><a class="navbar-brand"
+                                            href="../../../html/ltr/vertical-menu-template/index.html">
+                <div class="brand-logo"></div>
+                <h2 class="brand-text mb-0">StartUP</h2>
+            </a></li>
+        </ul>
+    </div>
+    <div class="shadow-bottom"></div>
+    <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class=" nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
+                    class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+            </li>
+            <li class=" navigation-header"><span>Menu</span>
+            </li>
+            <li class=" nav-item"><a th:href="@{/email}"><i class="feather icon-mail"></i><span class="menu-title"
+                                                                                                data-i18n="Chat">E-mail</span></a>
+            </li>
+            <li class="nav-item"><a th:href="@{/startup/list}"><i class="feather icon-file"></i><span class="menu-title"
+                                                                                                      data-i18n="Todo">My Projects</span></a>
+            </li>
+            <li class=" nav-item"><a><i class="feather icon-user"></i><span class="menu-title"
+                                                                            data-i18n="User">List of Contributors</span></a>
+            </li>
+            <li class="active nav-item"><a th:href="@{/startups}"><i class="feather icon-folder"></i><span
+                    class="menu-title"
+                    data-i18n="User">List of Startups</span></a>
+            </li>
+            <li class=" nav-item"><a><i class="fa fa-graduation-cap"></i><span class="menu-title"
+                                                                               data-i18n="User">List of Quizzes</span></a>
+            </li>
+            <li class=" nav-item"><a><i class="fa fa-envelope-o"></i><span class="menu-title"
+                                                                           data-i18n="User">Requests</span></a>
+                <ul class=" menu-content">
+                    <li><a><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">Sent</span></a>
+                    </li>
+                    <li><a><i class="feather icon-circle"></i><span class="menu-item"
+                                                                    data-i18n="View">Received</span></a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class=" navigation-header"><span>Support</span>
+            </li>
+            <li class=" nav-item"><a href="https://pixinvent.ticksy.com/"><i class="feather icon-life-buoy"></i><span
+                    class="menu-title" data-i18n="Raise Support">Customer Support</span></a>
+            </li>
+        </ul>
+    </div>
+</div><!-- END: Main Menu-->
+<!-- END: Main Menu-->
+
+<!-- BEGIN: Content-->
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-left mb-0">List Of Startups</h2>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">List of Startups</a>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="content-detached content-right">
+            <div class="content-body">
+                <!-- Ecommerce Content Section Starts -->
+                <section id="ecommerce-header">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="ecommerce-header-items">
+                                <div class="result-toggler">
+                                    <button class="navbar-toggler shop-sidebar-toggler" type="button"
+                                            data-toggle="collapse">
+                                        <span class="navbar-toggler-icon d-block d-lg-none"><i
+                                                class="feather icon-menu"></i></span>
+                                    </button>
+                                    <div class="search-results">
+                                        16285 results found
+                                    </div>
+                                </div>
+                                <div class="view-options">
+                                    <div class="view-btn-option">
+                                        <button class="btn btn-white view-btn grid-view-btn active">
+                                            <i class="feather icon-grid"></i>
+                                        </button>
+                                        <button class="btn btn-white list-view-btn view-btn">
+                                            <i class="feather icon-list"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Ecommerce Content Section Starts -->
+                <!-- background Overlay when sidebar is shown  starts-->
+                <div class="shop-content-overlay"></div>
+                <!-- background Overlay when sidebar is shown  ends-->
+
+                <!-- Ecommerce Search Bar Starts -->
+                <section id="ecommerce-searchbar">
+                    <div class="row mt-1">
+                        <div class="col-sm-12">
+                            <fieldset class="form-group position-relative">
+                                <input type="text" class="form-control search-product" id="iconLeft5"
+                                       placeholder="Search here">
+                                <div class="form-control-position">
+                                    <i class="feather icon-search"></i>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </section>
+                <!-- Ecommerce Search Bar Ends -->
+
+                <!-- Ecommerce Products Starts -->
+                <div class="table-responsive">
+                    <table class="table data-list-view">
+                        <tbody>
+                        <section id="ecommerce-products" class="grid-view">
+                            <div class="card ecommerce-card" th:each="sta: ${startupList}">
+                                <div class="card-content">
+                                    <div class="item-img text-center">
+                                        <a th:href="@{'/startup/' +${sta.id} + '/profile'}">
+                                            <img class="img-fluid" src="../static/images/pages/eCommerce/7.png"
+                                                 th:src="@{${sta.picture}}" alt="img-placeholder">
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="item-wrapper">
+
+                                            <div class="item-cost">
+                                                <h6 class="item-price">
+                                                    Invest amount: $<span th:text="${sta.investAmount}"></span>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="item-name">
+                                            <a th:href="@{'/startup/' +${sta.id} + '/profile'}">
+                                                <span th:text="${sta.startupName}"></span>
+                                            </a>
+                                        </div>
+                                        <p class="item-company" th:text="'Due To Date: ' + ${sta.duration}">gjjhg</p>
+
+                                        <div>
+                                            <p class="item-description" th:text="${sta.briefInfo}">
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="item-options text-center">
+
+                                        <div class="wishlist" th:if="${#lists.contains(startupSession, sta)}">
+                                            <i class="fa fa-pencil-square-o mr-25"></i> <span
+                                                class="add-to-cart">Chat</span>
+                                        </div>
+
+                                        <div class="cart" th:if="${!#lists.contains(startupSession, sta)}">
+                                            <a th:href="@{'/startup/' + ${sta.id} + '/profile'}" style="color: white">
+                                                <i class="feather icon-log-in mr-25"></i> <span class="add-to-cart">Enter</span>
+                                            </a>
+                                        </div>
+
+                                        <div class="cart" th:if="${#lists.contains(startupSession, sta)}">
+                                            <a th:href="@{'/startup/' + ${sta.id} + '/send'}" style="color: white">
+                                                <i class="feather icon-log-in mr-25"></i> <span
+                                                    class="add-to-cart">Join</span>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Ecommerce Products Ends -->
+
+                <!-- Ecommerce Pagination Starts -->
+
+                <!-- Ecommerce Pagination Ends -->
+
+            </div>
+
+        </div>
+        <div class="sidebar-detached sidebar-left">
+            <div class="sidebar">
+                <!-- Ecommerce Sidebar Starts -->
+                <div class="sidebar-shop" id="ecommerce-sidebar-toggler">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h6 class="filter-heading d-none d-lg-block">Filters</h6>
+                        </div>
+                    </div>
+                    <span class="sidebar-close-icon d-block d-md-none">
+                            <i class="feather icon-x"></i>
+                        </span>
+
+                    <!-- /Price Filter -->
+                    <hr>
+                    <!-- /Price Slider -->
+                    <div class="price-slider">
+                        <div class="price-slider-title mt-1">
+                            <h6 class="filter-title mb-0">Price</h6>
+                        </div>
+                        <ul class="list-unstyled price-range" id="price-range">
+                            <li>
+                                            <span class="vs-radio-con vs-radio-primary py-25">
+                                                <input type="radio" name="price-range" checked value="false">
+                                                <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                                <span class="ml-50">All</span>
+                                            </span>
+                            </li>
+                            <li>
+                                            <span class="vs-radio-con vs-radio-primary py-25">
+                                                <input type="radio" name="price-range" value="false">
+                                                <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                                <span class="ml-50"> less than $100</span>
+                                            </span>
+                            </li>
+                            <li>
+                                            <span class="vs-radio-con vs-radio-primary py-25">
+                                                <input type="radio" name="price-range" value="false">
+                                                <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                                <span class="ml-50">$100 - $1000</span>
+                                            </span>
+                            </li>
+                            <li>
+                                            <span class="vs-radio-con vs-radio-primary py-25">
+                                                <input type="radio" name="price-range" value="false">
+                                                <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                                <span class="ml-50">$1000 - $5000</span>
+                                            </span>
+                            </li>
+                            <li>
+                                            <span class="vs-radio-con vs-radio-primary py-25">
+                                                <input type="radio" name="price-range" value="false">
+                                                <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                                <span class="ml-50">over $5000</span>
+                                            </span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- /Price Range -->
+                <hr>
+                <!-- Categories Starts -->
+                <div id="product-categories">
+                    <div class="product-category-title">
+                        <h6 class="filter-title mb-1">Categories</h6>
+                    </div>
+                    <ul class="list-unstyled categories-list">
+                        <li>
+                                            <span class="vs-radio-con vs-radio-primary py-25">
+                                                <input type="radio" name="category-filter" value="false">
+                                                <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                                <span class="ml-50">AI/ML</span>
+                                            </span>
+                        </li>
+                        <li>
+                                            <span class="vs-radio-con vs-radio-primary py-25">
+                                                <input type="radio" name="category-filter" value="false">
+                                                <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                                <span class="ml-50">Website</span>
+                                            </span>
+                        </li>
+                        <li>
+                                            <span class="vs-radio-con vs-radio-primary py-25">
+                                                <input type="radio" name="category-filter" value="false">
+                                                <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                                <span class="ml-50">Software</span>
+                                            </span>
+                        </li>
+
+                        <li>
+                                            <span class="vs-radio-con vs-radio-primary py-25">
+                                                <input type="radio" name="category-filter" value="false">
+                                                <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                                <span class="ml-50">Business</span>
+                                            </span>
+                        </li>
+                        <li>
+                                            <span class="vs-radio-con vs-radio-primary py-25">
+                                                <input type="radio" name="category-filter" value="false">
+                                                <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                                <span class="ml-50">Hardware</span>
+                                            </span>
+                        </li>
+                        <li>
+                                            <span class="vs-radio-con vs-radio-primary py-25">
+                                                <input type="radio" name="category-filter" value="false">
+                                                <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                                <span class="ml-50">Agticulture</span>
+                                            </span>
+                        </li>
+                        <li>
+                                            <span class="vs-radio-con vs-radio-primary py-25">
+                                                <input type="radio" name="category-filter" value="false">
+                                                <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                                <span class="ml-50">Game</span>
+                                            </span>
+                        </li>
+                        <li>
+                                            <span class="vs-radio-con vs-radio-primary py-25">
+                                                <input type="radio" name="category-filter" value="false">
+                                                <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                                <span class="ml-50">Other</span>
+                                            </span>
+                        </li>
+
+
+                    </ul>
+                </div>
+                <!-- Categories Ends -->
+
+                <!-- Rating section starts -->
+
+                <!-- Rating section Ends -->
+                <hr>
+                <!-- Clear Filters Starts -->
+                <div id="clear-filters">
+                    <button class="btn btn-block btn-primary">CLEAR ALL FILTERS</button>
+                </div>
+                <!-- Clear Filters Ends -->
+
+            </div>
+        </div>
+    </div>
+    <!-- Ecommerce Sidebar Ends -->
+
+</div>
+</div>
+</div>
+</div>
+<!-- END: Content-->
+
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+
+<!-- BEGIN: Footer-->
+<!-- END: Footer-->
+
+
+<!-- BEGIN: Vendor JS-->
+<script src="../static/vendors/js/vendors.min.js" th:src="@{/vendors/js/vendors.min.js}"></script>
+<!-- BEGIN Vendor JS-->
+
+<!-- BEGIN: Page Vendor JS-->
+<script src="../static/vendors/js/ui/prism.min.js" th:src="@{/vendors/js/ui/prism.min.js}"></script>
+<script src="../static/vendors/js/extensions/wNumb.js" th:src="@{/vendors/js/extensions/wNumb.js}"></script>
+<script src="../static/vendors/js/extensions/nouislider.min.js"
+        th:src="@{/vendors/js/extensions/nouislider.min.js}"></script>
+<script src="../static/vendors/js/forms/select/select2.full.min.js"
+        th:src="@{/vendors/js/forms/select/select2.full.min.js}"></script>
+<!-- END: Page Vendor JS-->
+
+<!-- BEGIN: Theme JS-->
+<script src="../static/js/core/app-menu.js" th:src="@{/js/core/app-menu.js}"></script>
+<script src="../static/js/core/app.js" th:src="@{/js/core/app.js}"></script>
+<script src="../static/js/scripts/components.js" th:src="@{/js/scripts/components.js}"></script>
+<!-- END: Theme JS-->
+
+<!-- BEGIN: Page JS-->
+<script src="../static/js/scripts/pages/app-ecommerce-shop.js"
+        th:src="@{/js/scripts/pages/app-ecommerce-shop.js}"></script>
+<!-- END: Page JS-->
+
+</body>
+<!-- END: Body-->
+
+</html>

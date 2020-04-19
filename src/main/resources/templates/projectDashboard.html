@@ -147,8 +147,8 @@
                     <li><a th:href="@{'/startup/' + ${startup.id} +'/contributor'}"><i class="feather icon-circle"></i><span class="menu-item"
                                                                                           data-i18n="List">Contributors List</span></a>
                     </li>
-                    <li><a href="pendingRequests.html"><i class="feather icon-circle"></i><span class="menu-item"
-                                                                                                data-i18n="View">Pending Requests</span></a>
+                    <li><a th:href="@{'/startup/' + ${startup.id} +'/contributor/waiting'}"><i class="feather icon-circle"></i><span class="menu-item"
+                                                                                                                                     data-i18n="View">Pending Requests</span></a>
                     </li>
                 </ul>
             </li>

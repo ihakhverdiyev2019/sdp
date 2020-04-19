@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "STARTUP")
-//@Document(indexName= "startup", type= "startup")
 public class Startup {
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +29,7 @@ public class Startup {
             cascade = CascadeType.ALL)
     private List<UserStartup> userStartups = new ArrayList<>();
 
-    @OneToMany(mappedBy = "startup", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private List<JoinStartup> joinStartups = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "startup", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)

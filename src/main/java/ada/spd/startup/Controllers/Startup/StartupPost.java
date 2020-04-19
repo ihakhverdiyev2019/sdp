@@ -39,6 +39,7 @@ public class StartupPost {
         startup.setCategory(category);
         UserStartup userStartup = new UserStartup();
         userStartup.setRights(RoleENUM.Founder);
+        userStartup.setRole("CEO");
         userStartup.setStartup(startup);
         userStartup.setUser(startupper);
         startupRepository.save(startup);

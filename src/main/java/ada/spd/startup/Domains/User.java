@@ -44,9 +44,7 @@ public class User {
     private List<UserStartup> userStartups = new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private List<JoinStartup> joinStartups = new ArrayList<>();
+
 
     public User(String name, String surname, String emailPAss, String phoneNo, String email, String birth, String country, String city, String nationallity, String address, String gender, String login, String password, String VOEN, String companyName, String avatar, StatusEnum statusEnum, String joinDate, Status status, int code) {
         this.name = name;

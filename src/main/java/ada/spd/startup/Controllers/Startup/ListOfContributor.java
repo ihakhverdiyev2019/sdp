@@ -4,6 +4,7 @@ package ada.spd.startup.Controllers.Startup;
 import ada.spd.startup.Domains.User;
 import ada.spd.startup.Domains.UserStartup;
 import ada.spd.startup.ENUMS.RoleENUM;
+import ada.spd.startup.ENUMS.StartupJoin;
 import ada.spd.startup.Repositories.StartupRepository;
 import ada.spd.startup.Repositories.UserStartupRepository;
 import org.springframework.stereotype.Controller;
@@ -27,12 +28,21 @@ public class ListOfContributor {
     }
 
     @GetMapping(value = "/startup/{tid}/contributor")
-    public String listOfStartup(@PathVariable String tid, Model model, HttpSession httpSession) {
+    public String listOfContributor(@PathVariable String tid, Model model, HttpSession httpSession) {
 
         model.addAttribute("startup", startupRepository.findById(Long.parseLong(tid)).get());
         model.addAttribute("user", (User) httpSession.getAttribute("user"));
-        model.addAttribute("contributor", userStartupRepository.findUserStartupByStartupId(Long.parseLong(tid), RoleENUM.Contributor));
+        model.addAttribute("contributor", userStartupRepository.findUserStartupByStartupId(Long.parseLong(tid), RoleENUM.Contributor, StartupJoin.Joined));
         return "usersList";
+    }
+
+    @GetMapping(value = "/startup/{tid}/contributor/waiting")
+    public String listOfWaitingContributor(@PathVariable String tid, Model model, HttpSession httpSession) {
+
+        model.addAttribute("startup", startupRepository.findById(Long.parseLong(tid)).get());
+        model.addAttribute("user", (User) httpSession.getAttribute("user"));
+        model.addAttribute("contributor", userStartupRepository.findUserStartupByStartupId(Long.parseLong(tid), RoleENUM.Contributor, StartupJoin.Waiting));
+        return "pendingRequests";
     }
 
     @GetMapping(value = "/startup/{tid}/contributor/{cid}/delete")

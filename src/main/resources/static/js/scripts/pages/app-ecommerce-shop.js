@@ -98,84 +98,84 @@ $(document).ready(function () {
   });
 
   // For Wishlist Icon
-  wishlist.on("click", function () {
-    var $this = $(this)
-    $this.find("i").toggleClass("fa-heart-o fa-heart")
-    $this.toggleClass("added");
-  })
+  // wishlist.on("click", function () {
+  //   var $this = $(this)
+  //   $this.find("i").toggleClass("fa-heart-o fa-heart")
+  //   $this.toggleClass("added");
+  // })
 
   // Checkout Wizard
-  var checkoutWizard = $(".checkout-tab-steps"),
-    checkoutValidation = checkoutWizard.show();
-  if (checkoutWizard.length > 0) {
-    $(checkoutWizard).steps({
-      headerTag: "h6",
-      bodyTag: "fieldset",
-      transitionEffect: "fade",
-      titleTemplate: '<span class="step">#index#</span> #title#',
-      enablePagination: false,
-      onStepChanging: function (event, currentIndex, newIndex) {
-        // allows to go back to previous step if form is
-        if (currentIndex > newIndex) {
-          return true;
-        }
-        // Needed in some cases if the user went back (clean up)
-        if (currentIndex < newIndex) {
-          // To remove error styles
-          checkoutValidation.find(".body:eq(" + newIndex + ") label.error").remove();
-          checkoutValidation.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-        }
-        // check for valid details and show notification accordingly
-        if (currentIndex === 1 && Number($(".form-control.required").val().length) < 1) {
-          toastr.warning('Error', 'Please Enter Valid Details', { "positionClass": "toast-bottom-right" });
-        }
-        checkoutValidation.validate().settings.ignore = ":disabled,:hidden";
-        return checkoutValidation.valid();
-      },
-    });
-    // to move to next step on place order and save address click
-    $(".place-order, .delivery-address").on("click", function () {
-      $(".checkout-tab-steps").steps("next", {});
-    });
-    // check if user has entered valid cvv
-    $(".btn-cvv").on("click", function () {
-      if ($(".input-cvv").val().length == 3) {
-        toastr.success('Success', 'Payment received Successfully', { "positionClass": "toast-bottom-right" });
-      }
-      else {
-        toastr.warning('Error', 'Please Enter Valid Details', { "positionClass": "toast-bottom-right" });
-      }
-    })
-  }
-
-  // checkout quantity counter
-  var quantityCounter = $(".quantity-counter"),
-    CounterMin = 1,
-    CounterMax = 10;
-  if (quantityCounter.length > 0) {
-    quantityCounter.TouchSpin({
-      min: CounterMin,
-      max: CounterMax
-    }).on('touchspin.on.startdownspin', function () {
-      var $this = $(this);
-      $('.bootstrap-touchspin-up').removeClass("disabled-max-min");
-      if ($this.val() == 1) {
-        $(this).siblings().find('.bootstrap-touchspin-down').addClass("disabled-max-min");
-      }
-    }).on('touchspin.on.startupspin', function () {
-      var $this = $(this);
-      $('.bootstrap-touchspin-down').removeClass("disabled-max-min");
-      if ($this.val() == 10) {
-        $(this).siblings().find('.bootstrap-touchspin-up').addClass("disabled-max-min");
-      }
-    });
-  }
-
-  // remove items from wishlist page
-  $(".remove-wishlist , .move-cart").on("click", function () {
-    $(this).closest(".ecommerce-card").remove();
-  })
-})
+//   var checkoutWizard = $(".checkout-tab-steps"),
+//     checkoutValidation = checkoutWizard.show();
+//   if (checkoutWizard.length > 0) {
+//     $(checkoutWizard).steps({
+//       headerTag: "h6",
+//       bodyTag: "fieldset",
+//       transitionEffect: "fade",
+//       titleTemplate: '<span class="step">#index#</span> #title#',
+//       enablePagination: false,
+//       onStepChanging: function (event, currentIndex, newIndex) {
+//         // allows to go back to previous step if form is
+//         if (currentIndex > newIndex) {
+//           return true;
+//         }
+//         // Needed in some cases if the user went back (clean up)
+//         if (currentIndex < newIndex) {
+//           // To remove error styles
+//           checkoutValidation.find(".body:eq(" + newIndex + ") label.error").remove();
+//           checkoutValidation.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+//         }
+//         // check for valid details and show notification accordingly
+//         if (currentIndex === 1 && Number($(".form-control.required").val().length) < 1) {
+//           toastr.warning('Error', 'Please Enter Valid Details', { "positionClass": "toast-bottom-right" });
+//         }
+//         checkoutValidation.validate().settings.ignore = ":disabled,:hidden";
+//         return checkoutValidation.valid();
+//       },
+//     });
+//     // to move to next step on place order and save address click
+//     $(".place-order, .delivery-address").on("click", function () {
+//       $(".checkout-tab-steps").steps("next", {});
+//     });
+//     // check if user has entered valid cvv
+//     $(".btn-cvv").on("click", function () {
+//       if ($(".input-cvv").val().length == 3) {
+//         toastr.success('Success', 'Payment received Successfully', { "positionClass": "toast-bottom-right" });
+//       }
+//       else {
+//         toastr.warning('Error', 'Please Enter Valid Details', { "positionClass": "toast-bottom-right" });
+//       }
+//     })
+//   }
+//
+//   // checkout quantity counter
+//   var quantityCounter = $(".quantity-counter"),
+//     CounterMin = 1,
+//     CounterMax = 10;
+//   if (quantityCounter.length > 0) {
+//     quantityCounter.TouchSpin({
+//       min: CounterMin,
+//       max: CounterMax
+//     }).on('touchspin.on.startdownspin', function () {
+//       var $this = $(this);
+//       $('.bootstrap-touchspin-up').removeClass("disabled-max-min");
+//       if ($this.val() == 1) {
+//         $(this).siblings().find('.bootstrap-touchspin-down').addClass("disabled-max-min");
+//       }
+//     }).on('touchspin.on.startupspin', function () {
+//       var $this = $(this);
+//       $('.bootstrap-touchspin-down').removeClass("disabled-max-min");
+//       if ($this.val() == 10) {
+//         $(this).siblings().find('.bootstrap-touchspin-up').addClass("disabled-max-min");
+//       }
+//     });
+//   }
+//
+//   // remove items from wishlist page
+//   $(".remove-wishlist , .move-cart").on("click", function () {
+//     $(this).closest(".ecommerce-card").remove();
+//   })
+// })
 // on window resize hide sidebar
 $(window).on("resize", function () {
   if ($(window).width() <= 991) {
