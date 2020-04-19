@@ -29,12 +29,15 @@ public class StartupProfile {
     @RequestMapping(value = "/startup/{id}/profile")
     public String findStartupProfile(@PathVariable String id, Model model, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
-        model.addAttribute("user", user);
-        Startup startup = startupRepository.findById(Long.parseLong(id)).get();
-        model.addAttribute("startup", startup);
-        model.addAttribute("founder", userStartupRepository.findFounderByStartupIdAndUserRights(startup.getId(), RoleENUM.Founder));
-        return "startupProfile";
+        if(user!=null) {
+            model.addAttribute("user", user);
+            Startup startup = startupRepository.findById(Long.parseLong(id)).get();
+            model.addAttribute("startup", startup);
+            model.addAttribute("founder", userStartupRepository.findFounderByStartupIdAndUserRights(startup.getId(), RoleENUM.Founder));
+            model.addAttribute("userStartup", userStartupRepository.findByStartupAndUser(startup.getId(), user.getId()));
+            return "startupProfile";
 
-
+        }else
+            return "redirect:/login";
     }
 }

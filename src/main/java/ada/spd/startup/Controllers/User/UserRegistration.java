@@ -22,19 +22,21 @@ public class UserRegistration {
         this.userRepository = userRepository;
     }
 
-    @PostMapping(value = "/user/registration", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/user/registration")
     public String registerUser(@RequestBody User user, HttpSession httpSession) {
-        int smsCode = GenerateCode.codeSMS();
+        if (httpSession.getAttribute("user") != null) {
+            int smsCode = GenerateCode.codeSMS();
 
-        user.setStatus(Status.Hold);
-        user.setCode(smsCode);
+            user.setStatus(Status.Hold);
+            user.setCode(smsCode);
 
-        httpSession.setAttribute("User", user);
-        SMSSender.smsSender(user.getPhoneNo(), smsCode);
+            httpSession.setAttribute("User", user);
+            SMSSender.smsSender(user.getPhoneNo(), smsCode);
 
-        userRepository.save(user);
+            userRepository.save(user);
 
-        System.out.println("Testttt");
-        return "OK";
+            return "redirect:/dashboard";
+        } else
+            return "redirect:/login";
     }
 }

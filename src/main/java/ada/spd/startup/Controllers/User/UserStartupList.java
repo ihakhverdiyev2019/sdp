@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.Collection;
 
 
 @Controller
@@ -27,11 +28,14 @@ public class UserStartupList {
     @RequestMapping(value = "/startups")
     public String listOfStartupsForUser(Model model, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
-        model.addAttribute("user", user);
-        model.addAttribute("startupList", startupRepository.findAll());
-        model.addAttribute("startupSession" , userStartupRepository.findByStartupAndRights(user.getId(), StartupJoin.Joined));
-
-        return "listOfStartups";
+        if (user != null) {
+            model.addAttribute("user", user);
+            model.addAttribute("startupList", startupRepository.findAll());
+            model.addAttribute("startupSession", userStartupRepository.findByStartupAndRights(user.getId(), StartupJoin.Joined));
+            model.addAttribute("result", ((Collection<?>) startupRepository.findAll()).size());
+            return "listOfStartups";
+        } else
+            return "redirect:/login";
     }
 
 //    @GetMapping(value = "/startups/filter")

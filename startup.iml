@@ -125,6 +125,7 @@
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore-nio:4.4.12" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.13" level="project" />
     <orderEntry type="library" name="Maven: org.elasticsearch.plugin:aggs-matrix-stats-client:6.8.3" level="project" />
+    <orderEntry type="library" name="Maven: org.python:jython-standalone:2.7.1" level="project" />
     <orderEntry type="library" name="Maven: com.twilio.sdk:twilio:7.42.0" level="project" />
     <orderEntry type="library" name="Maven: joda-time:joda-time:2.10.4" level="project" />
     <orderEntry type="library" name="Maven: io.jsonwebtoken:jjwt:0.4" level="project" />

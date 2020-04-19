@@ -25,17 +25,20 @@ public class ToDoCreate {
 
     @RequestMapping("/startup/{id}/todo/create")
     public String newTodo(@PathVariable String id, Model model, HttpSession httpSession) {
-        ToDo toDo = new ToDo();
-        toDo.setProgress(ToDoEnum.New);
         User user = (User) httpSession.getAttribute("user");
-        model.addAttribute("user", user);
-        Startup startup = startupRepository.findById(Long.parseLong(id)).get();
+if (user != null) {
+    ToDo toDo = new ToDo();
+    toDo.setProgress(ToDoEnum.New);
+    model.addAttribute("user", user);
+    Startup startup = startupRepository.findById(Long.parseLong(id)).get();
 
-        model.addAttribute("todo", toDo);
-        model.addAttribute("startup", startup);
+    model.addAttribute("todo", toDo);
+    model.addAttribute("startup", startup);
 
 
-        return "addTodo";
+    return "addTodo";
+}else
+    return "redirect:/login";
 
     }
 

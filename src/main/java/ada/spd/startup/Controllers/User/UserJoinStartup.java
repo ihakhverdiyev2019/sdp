@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 public class UserJoinStartup {
@@ -29,17 +31,23 @@ public class UserJoinStartup {
 
     @RequestMapping(value = "/startup/{id}/send")
     public String acceptStartup(@PathVariable String id, HttpSession httpSession) {
-        Startup startup = startupRepository.findById(Long.parseLong(id)).get();
-        User user = (User) httpSession.getAttribute("user");
-        UserStartup userStartup = new UserStartup();
-        userStartup.setUser(user);
-        userStartup.setRights(RoleENUM.Contributor);
-        userStartup.setStartup(startup);
-        userStartup.setStartupJoin(StartupJoin.Waiting);
-        userStartupRepository.save(userStartup);
+        if (httpSession.getAttribute("user") != null) {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy ");
+            LocalDateTime now = LocalDateTime.now();
+            Startup startup = startupRepository.findById(Long.parseLong(id)).get();
+            User user = (User) httpSession.getAttribute("user");
+            UserStartup userStartup = new UserStartup();
+            userStartup.setUser(user);
+            userStartup.setRights(RoleENUM.Contributor);
+            userStartup.setStartup(startup);
+            userStartup.setDate(dtf.format(now));
+            userStartup.setStartupJoin(StartupJoin.WantToJoin);
+            userStartupRepository.save(userStartup);
 
 
-        return "redirect:/startups";
+            return "redirect:/startups";
+        } else
+            return "redirect:/login";
     }
 
 

@@ -25,40 +25,48 @@ public class TodoFilter {
     }
 
     @RequestMapping("/startup/{id}/todo/done")
-    public String doneFilter(@PathVariable String id, Model model , HttpSession httpSession) {
-        Startup startup = startupRepository.findById(Long.parseLong(id)).get();
-        User user = (User) httpSession.getAttribute("user");
-        model.addAttribute("user", user);
-        model.addAttribute("startup", startup);
-        model.addAttribute("doneToDo", toDoRepository.findByStartup(Long.parseLong(id), ToDoEnum.Complete)
-        );
+    public String doneFilter(@PathVariable String id, Model model, HttpSession httpSession) {
+        if (httpSession.getAttribute("user") != null) {
+            Startup startup = startupRepository.findById(Long.parseLong(id)).get();
+            User user = (User) httpSession.getAttribute("user");
+            model.addAttribute("user", user);
+            model.addAttribute("startup", startup);
+            model.addAttribute("doneToDo", toDoRepository.findByStartup(Long.parseLong(id), ToDoEnum.Complete)
+            );
 
-        return "completeToDo";
-
+            return "completeToDo";
+        } else
+            return "redirect:/login";
     }
 
     @RequestMapping("/startup/{id}/todo/cancel")
-    public String cancelFilter(@PathVariable String id, Model model,HttpSession httpSession) {
-        Startup startup = startupRepository.findById(Long.parseLong(id)).get();
-        User user = (User) httpSession.getAttribute("user");
-        model.addAttribute("user", user);
-        model.addAttribute("startup", startup);
-        model.addAttribute("cancelToDo", toDoRepository.findByStartup(Long.parseLong(id), ToDoEnum.Cancel)
-        );
+    public String cancelFilter(@PathVariable String id, Model model, HttpSession httpSession) {
+        if (httpSession.getAttribute("user") != null) {
+            Startup startup = startupRepository.findById(Long.parseLong(id)).get();
+            User user = (User) httpSession.getAttribute("user");
+            model.addAttribute("user", user);
+            model.addAttribute("startup", startup);
+            model.addAttribute("cancelToDo", toDoRepository.findByStartup(Long.parseLong(id), ToDoEnum.Cancel)
+            );
 
-        return "cancelToDo";
+            return "cancelToDo";
+        } else
+            return "redirect:/login";
 
     }
 
     @RequestMapping("/startup/{id}/todo/new")
-    public String newFilter(@PathVariable String id, Model model,HttpSession httpSession) {
-        Startup startup = startupRepository.findById(Long.parseLong(id)).get();
-        User user = (User) httpSession.getAttribute("user");
-        model.addAttribute("user", user);
-        model.addAttribute("startup", startup);
-        model.addAttribute("newToDo", toDoRepository.findByStartup(Long.parseLong(id), ToDoEnum.New));
+    public String newFilter(@PathVariable String id, Model model, HttpSession httpSession) {
+        if (httpSession.getAttribute("user") != null) {
+            Startup startup = startupRepository.findById(Long.parseLong(id)).get();
+            User user = (User) httpSession.getAttribute("user");
+            model.addAttribute("user", user);
+            model.addAttribute("startup", startup);
+            model.addAttribute("newToDo", toDoRepository.findByStartup(Long.parseLong(id), ToDoEnum.New));
 
-        return "newToDo";
+            return "newToDo";
+        } else
+            return "redirect:/login";
 
     }
 }

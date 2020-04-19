@@ -22,15 +22,18 @@ public class StartupNew {
     @RequestMapping("/startup/create")
     public String newTodo(HttpSession httpSession, Model model) {
         User user = (User) httpSession.getAttribute("user");
-        Startup startup = new Startup();
+        if (user != null) {
+            Startup startup = new Startup();
 
 
-        model.addAttribute("category", categoryRepository.findAll());
-        model.addAttribute("startup", startup);
-        model.addAttribute("user", user);
+            model.addAttribute("category", categoryRepository.findAll());
+            model.addAttribute("startup", startup);
+            model.addAttribute("user", user);
 
 
-        return "addNewProject";
+            return "addNewProject";
+        }else
+            return "redirect:/login";
 
     }
 }

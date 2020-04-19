@@ -23,9 +23,13 @@ public class EnterProject {
     @GetMapping(value = "/startup/{tid}")
     public String projectWorkplace(@PathVariable String tid, Model model, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
-        model.addAttribute("startup", startupRepository.findById(Long.parseLong(tid)).get());
-        model.addAttribute("user", user);
+        if (user != null) {
+            model.addAttribute("startup", startupRepository.findById(Long.parseLong(tid)).get());
+            model.addAttribute("user", user);
 
-        return "projectDashboard";
+            return "projectDashboard";
+        } else
+            return "redirect:/login";
+
     }
 }

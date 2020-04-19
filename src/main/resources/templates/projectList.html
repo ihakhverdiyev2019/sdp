@@ -118,21 +118,29 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item"><a href="index.html"><i class="feather icon-home"></i><span class="menu-title"
-                                                                                              data-i18n="Dashboard">Dashboard</span></a>
+            <li class=" nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
+                    class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
             </li>
             <li class=" navigation-header"><span>Menu</span>
             </li>
-            <li class=" nav-item"><a href="app-chat.html"><i class="feather icon-mail"></i><span class="menu-title"
-                                                                                                 data-i18n="Chat">E-mail</span></a>
+            <li class=" nav-item"><a th:href="@{/email}"><i class="feather icon-mail"></i><span class="menu-title"
+                                                                                                data-i18n="Chat">E-mail</span></a>
             </li>
-            <li class="active nav-item"><a href="app-todo.html"><i class="feather icon-file"></i><span
-                    class="menu-title" data-i18n="Todo">My Projects</span></a>
+            <li class="active nav-item"><a th:href="@{/startup/list}"><i class="feather icon-file"></i><span class="menu-title"
+                                                                                                      data-i18n="Todo">My Projects</span></a>
             </li>
-            <li><a href="../../../../../Startup_Pages/startupDescription.html"><i class="feather icon-user"></i><span
-                    class="menu-title" data-i18n="User">List of Contributors</span></a>
+            <li class=" nav-item"><a th:href="@{/contributors}"><i class="feather icon-user"></i><span class="menu-title"
+                                                                                                       data-i18n="User">List of Contributors</span></a>
             </li>
-
+            <li class=" nav-item"><a th:href="@{/startups}" ><i class="feather icon-folder"></i><span class="menu-title"
+                                                                                                      data-i18n="User">List of Startups</span></a>
+            </li>
+            <li class=" nav-item"><a ><i class="fa fa-graduation-cap"></i><span class="menu-title"
+                                                                                data-i18n="User">List of Quizzes</span></a>
+            </li>
+            <li class=" nav-item"><a th:href="@{/requests}"><i class="fa fa-envelope-o"></i><span class="menu-title"
+                                                                                                  data-i18n="User">Requests</span></a>
+            </li>
 
             <li class=" navigation-header"><span>Support</span>
             </li>

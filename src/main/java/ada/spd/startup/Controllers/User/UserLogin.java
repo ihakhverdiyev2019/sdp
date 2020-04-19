@@ -15,27 +15,26 @@ public class UserLogin {
 
     private UserRepository userRepository;
 
+
     public UserLogin(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @PostMapping(value = "/user/login")
     public String loginStartupper(@Valid @ModelAttribute User user, HttpSession httpSession) {
-        User user1 = userRepository.findByCredentials(user.getLogin(), user.getPassword()).get();
-//        if (userRightsRepository.findByUser(user1)== RoleENUM.Founder)
-        httpSession.setAttribute("user", user1);
-        user1.setStatusEnum(StatusEnum.Online);
-        userRepository.save(user1);
+            User user1 = userRepository.findByCredentials(user.getLogin(), user.getPassword()).get();
+            httpSession.setAttribute("user", user1);
+            user1.setStatusEnum(StatusEnum.Online);
+            userRepository.save(user1);
+            return "redirect:/dashboard";
 
-
-        return "redirect:/dashboard";
     }
 
     @RequestMapping(value = "/login")
-    public String login() {
+    public String login(HttpSession httpSession) {
 
+            return "login";
 
-        return "login";
     }
 
 

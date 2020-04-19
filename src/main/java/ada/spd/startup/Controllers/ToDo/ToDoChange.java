@@ -26,10 +26,13 @@ public class ToDoChange {
     @GetMapping(value = "/startup/{id}/edit/{tid}")
     public String changeTodo(HttpSession httpSession, @PathVariable(name = "tid", required = true) String tid, @PathVariable(name = "id", required = true) String id, Model model) {
         User user = (User) httpSession.getAttribute("user");
-        model.addAttribute("user", user);
-        model.addAttribute("startup", startupRepository.findById(Long.parseLong(id)).get());
-        model.addAttribute("todo", toDoRepository.findById(Long.parseLong(tid)).get());
-        return "addTodo";
+        if (user != null) {
+            model.addAttribute("user", user);
+            model.addAttribute("startup", startupRepository.findById(Long.parseLong(id)).get());
+            model.addAttribute("todo", toDoRepository.findById(Long.parseLong(tid)).get());
+            return "addTodo";
+        } else
+            return "redirect:/login";
 
 
     }

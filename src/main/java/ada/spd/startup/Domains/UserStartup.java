@@ -20,6 +20,7 @@ public class UserStartup {
 
     private StartupJoin startupJoin;
 
+    private String date;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -30,10 +31,11 @@ public class UserStartup {
     private Startup startup;
 
 
-    public UserStartup(RoleENUM rights, String role, StartupJoin startupJoin) {
+    public UserStartup(RoleENUM rights, String role, StartupJoin startupJoin, String date) {
         this.rights = rights;
         this.role = role;
         this.startupJoin = startupJoin;
+        this.date = date;
     }
 
     public UserStartup() {
@@ -87,5 +89,13 @@ public class UserStartup {
 
     public void setStartupJoin(StartupJoin startupJoin) {
         this.startupJoin = startupJoin;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

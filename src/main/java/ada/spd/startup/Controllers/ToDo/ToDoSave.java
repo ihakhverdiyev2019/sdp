@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.net.http.HttpClient;
 
 
 @Controller
@@ -28,15 +30,17 @@ public class ToDoSave {
     }
 
     @PostMapping("/startup/{id}/todo/save")
-    public String saveCourse(@PathVariable String id, @Valid @ModelAttribute ToDo toDo) {
-        Startup startup = startupRepository.findById(Long.parseLong(id)).get();
+    public String saveCourse(@PathVariable String id, @Valid @ModelAttribute ToDo toDo, HttpSession httpSession) {
+        if (httpSession.getAttribute("user") != null) {
+            Startup startup = startupRepository.findById(Long.parseLong(id)).get();
 
-        toDo.setStartup(startup);
-        toDo.setProgress(ToDoEnum.New);
-        toDoRepository.save(toDo);
+            toDo.setStartup(startup);
+            toDo.setProgress(ToDoEnum.New);
+            toDoRepository.save(toDo);
 
-        return "redirect:/startup/" + id + "/todo";
-
+            return "redirect:/startup/" + id + "/todo";
+        } else
+            return "redirect:/login";
     }
 
 }

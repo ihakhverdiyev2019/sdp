@@ -31,21 +31,26 @@ public class StartupProfileEdit {
 
     @RequestMapping(value = "/startup/{id}/edit")
     public String findStartupProfileEdit(@PathVariable String id, Model model, HttpSession httpSession) {
-        model.addAttribute("user", (User) httpSession.getAttribute("user"));
-        model.addAttribute("startup", startupRepository.findById(Long.parseLong(id)).get());
-        model.addAttribute("category", categoryRepository.findAll());
-        return "startupEdit";
-
+        if (httpSession.getAttribute("user") != null) {
+            model.addAttribute("user", (User) httpSession.getAttribute("user"));
+            model.addAttribute("startup", startupRepository.findById(Long.parseLong(id)).get());
+            model.addAttribute("category", categoryRepository.findAll());
+            return "startupEdit";
+        } else
+            return "redirect:/login";
 
     }
 
 
     @RequestMapping(value = "/startup/{id}/post")
-    public String StartupProfileEditSave(@Valid @ModelAttribute Startup startup, @RequestParam("category") String category, @PathVariable String id) {
-        startup.setCategory(category);
-        startupRepository.save(startup);
+    public String StartupProfileEditSave(@Valid @ModelAttribute Startup startup, @RequestParam("category") String category, @PathVariable String id, HttpSession httpSession) {
+        if (httpSession.getAttribute("user") != null) {
+            startup.setCategory(category);
+            startupRepository.save(startup);
 
-        return "redirect:/startup/" + id + "/profile";
+            return "redirect:/startup/" + id + "/profile";
+        } else
+            return "redirect:/login";
 
 
     }

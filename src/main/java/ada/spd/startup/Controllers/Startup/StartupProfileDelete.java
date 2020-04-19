@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 public class StartupProfileDelete {
@@ -23,13 +25,14 @@ public class StartupProfileDelete {
     }
 
     @RequestMapping(value = "/startup/{id}/delete")
-    public String findStartupProfileDelete(@PathVariable String id) {
+    public String findStartupProfileDelete(@PathVariable String id, HttpSession httpSession) {
+        if (httpSession.getAttribute("user") != null) {
+            userStartupRepository.deleteAll(userStartupRepository.findUserStartupByStartupId(Long.parseLong(id)));
+            startupRepository.delete(startupRepository.findById(Long.parseLong(id)).get());
 
-        userStartupRepository.deleteAll(userStartupRepository.findUserStartupByStartupId(Long.parseLong(id)));
-        startupRepository.delete(startupRepository.findById(Long.parseLong(id)).get());
-
-        return "redirect:/startup/list";
-
+            return "redirect:/startup/list";
+        } else
+            return "redirect:/login";
 
     }
 }

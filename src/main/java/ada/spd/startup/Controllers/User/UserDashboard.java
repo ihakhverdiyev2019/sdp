@@ -17,9 +17,12 @@ public class UserDashboard {
     @GetMapping(value = "/dashboard")
     public String userDashboard(Model model, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
-        model.addAttribute("user", user);
+        if (user != null) {
+            model.addAttribute("user", user);
 
 
-        return "dashboard";
+            return "dashboard";
+        } else
+            return "redirect:/login";
     }
 }

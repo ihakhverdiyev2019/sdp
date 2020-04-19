@@ -43,6 +43,9 @@ public class User {
             cascade = CascadeType.ALL)
     private List<UserStartup> userStartups = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<QuizCertificate> quizCertificates;
 
 
 

@@ -5,12 +5,10 @@ import ada.spd.startup.Domains.User;
 import ada.spd.startup.Domains.UserStartup;
 import ada.spd.startup.ENUMS.RoleENUM;
 import ada.spd.startup.ENUMS.StartupJoin;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.management.relation.Role;
 import java.util.List;
 
 @Repository
@@ -47,4 +45,10 @@ public interface UserStartupRepository extends CrudRepository<UserStartup, Long>
 
     @Query(value = "select u.startup from UserStartup u where u.user.id= :userId and  u.startupJoin =:startupJoin")
     List<Startup> findByStartupAndRights(long userId, StartupJoin startupJoin);
+
+    @Query(value = "select u from UserStartup u where u.user.id= :userId and  u.startupJoin =:startupJoin")
+    List<UserStartup> findByUserAndStartupJoin(long userId, StartupJoin startupJoin);
+
+
+
 }

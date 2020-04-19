@@ -25,12 +25,15 @@ public class ToDoList {
 
     @GetMapping(value = "/startup/{id}/todo")
     public String registerToDo(@PathVariable String id, Model model, HttpSession httpSession) {
-        Startup startup = startupRepository.findById(Long.parseLong(id)).get();
-        User user = (User) httpSession.getAttribute("user");
-        model.addAttribute("user", user);
-        model.addAttribute("detail", startup);
-        model.addAttribute("toDo", toDoRepository.findAllByStartup(startup));
-        return "todoList";
+        if (httpSession.getAttribute("user") != null) {
+            Startup startup = startupRepository.findById(Long.parseLong(id)).get();
+            User user = (User) httpSession.getAttribute("user");
+            model.addAttribute("user", user);
+            model.addAttribute("detail", startup);
+            model.addAttribute("toDo", toDoRepository.findAllByStartup(startup));
+            return "todoList";
+        } else
+            return "redirect:/login";
     }
 
 }

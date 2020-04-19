@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 public class ToDoCancel {
@@ -18,14 +20,16 @@ public class ToDoCancel {
     }
 
     @GetMapping(value = "/startup/{id}/cancel/{tid}")
-    public String registerStartup(@PathVariable String id,@PathVariable String tid) {
+    public String registerStartup(@PathVariable String id, @PathVariable String tid, HttpSession httpSession) {
+        if (httpSession.getAttribute("user") != null) {
+            ToDo toDo = toDoRepository.findById(Long.parseLong(tid)).get();
+            toDo.setProgress(ToDoEnum.Cancel);
 
-        ToDo toDo = toDoRepository.findById(Long.parseLong(tid)).get();
-        toDo.setProgress(ToDoEnum.Cancel);
 
+            toDoRepository.save(toDo);
 
-        toDoRepository.save(toDo);
-
-        return "redirect:/startup/"+id+"/todo";
+            return "redirect:/startup/" + id + "/todo";
+        } else
+            return "redirect:/login";
     }
 }

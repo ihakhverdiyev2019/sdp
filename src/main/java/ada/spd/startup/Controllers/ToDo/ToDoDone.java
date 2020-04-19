@@ -21,14 +21,16 @@ public class ToDoDone {
     }
 
     @GetMapping(value = "/startup/{id}/done/{tid}")
-    public String registerStartup(@PathVariable String id, @PathVariable String tid) {
+    public String registerStartup(@PathVariable String id, @PathVariable String tid, HttpSession httpSession) {
+        if (httpSession.getAttribute("user") != null) {
+            ToDo toDo = toDoRepository.findById(Long.parseLong(tid)).get();
+            toDo.setProgress(ToDoEnum.Complete);
 
-        ToDo toDo = toDoRepository.findById(Long.parseLong(tid)).get();
-        toDo.setProgress(ToDoEnum.Complete);
 
+            toDoRepository.save(toDo);
 
-        toDoRepository.save(toDo);
-
-        return "redirect:/startup/" + id + "/todo";
+            return "redirect:/startup/" + id + "/todo";
+        } else
+            return "redirect:/login";
     }
 }

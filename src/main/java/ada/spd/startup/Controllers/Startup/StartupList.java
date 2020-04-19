@@ -22,9 +22,12 @@ public class StartupList {
     @GetMapping(value = "/startup/list")
     public String listOfStartup(Model model, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
-        model.addAttribute("user", user);
-        model.addAttribute("startupList", userStartupRepository.findByUserId(user.getId()));
-        return "projectList";
+        if (user != null) {
+            model.addAttribute("user", user);
+            model.addAttribute("startupList", userStartupRepository.findByUserId(user.getId()));
+            return "projectList";
+        } else
+            return "redirect:/login";
     }
 
 }
