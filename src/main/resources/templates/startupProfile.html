@@ -17,7 +17,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/vendors.min.css" th:href="@{/vendors/css/vendors.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/vendors.min.css"
+          th:href="@{/vendors/css/vendors.min.css}">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -70,7 +71,7 @@
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
                                                                    href="#" data-toggle="dropdown">
                         <div class="user-nav d-sm-flex d-none"><span
-                                class="user-name text-bold-600"  th:text="${user.name} + ' ' + ${user.surname}"></span>
+                                class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
                             <div class="badge badge-success mr-1 mb-1">
                                 <i class="feather icon-award white"></i>
                                 <span>New User</span>
@@ -120,7 +121,8 @@
                     class="feather icon-message-square"></i><span
                     class="menu-title" data-i18n="Chat">Chat</span></a>
             </li>
-            <li class=" nav-item"><a  th:href="@{'/startup/' + ${startup.id} +'/todo'}"><i class="feather icon-check-square"></i><span
+            <li class=" nav-item"><a th:href="@{'/startup/' + ${startup.id} +'/todo'}"><i
+                    class="feather icon-check-square"></i><span
                     class="menu-title" data-i18n="Todo">Todo</span></a>
             </li>
             <li><a th:href="@{'/startup/' + ${startup.id} +'/profile'}"><i class="feather icon-user"></i><span
@@ -129,8 +131,9 @@
             <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title"
                                                                                      data-i18n="User">Users</span></a>
                 <ul class="menu-content">
-                    <li><a th:href="@{'/startup/' + ${startup.id} +'/contributor'}"><i class="feather icon-circle"></i><span class="menu-item"
-                                                                                          data-i18n="List">Contributors List</span></a>
+                    <li><a th:href="@{'/startup/' + ${startup.id} +'/contributor'}"><i
+                            class="feather icon-circle"></i><span class="menu-item"
+                                                                  data-i18n="List">Contributors List</span></a>
                     </li>
                     <li><a href="pendingRequests.html"><i class="feather icon-circle"></i><span class="menu-item"
                                                                                                 data-i18n="View">Pending Requests</span></a>
@@ -210,7 +213,8 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                        <div class="col-12" th:if="${userStartup.rights == T(ada.spd.startup.ENUMS.RoleENUM).Founder}">
+                                        <div class="col-12"
+                                             th:if="${userStartup.rights == T(ada.spd.startup.ENUMS.RoleENUM).Founder}">
                                             <a th:href="@{'/startup/' + ${startup.id} + '/edit'}"
                                                class="btn btn-primary mr-1"><i
                                                     class="feather icon-edit-1"></i> Edit</a>
@@ -265,9 +269,11 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
+                                            <tr th:each="invest : ${investor}">
                                                 <td>Investor</td>
-                                                <td>Someone</td>
+                                                <td th:text="${invest.user?.name + ' ' + invest.user?.surname}">
+                                                    Someone
+                                                </td>
                                             </tr>
 
                                             </tbody>
@@ -286,26 +292,13 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>Someone</td>
-                                                <td>Back-end Developer
+                                            <tr th:each="contr : ${contributor}">
+                                                <td th:text="${contr.user?.name + ' ' + contr.user?.surname}">Someone
+                                                </td>
+                                                <td th:text="${contr.role}">Back-end Developer
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Someone</td>
-                                                <td>Front-end Developer
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Someone</td>
-                                                <td>Project Manager
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Someone</td>
-                                                <td>Database Administrator
-                                                </td>
-                                            </tr>
+
                                             </tbody>
                                         </table>
                                     </div>

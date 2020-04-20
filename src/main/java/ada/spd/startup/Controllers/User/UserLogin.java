@@ -22,17 +22,19 @@ public class UserLogin {
 
     @PostMapping(value = "/user/login")
     public String loginStartupper(@Valid @ModelAttribute User user, HttpSession httpSession) {
-            User user1 = userRepository.findByCredentials(user.getLogin(), user.getPassword()).get();
-            httpSession.setAttribute("user", user1);
-            user1.setStatusEnum(StatusEnum.Online);
-            userRepository.save(user1);
-            return "redirect:/dashboard";
+        User user1 = userRepository.findByCredentials(user.getLogin(), user.getPassword()).get();
+        httpSession.setAttribute("user", user1);
+        user1.setStatusEnum(StatusEnum.Online);
+        userRepository.save(user1);
+        return "redirect:/dashboard";
 
     }
 
     @RequestMapping(value = "/login")
     public String login(HttpSession httpSession) {
-
+        if (httpSession.getAttribute("user") != null)
+            return "redirect:/dashboard";
+        else
             return "login";
 
     }

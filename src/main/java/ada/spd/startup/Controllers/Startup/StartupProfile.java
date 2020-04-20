@@ -36,6 +36,9 @@ public class StartupProfile {
             model.addAttribute("startup", startup);
             model.addAttribute("founder", userStartupRepository.findFounderByStartupIdAndUserRights(startup.getId(), RoleENUM.Founder));
             model.addAttribute("userStartup", userStartupRepository.findByStartupAndUser(startup.getId(), user.getId()));
+            model.addAttribute("contributor", userStartupRepository.findUserStartupByStartupId(startup.getId(), RoleENUM.Contributor, StartupJoin.Joined));
+            model.addAttribute("investor", userStartupRepository.findUserStartupByStartupId(startup.getId(), RoleENUM.Investor, StartupJoin.Joined));
+
             return "startupProfile";
 
         } else
@@ -46,13 +49,35 @@ public class StartupProfile {
     @RequestMapping(value = "/startup/{id}/view")
     public String startupProfileDisplay(@PathVariable String id, Model model, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
+        System.out.println("A");
         if (user != null) {
+            System.out.println("A");
+
             model.addAttribute("user", user);
+            System.out.println("A");
+
             Startup startup = startupRepository.findById(Long.parseLong(id)).get();
+            int click = startup.getClickcount();
+
+            try {
+                if (userStartupRepository.findByStartupAndUser(startup.getId(), user.getId()).getStartup().getId() != startup.getId())
+                    startup.setClickcount(click + 1);
+            } catch (Exception e) {
+                startup.setClickcount(click + 1);
+
+                System.out.println(e.toString());
+            }
+
             model.addAttribute("startup", startup);
+
             model.addAttribute("founder", userStartupRepository.findFounderByStartupIdAndUserRights(startup.getId(), RoleENUM.Founder));
+
             model.addAttribute("contributor", userStartupRepository.findUserStartupByStartupId(startup.getId(), RoleENUM.Contributor, StartupJoin.Joined));
+
             model.addAttribute("investor", userStartupRepository.findUserStartupByStartupId(startup.getId(), RoleENUM.Investor, StartupJoin.Joined));
+
+
+            startupRepository.save(startup);
 
             return "startupDisplayContributor";
 

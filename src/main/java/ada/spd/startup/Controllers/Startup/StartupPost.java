@@ -43,6 +43,8 @@ public class StartupPost {
             userStartup.setRights(RoleENUM.Founder);
             userStartup.setRole("CEO");
             userStartup.setStartupJoin(StartupJoin.Joined);
+            startup.setClickcount(0);
+            startup.setInvested(0);
             userStartup.setStartup(startup);
             userStartup.setUser(startupper);
             startupRepository.save(startup);

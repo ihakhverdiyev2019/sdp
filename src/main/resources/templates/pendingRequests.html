@@ -238,8 +238,9 @@
                             </td>
                             <td class="product-action">
                                 <button class="btn btn-icon btn-flat-success mr-1 mb-1"><a
-                                        th:href="@{'/startup/' + ${cont.startup?.id} + '/contributor/' + ${cont.user?.id} + '/accept'}"> <i
-                                        class="feather icon-check"></i></a></button>
+                                        th:href="@{'/startup/' + ${cont.startup?.id} + '/contributor/' + ${cont.user?.id} + '/accept'}">
+                                    <i
+                                            class="feather icon-check"></i></a></button>
                                 <button type="button" class="btn btn-icon btn-flat-danger mr-1 mb-1"><a
                                         th:href="@{'/startup/' + ${cont.startup?.id} + '/contributor/' + ${cont.user?.id} + '/reject'}"><i
                                         class="feather icon-x"></i></a></button>
@@ -317,8 +318,7 @@
         th:src="@{/vendors/js/extensions/dropzone.min.js}"></script>
 <script src="../static/vendors/js/tables/datatable/datatables.min.js"
         th:src="@{/vendors/js/tables/datatable/datatables.min.js}"></script>
-<script src="../static/vendors/js/tables/datatable/datatables.buttons.min.js"
-        th:src="@{/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
+
 <script src="../static/vendors/js/tables/datatable/datatables.bootstrap4.min.js"
         th:src="@{/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
 <script src="../static/vendors/js/tables/datatable/buttons.bootstrap.min.js"

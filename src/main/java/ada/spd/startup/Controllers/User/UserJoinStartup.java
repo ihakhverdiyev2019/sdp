@@ -12,6 +12,7 @@ import ada.spd.startup.Repositories.UserStartupRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
@@ -30,7 +31,7 @@ public class UserJoinStartup {
     }
 
     @RequestMapping(value = "/startup/{id}/send")
-    public String acceptStartup(@PathVariable String id, HttpSession httpSession) {
+    public String sendRequestFrJoin(@PathVariable String id, @RequestParam("role") String role, HttpSession httpSession) {
         if (httpSession.getAttribute("user") != null) {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy ");
             LocalDateTime now = LocalDateTime.now();
@@ -39,6 +40,7 @@ public class UserJoinStartup {
             UserStartup userStartup = new UserStartup();
             userStartup.setUser(user);
             userStartup.setRights(RoleENUM.Contributor);
+            userStartup.setRole(role);
             userStartup.setStartup(startup);
             userStartup.setDate(dtf.format(now));
             userStartup.setStartupJoin(StartupJoin.WantToJoin);

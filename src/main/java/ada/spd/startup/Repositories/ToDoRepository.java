@@ -21,4 +21,8 @@ public interface ToDoRepository extends CrudRepository<ToDo, Long> {
     @Query(value = "select u from ToDo u where u.progress= :toDoEnum and u.startup.id=:userId")
     List<ToDo> findByStartup(long userId, ToDoEnum toDoEnum);
 
+
+    @Query(value = "select u from ToDo u where u.startup.id=:startupId")
+    List<ToDo> findAllTodo(long startupId);
+
 }

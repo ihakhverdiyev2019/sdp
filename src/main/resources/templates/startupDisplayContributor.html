@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <!-- BEGIN: Head-->
 
 <head>
@@ -246,6 +246,8 @@
                                                      role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
                                                          role="document">
+                                                        <form th:action="@{'/startup/'+ ${startup.id} + '/send'}">
+
                                                         <div class="modal-content">
                                                             <div class="modal-header bg-primary white">
                                                                 <h5 class="modal-title" id="myModalLabel160">Role</h5>
@@ -254,17 +256,19 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <div class="modal-body">
-                                                                Please, indicate for which role you are applying.
-                                                                <input type="text" id="inputRole" class="form-control"
-                                                                       placeholder="Role" required>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-primary"
-                                                                        data-dismiss="modal">Submit
-                                                                </button>
-                                                            </div>
+                                                                <div class="modal-body">
+                                                                    Please, indicate for which role you are applying.
+                                                                    <input type="text" id="inputRole"
+                                                                           class="form-control"
+                                                                           name="role"
+                                                                           placeholder="Role" required>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <input type="submit" class="btn btn-primary">
+                                                                </div>
+
                                                         </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>

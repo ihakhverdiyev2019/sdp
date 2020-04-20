@@ -19,9 +19,9 @@ public class Startup {
     private String briefInfo;
     private String information;
     private double investAmount;
+    private double invested;
     private String picture;
-    private String refferalCode;
-    private String clickcount;
+    private int clickcount;
     private String category;
 
 
@@ -30,20 +30,19 @@ public class Startup {
     private List<UserStartup> userStartups = new ArrayList<>();
 
 
-
     @OneToMany(mappedBy = "startup", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<ToDo> toDos = new ArrayList<>();
 
 
-    public Startup(String startupName, String duration, String briefInfo, String information, double investAmount, String picture, String refferalCode, String clickcount, String category) {
+    public Startup(String startupName, String duration, String briefInfo, String information, double investAmount, double invested, String picture, int clickcount, String category) {
         this.startupName = startupName;
         this.duration = duration;
         this.briefInfo = briefInfo;
         this.information = information;
         this.investAmount = investAmount;
+        this.invested = invested;
         this.picture = picture;
-        this.refferalCode = refferalCode;
         this.clickcount = clickcount;
         this.category = category;
     }
@@ -91,12 +90,12 @@ public class Startup {
         this.information = information;
     }
 
-    public String getRefferalCode() {
-        return refferalCode;
+    public double getInvested() {
+        return invested;
     }
 
-    public void setRefferalCode(String refferalCode) {
-        this.refferalCode = refferalCode;
+    public void setInvested(double invested) {
+        this.invested = invested;
     }
 
     public double getInvestAmount() {
@@ -115,11 +114,11 @@ public class Startup {
         this.picture = picture;
     }
 
-    public String getClickcount() {
+    public int getClickcount() {
         return clickcount;
     }
 
-    public void setClickcount(String clickcount) {
+    public void setClickcount(int clickcount) {
         this.clickcount = clickcount;
     }
 

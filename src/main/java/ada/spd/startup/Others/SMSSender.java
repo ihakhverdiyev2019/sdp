@@ -6,17 +6,16 @@ import com.twilio.type.PhoneNumber;
 
 public class SMSSender {
     public static final String ACCOUNT_SID =
-            "AC0d3852c289bc26baaab7cbfdb4bf6de5";
+            "AC5b837a8d190eeee0035243138ed670a9";
     public static final String AUTH_TOKEN =
-            "7ec8ef432550d924eecfcb47860d8cc0";
+            "adf739bde1438b7c17c1a942b75c0e95";
 
 
-
-    public static void smsSender(String phone, int smsCode){
+    public static void smsSender(String phone, int smsCode) {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message
                 .creator(new PhoneNumber(phone), // to
-                        new PhoneNumber("+12052559480"), // from
+                        new PhoneNumber("+19167964390"), // from
                         String.valueOf(smsCode))
                 .create();
     }

@@ -275,10 +275,7 @@
                                     </div>
                                     </a>
                                     <div class="item-options text-center">
-                                        <div class="wishlist" th:if="${!#lists.contains(startupSession, sta)}">
-                                            <i class="fa fa-pencil-square-o mr-25"></i> <span
-                                                class="add-to-cart">Chat</span>
-                                        </div>
+
 
                                         <div class="cart" th:if="${#lists.contains(startupSession, sta)}">
                                             <a th:href="@{'/startup/' + ${sta.id} + '/profile'}" style="color: white">
@@ -287,9 +284,9 @@
                                         </div>
 
                                         <div class="cart" th:if="${!#lists.contains(startupSession, sta)}">
-                                            <a th:href="@{'/startup/' + ${sta.id} + '/send'}" style="color: white">
+                                            <a th:href="@{'/startup/' + ${sta.id} + '/view'}" style="color: white">
                                                 <i class="feather icon-log-in mr-25"></i> <span
-                                                    class="add-to-cart">Join</span>
+                                                    class="add-to-cart">View</span>
                                             </a>
                                         </div>
 
