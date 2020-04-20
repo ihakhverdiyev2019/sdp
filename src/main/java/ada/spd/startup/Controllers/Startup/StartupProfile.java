@@ -5,6 +5,7 @@ import ada.spd.startup.Domains.Startup;
 import ada.spd.startup.Domains.User;
 import ada.spd.startup.Domains.UserStartup;
 import ada.spd.startup.ENUMS.RoleENUM;
+import ada.spd.startup.ENUMS.StartupJoin;
 import ada.spd.startup.Repositories.StartupRepository;
 import ada.spd.startup.Repositories.UserStartupRepository;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class StartupProfile {
     @RequestMapping(value = "/startup/{id}/profile")
     public String findStartupProfile(@PathVariable String id, Model model, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
-        if(user!=null) {
+        if (user != null) {
             model.addAttribute("user", user);
             Startup startup = startupRepository.findById(Long.parseLong(id)).get();
             model.addAttribute("startup", startup);
@@ -37,7 +38,25 @@ public class StartupProfile {
             model.addAttribute("userStartup", userStartupRepository.findByStartupAndUser(startup.getId(), user.getId()));
             return "startupProfile";
 
-        }else
+        } else
+            return "redirect:/login";
+    }
+
+
+    @RequestMapping(value = "/startup/{id}/view")
+    public String startupProfileDisplay(@PathVariable String id, Model model, HttpSession httpSession) {
+        User user = (User) httpSession.getAttribute("user");
+        if (user != null) {
+            model.addAttribute("user", user);
+            Startup startup = startupRepository.findById(Long.parseLong(id)).get();
+            model.addAttribute("startup", startup);
+            model.addAttribute("founder", userStartupRepository.findFounderByStartupIdAndUserRights(startup.getId(), RoleENUM.Founder));
+            model.addAttribute("contributor", userStartupRepository.findUserStartupByStartupId(startup.getId(), RoleENUM.Contributor, StartupJoin.Joined));
+            model.addAttribute("investor", userStartupRepository.findUserStartupByStartupId(startup.getId(), RoleENUM.Investor, StartupJoin.Joined));
+
+            return "startupDisplayContributor";
+
+        } else
             return "redirect:/login";
     }
 }

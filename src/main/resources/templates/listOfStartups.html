@@ -243,12 +243,14 @@
                         <tbody>
                         <section id="ecommerce-products" class="grid-view">
                             <div class="card ecommerce-card" th:each="sta: ${startupList}">
+
                                 <div class="card-content">
+                                    <a th:href="@{'/startup/' +${sta.id} + '/view'}">
+
                                     <div class="item-img text-center">
-                                        <a th:href="@{'/startup/' +${sta.id} }">
+
                                             <img class="img-fluid" src="../static/images/pages/eCommerce/7.png"
                                                  th:src="@{${sta.picture}}" alt="img-placeholder">
-                                        </a>
                                     </div>
                                     <div class="card-body">
                                         <div class="item-wrapper">
@@ -260,9 +262,8 @@
                                             </div>
                                         </div>
                                         <div class="item-name">
-                                            <a th:href="@{'/startup/' +${sta.id} + '/profile'}">
                                                 <span id="startupName" th:text="${sta.startupName}"> gffh</span>
-                                            </a>
+
                                         </div>
                                         <p class="item-company" th:text="'Due To Date: ' + ${sta.duration}">gjjhg</p>
 
@@ -272,6 +273,7 @@
                                             </p>
                                         </div>
                                     </div>
+                                    </a>
                                     <div class="item-options text-center">
                                         <div class="wishlist" th:if="${!#lists.contains(startupSession, sta)}">
                                             <i class="fa fa-pencil-square-o mr-25"></i> <span
