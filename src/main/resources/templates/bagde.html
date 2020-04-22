@@ -6,10 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description"
-          content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords"
-          content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>User List</title>
     <link rel="apple-touch-icon" href="../static/images/ico/apple-icon-120.png">
@@ -17,22 +15,15 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/vendors.min.css"
-          th:href="@{/vendors/css/vendors.min.css}">
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/tables/ag-grid/ag-grid.css"
-          th:href="@{/vendors/css/tables/ag-grid/ag-grid.css}">
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/tables/ag-grid/ag-theme-material.css"
-          th:href="@{/vendors/css/tables/ag-grid/ag-theme-material.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/vendors.min.css" th:href="@{/vendors/css/vendors.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/tables/ag-grid/ag-grid.css" th:href="@{/vendors/css/tables/ag-grid/ag-grid.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/tables/ag-grid/ag-theme-material.css" th:href="@{/vendors/css/tables/ag-grid/ag-theme-material.css}">
     <!-- END: Vendor CSS-->
 
 
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/tables/datatable/datatables.min.css"
-          th:href="@{/vendors/css/tables/datatable/datatables.min.css}">
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/file-uploaders/dropzone.min.css"
-          th:href="@{/vendors/css/file-uploaders/dropzone.min.css}">
-    <link rel="stylesheet" type="text/css"
-          href="../static/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css"
-          th:href="@{/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/tables/datatable/datatables.min.css" th:href="@{/vendors/css/tables/datatable/datatables.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/file-uploaders/dropzone.min.css" th:href="@{/vendors/css/file-uploaders/dropzone.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css" th:href="@{/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css}">
 
     <!-- BEGIN: Theme CSS-->
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
@@ -57,10 +48,8 @@
     <link rel="stylesheet" type="text/css" href="../static/css/pages/aggrid.css"
           th:href="@{/css/pages/aggrid.css}">
 
-    <link rel="stylesheet" type="text/css" href="../static/css/plugins/file-uploaders/dropzone.css"
-          th:href="@{/css/plugins/file-uploaders/dropzone.css}">
-    <link rel="stylesheet" type="text/css" href="../static/css/pages/data-list-view.css"
-          th:href="@{/app-assets/css/pages/data-list-view.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/plugins/file-uploaders/dropzone.css" th:href="@{/css/plugins/file-uploaders/dropzone.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/pages/data-list-view.css" th:href="@{/app-assets/css/pages/data-list-view.css}">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
@@ -73,8 +62,7 @@
 
 <!-- BEGIN: Body-->
 
-<body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click"
-      data-menu="vertical-menu-modern" data-col="2-columns">
+<body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 <!-- BEGIN: Header-->
 <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-light navbar-shadow">
@@ -126,59 +114,6 @@
 
 
 <!-- BEGIN: Main Menu-->
-<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
-    <div class="navbar-header">
-        <ul class="nav navbar-nav flex-row">
-            <li class="nav-item mr-auto"><a class="navbar-brand"
-                                            href="../../../html/ltr/vertical-menu-template/index.html">
-                <div class="brand-logo"></div>
-                <h2 class="brand-text mb-0">StartUP</h2>
-            </a></li>
-        </ul>
-    </div>
-    <div class="shadow-bottom"></div>
-    <div class="main-menu-content">
-        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
-                    class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
-            </li>
-            <li class=" navigation-header"><span>Menu</span>
-            </li>
-            <li class=" nav-item"><a th:href="@{/email}"><i class="feather icon-mail"></i><span class="menu-title"
-                                                                                                data-i18n="Chat">E-mail</span></a>
-            </li>
-            <li class="nav-item"><a th:href="@{/startup/list}"><i class="feather icon-file"></i><span class="menu-title"
-                                                                                                      data-i18n="Todo">My Projects</span></a>
-            </li>
-            <li class=" nav-item"><a th:href="@{/contributors}"><i class="feather icon-user"></i><span
-                    class="menu-title"
-                    data-i18n="User">List of Contributors</span></a>
-            </li>
-            <li class=" nav-item"><a th:href="@{/startups}"><i class="feather icon-folder"></i><span class="menu-title"
-                                                                                                     data-i18n="User">List of Startups</span></a>
-            </li>
-            <li class="active nav-item"><a><i class="fa fa-graduation-cap"></i><span class="menu-title"
-                                                                                     data-i18n="User">List of Quizzes</span></a>
-            </li>
-            <li class=" nav-item"><a><i class="fa fa-envelope-o"></i><span class="menu-title"
-                                                                           data-i18n="User">Requests</span></a>
-                <ul class=" menu-content">
-                    <li><a><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">Sent</span></a>
-                    </li>
-                    <li><a><i class="feather icon-circle"></i><span class="menu-item"
-                                                                    data-i18n="View">Received</span></a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class=" navigation-header"><span>Support</span>
-            </li>
-            <li class=" nav-item"><a href="https://pixinvent.ticksy.com/"><i class="feather icon-life-buoy"></i><span
-                    class="menu-title" data-i18n="Raise Support">Customer Support</span></a>
-            </li>
-        </ul>
-    </div>
-</div><!-- END: Main Menu-->
 <!-- END: Main Menu-->
 
 <!-- BEGIN: Content-->
@@ -192,15 +127,8 @@
 
                     <div class="col-12">
 
-                        <h2 class="content-header-title float-left mb-0">List of Quizzes</h2>
-                        <div class="breadcrumb-wrapper col-12">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a>
-                                </li>
-                                <li class="breadcrumb-item"><a href="#">List of Quizzes</a>
-                                </li>
-                            </ol>
-                        </div>
+                        <h2 class="content-header-title float-left mb-0">Badges</h2>
+
                     </div>
 
                 </div>
@@ -219,34 +147,128 @@
                         <thead>
                         <tr>
                             <th></th>
-                            <th>NAME</th>
-                            <th>LEVEL</th>
-                            <th>DURATION</th>
-                            <th>Price</th>
-                            <th>ACTIVITY</th>
+                            <th>Badges</th>
+                            <th>For whom</th>
+                            <th>Criteria </th>
+
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="quiz : ${quizes}">
+                        <tr>
                             <td>1</td>
-                            <td class="product-name" th:text="${quiz.name}">Back-end</td>
-                            <td th:text="${quiz.quizLevel}"> Beginner</td>
-                            <td>40 minutes</td>
-
-                            </td>
-                            <td th:text="${quiz.price}"> 4$</td>
-
-                            <td class="product-action">
-                                <div class="btn-group dropdown mr-1 mb-1">
-                                    <button type="button" class="btn btn-outline-primary" aria-haspopup="true"
-                                            aria-expanded="false">
-                                        Take quiz
-                                    </button>
-
-                                </div>
-                            </td>
+                            <td><div class="badge badge-pill badge-success mr-1 mb-1">
+                                <i class="fa fa-keyboard-o white"></i>
+                                <span>Beginner</span>
+                            </div></td>
+                            <td> Contributor</td>
+                            <td>Who has never joined to any startup</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><div class="badge badge-pill badge-info mr-1 mb-1">
+                                <i class="fa fa-keyboard-o white"></i>
+                                <span>Junior</span>
+                            </div></td>
+                            <td> Contributor</td>
+                            <td>Who has already joined to 1 startup </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><div class="badge badge-pill badge-warning mr-1 mb-1">
+                                <i class="fa fa-keyboard-o white"></i>
+                                <span>Medior</span>
+                            </div></td>
+                            <td> Contributor</td>
+                            <td>Who has joined to 5 startups</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><div class="badge badge-pill badge-danger mr-1 mb-1">
+                                <i class="fa fa-keyboard-o white"></i>
+                                <span>Senior</span>
+                            </div></td>
+                            <td> Contributor</td>
+                            <td>Who has joined more than 10 starups</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td ><div class="badge badge-pill badge-glow badge-primary mr-1 mb-1"><i class="fa fa-keyboard-o white"></i>
+                                <span>Professional</span></div></td>
+                            <td> Contributor</td>
+                            <td>Who has joined more than 20 starups</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><div class="badge badge-pill badge-success mr-1 mb-1">
+                                <i class="feather icon-award white"></i>
+                                <span>New User</span>
+                            </div></td>
+                            <td> Startupper</td>
+                            <td>Who has not shared a startup</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><div class="badge badge-pill badge-warning mr-1 mb-1">
+                                <i class="feather icon-award white"></i>
+                                <span>Idea Guy</span>
+                            </div></td>
+                            <td> Startupper</td>
+                            <td>Who has shared 5 startups</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><div class="badge badge-pill badge-danger mr-1 mb-1">
+                                <i class="feather icon-award white"></i>
+                                <span>Idea Lab</span>
+                            </div></td>
+                            <td> Startupper</td>
+                            <td>Who has shared more than 10 startups</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td ><div class="badge badge-pill badge-glow badge-primary mr-1 mb-1"><i class="feather icon-award white"></i>
+                                <span>Idealist</span></div></td>
+                            <td> Startupper</td>
+                            <td>Who has shared more than 20 startups</td>
                         </tr>
 
+                        <tr>
+                            <td>10</td>
+                            <td><div class="badge badge-pill badge-success mr-1 mb-1">
+                                <i class="fa fa-black-tie white"></i>
+                                <span>Market Observer</span>
+                            </div></td>
+                            <td> Investor</td>
+                            <td>Who has not invested to any startup</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td><div class="badge badge-pill badge-warning mr-1 mb-1">
+                                <i class="fa fa-black-tie white"></i>
+                                <span>Business guy</span>
+                            </div></td>
+                            <td> Investor</td>
+                            <td>Who has invested to 1 startup</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td><div class="badge badge-pill badge-danger mr-1 mb-1">
+                                <i class="fa fa-black-tie white"></i>
+                                <span>Businessman</span>
+                            </div></td>
+                            <td> Investor</td>
+                            <td>Who has invested to more than 5 startup</td>
+                        </tr>
+
+                        <tr>
+                            <td>13</td>
+                            <td><div class="badge badge-pill badge-glow badge-primary mr-1 mb-1">
+                                <i class="fa fa-black-tie white"></i>
+                                <span>Investegator</span>
+                            </div></td>
+                            <td> Investor</td>
+                            <td>Who has invested to more than 10 startups</td>
+                        </tr>
 
                         </tbody>
                     </table>
@@ -315,26 +337,23 @@
 
 <!-- BEGIN: Page Vendor JS-->
 
-<script src="../static/vendors/js/tables/ag-grid/ag-grid-community.min.noStyle.js"
-        th:src="@{/vendors/js/tables/ag-grid/ag-grid-community.min.noStyle.js}"></script>
+<script src="../static/vendors/js/tables/ag-grid/ag-grid-community.min.noStyle.js" th:src="@{/vendors/js/tables/ag-grid/ag-grid-community.min.noStyle.js}"></script>
 
-<script src="../static/vendors/js/extensions/dropzone.min.js"
-        th:src="@{/vendors/js/extensions/dropzone.min.js}"></script>
-<script src="../static/vendors/js/tables/datatable/datatables.min.js"
-        th:src="@{/vendors/js/tables/datatable/datatables.min.js}"></script>
-<script src="../static/vendors/js/tables/datatable/datatables.buttons.min.js"
-        th:src="@{/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
-<script src="../static/vendors/js/tables/datatable/datatables.bootstrap4.min.js"
-        th:src="@{/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
-<script src="../static/vendors/js/tables/datatable/buttons.bootstrap.min.js"
-        th:src="@{/vendors/js/tables/datatable/buttons.bootstrap.min.js}"></script>
-<script src="../static/vendors/js/tables/datatable/dataTables.select.min.js"
-        th:src="@{/vendors/js/tables/datatable/dataTables.select.min.js}"></script>
+<script src="../static/vendors/js/extensions/dropzone.min.js" th:src="@{/vendors/js/extensions/dropzone.min.js}"></script>
+<script src="../static/vendors/js/tables/datatable/datatables.min.js" th:src="@{/vendors/js/tables/datatable/datatables.min.js}"></script>
+<script src="../static/vendors/js/tables/datatable/datatables.buttons.min.js" th:src="@{/vendors/js/tables/datatable/datatables.buttons.min.js}"></script>
+<script src="../static/vendors/js/tables/datatable/datatables.bootstrap4.min.js" th:src="@{/vendors/js/tables/datatable/datatables.bootstrap4.min.js}"></script>
+<script src="../static/vendors/js/tables/datatable/buttons.bootstrap.min.js" th:src="@{/vendors/js/tables/datatable/buttons.bootstrap.min.js}"></script>
+<script src="../static/vendors/js/tables/datatable/dataTables.select.min.js" th:src="@{/vendors/js/tables/datatable/dataTables.select.min.js}"></script>
 
 <!-- END: Page Vendor JS-->
 
 
 <!-- END: Page Vendor JS-->
+
+
+
+
 
 
 <!-- BEGIN: Theme JS-->

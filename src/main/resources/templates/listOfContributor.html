@@ -265,8 +265,11 @@
 
 
 
-                                        <div class="wishlist">
+                                        <div class="wishlist" th:if="${cont == user}">
                                             <i class="fa fa-pencil-square-o mr-25"></i> <span class="add-to-cart">Chat</span>
+                                        </div>
+                                        <div class="wishlist" th:if="${cont != user}">
+                                            <i class="fa fa-pencil-square-o mr-25"></i> <span class="add-to-cart">View</span>
                                         </div>
 
                                     </div>

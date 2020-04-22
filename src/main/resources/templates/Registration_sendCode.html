@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!-- BEGIN: Head-->
-
+​
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,17 +15,15 @@
     <link rel="apple-touch-icon" href="../static/images/pages/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../static/images/pages/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}">
-    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js}"></script>
-    <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
 
+    ​
     <link rel="stylesheet" type="text/css" href="../static/vendors/css/vendors.min.css"
           th:href="@{/vendors/css/vendors.min.css}">
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="../static/vendors/css/vendors.min.css"
           th:href="@{/vendors/css/vendors.min.css}">
     <!-- END: Vendor CSS-->
-
+    ​
     <!-- BEGIN: Theme CSS-->
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap-extended.css"
@@ -36,7 +34,7 @@
           th:href="@{/css/themes/dark-layout.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/themes/semi-dark-layout.css"
           th:href="@{/css/themes/semi-dark-layout.css}">
-
+    ​
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="../static/css/core/menu/menu-types/vertical-menu.css"
           th:href="@{/css/core/menu/menu-types/vertical-menu.css}">
@@ -45,25 +43,25 @@
     <link rel="stylesheet" type="text/css" href="../static/css/pages/authentication.css"
           th:href="@{/css/pages/authentication.css}">
     <!-- END: Page CSS-->
-
+    ​
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="../static/assets/css/style1.css" th:href="@{/assets/css/style1.css}">
     <!-- END: Custom CSS-->
-
-
+    ​
+    ​
     <!-- END: Custom CSS-->
     <!-- END: Custom CSS-->
-
+    ​
 </head>
 <!-- END: Head-->
-
+​
 <!-- BEGIN: Body-->
-
+​
 <body
         class="vertical-layout vertical-menu-modern 1-column  navbar-floating footer-static bg-full-screen-image  blank-page blank-page"
         data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
 <!-- BEGIN: Content-->
-
+​
 <!-- container -->
 <div class="app-content content">
     <div class="content-overlay"></div>
@@ -81,8 +79,8 @@
                                      alt="branding logo">
                             </div>
                             <div class="col-lg-6 col-12 p-0 d-flex  justify-content-center">
-
-
+                                ​
+                                ​
                                 <div class="card rounded-0 mb-0 p-2 ">
                                     <div class="col-xs 12 col-12 col-md-8 col-xl-8 col-lg-8 " id="">
                                         <h2 style="text-align: center;">Finalize Registration</h2>
@@ -97,65 +95,70 @@
                                                         type="submit" class="btn btn-outline-success round mr-1 mb-1"
                                                         style="margin:10px">OK
                                                 </button>
-
+                                                ​
                                             </div>
-
+                                            ​
                                             <div id="timerColId" class="col-12 col-md-12 col-xl-7 col-lg-7">
-                                                <h6 id="timer">05:00</h6>
+                                                <h6 id="timer">01:00</h6>
                                                 <div id="resendLink"
-                                                     onclick="reSendFunc()"
+                                                     onclick="reSendFunc()" style="display: none"
                                                      class="btn btn-outline-danger round mr-1 mb-1 btn-sm">
                                                     <a th:href="@{/resend}">Resend </a>
                                                 </div>
                                             </div>
-
-
+                                            ​
+                                            ​
                                         </form>
                                     </div>
                                 </div>
-
+                                ​
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-
+            ​
         </div>
     </div>
 </div>
 <!-- END: Content-->
-
-
+​
+​
 <!-- BEGIN: Vendor JS-->
 <script src="../static/vendors/js/vendors.min.js"></script>
-
+​
 <!-- BEGIN: Page Vendor JS-->
 <!-- END: Page Vendor JS-->
-
+​
 <!-- BEGIN: Theme JS-->
 <script src="../static/js/core/app-menu.js" th:src="@{/js/core/app-menu.js}"></script>
 <script src="../static/js/core/app.js" th:src="@{/js/core/app.js}"></script>
 <script src="../static/js/scripts/components.js" th:src="@{/js/scripts/components.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
+​
 <!-- END: Theme JS-->
-
+​
 <!-- BEGIN: Page JS-->
 <!-- END: Page JS-->
-
-
+​
+​
 <!-- ADDED LATER-->
-
+​
 <script th:inline="javascript">
     var interval1;
     var interval2;
     $(document).ready(function () {
-        var timer2 = "5:00";
+        var timer2 = "1:00";
         interval1 = setInterval(function () {
             var timer = timer2.split(':');
             //by parsing integer, I avoid all extra string processing
             var minutes = parseInt(timer[0], 10);
             var seconds = parseInt(timer[1], 10);
+            if (minutes * 60 + seconds > 0) {
+                resendLink.style.display = 'none';
+            } else {
+                resendLink.style.display = 'block';
+            }
             --seconds;
             minutes = (seconds < 0) ? --minutes : minutes;
             if (minutes < 0) clearInterval(interval1);
@@ -166,18 +169,21 @@
             timer2 = minutes + ':' + seconds;
         }, 1000);
     });
-
+​
     function reSendFunc() {
         clearInterval(interval1)
         clearInterval(interval2)
-        var timer2 = "5:00";
+        var timer2 = "1:00";
         interval2 = setInterval(function () {
-
-
             var timer = timer2.split(':');
             //by parsing integer, I avoid all extra string processing
             var minutes = parseInt(timer[0], 10);
             var seconds = parseInt(timer[1], 10);
+            if (minutes * 60 + seconds > 0) {
+                resendLink.style.display = 'none';
+            } else {
+                resendLink.style.display = 'block';
+            }
             --seconds;
             minutes = (seconds < 0) ? --minutes : minutes;
             if (minutes < 0) clearInterval(interval2);
@@ -189,8 +195,8 @@
         }, 1000);
     }
 </script>
-
+​
 </body>
 <!-- END: Body-->
-
+​
 </html>

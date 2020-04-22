@@ -1,134 +1,168 @@
-//package ada.spd.startup.Controllers.User;
+package ada.spd.startup.Controllers.User;
+
+import ada.spd.startup.Domains.*;
+import ada.spd.startup.Repositories.QuestionRepository;
+import ada.spd.startup.Repositories.QuizCertificateRepository;
+import ada.spd.startup.Repositories.QuizRepository;
+import ada.spd.startup.Repositories.UserRepository;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.ColumnText;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfWriter;
+import org.apache.tomcat.jni.Local;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.security.PermitAll;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller
+public class UserQuizList {
+
+    private QuizRepository quizRepository;
+
+    private QuestionRepository questionRepository;
+
+    private UserRepository userRepository;
+
+    private QuizCertificateRepository quizCertificateRepository;
+
+
+    public UserQuizList(QuizRepository quizRepository, QuestionRepository questionRepository, UserRepository userRepository, QuizCertificateRepository quizCertificateRepository) {
+        this.quizRepository = quizRepository;
+        this.questionRepository = questionRepository;
+        this.userRepository = userRepository;
+        this.quizCertificateRepository = quizCertificateRepository;
+    }
+
+
+    @RequestMapping("/quizes")
+    public String listOfquizes(Model model, HttpSession httpSession) {
+        User user = (User) httpSession.getAttribute("user");
+        if (user == null)
+            return "redirect:/login";
+
+        model.addAttribute("user", user);
+        model.addAttribute("quizes", quizRepository.findAll());
+
+
+        return "ListOfQuizzes";
+    }
+
+
+    @RequestMapping("/quiz/{id}")
+    public String EnterQuize(@PathVariable String id, Model model, HttpSession httpSession) {
+        User user = (User) httpSession.getAttribute("user");
+        if (user == null)
+            return "redirect:/login";
+        ListGetResult listGetResult = new ListGetResult();
+
+        for (int i = 0; i < 4; i++) {
+            listGetResult.addResult(new GetResult());
+        }
+
+        model.addAttribute("form", listGetResult);
+        QuizCertificate quizCertificate = new QuizCertificate();
+        quizCertificate.setQuiz(quizRepository.findById(Long.parseLong(id)).get());
+        quizCertificate.setUser(user);
+        model.addAttribute("user", user);
+        model.addAttribute("questions", questionRepository.findQuestionByQuizId(Long.parseLong(id)));
+        model.addAttribute("quiz", id);
+        model.addAttribute("resultList", new ArrayList<GetResult>());
+
+        quizCertificateRepository.save(quizCertificate);
+
+        return "QuizPage";
+    }
+
+
+//    @RequestMapping("/quiz/{id}/question/{queID}/save")
+//    public void EnterQuize(@PathVariable String id, @PathVariable String queID, @RequestParam("answer") String answer, Model model, HttpSession httpSession) {
+//        User user = (User) httpSession.getAttribute("user");
+//        QuizCertificate quizCertificate = quizCertificateRepository.findQuestionByQuizId(Long.parseLong(id), user.getId());
+//        Question question = questionRepository.findById(Long.parseLong(queID)).get();
 //
-//import ada.spd.startup.Domains.Quiz;
-//import ada.spd.startup.Domains.User;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.GetMapping;
+//        if (question.getCorrectAsnwer().equals(answer)) {
+//            quizCertificate.setGrade(quizCertificate.getGrade() + 1);
+//        } else {
 //
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpSession;
-//
-//@Controller
-//public class UserQuizList {
-//
-//    @GetMapping(path = "/quizzes")
-//    public String showAllQuizzes(HttpSession httpSession, Model model) {
-//        User user = getLoggedInUser(request);
-//        if (userToLogin == null) {
-//            return "redirect:/login";
 //        }
 //
-//        List<Quiz> allQuizzes = quizService.getAllQuizzes();
+//        quizCertificateRepository.save(quizCertificate);
 //
-//        model.addAttribute("loggedInUser", userToLogin);
-//        model.addAttribute("allQuizzes", allQuizzes);
-//
-//        return "quizzes";
 //    }
-//
-//    @GetMapping(path = "/quiz/{id}")
-//    public String showQuiz(HttpServletRequest request, Model model, @PathVariable int id) {
-//        UserToLogin userToLogin = getLoggedInUser(request);
-//        if (userToLogin == null) {
-//            return "redirect:/login";
-//        }
-//
-//        Quiz quiz = quizService.getQuiz(id);
-//        List<Question> questions = quiz.getQuestions();
-//
-//        Collections.shuffle(questions);
-//
-//        int count = 10;
-//        List<Question> questionsByCount = new ArrayList<>();
-//
-//        for (int i = 0; i < count; i++) {
-//            questionsByCount.add(questions.get(i));
-//        }
-//
-//        for(Question question : questionsByCount) {
-//            Collections.shuffle(question.getAnswers());
-//        }
-//
-//        List<QuestionsJson> questionsJsons = new ArrayList<>();
-//
-//        for(Question question : questionsByCount) {
-//            String text = question.getText();
-//            List<String> options = new ArrayList<>();
-//            int correctIndex = 0;
-//
-//            for(Answer answer : question.getAnswers()) {
-//                options.add(answer.getText());
-//                if (answer.getIsCorrect() == 1) {
-//                    correctIndex = question.getAnswers().indexOf(answer);
-//                }
-//            }
-//
-//            String correctResponse = "True";
-//            String incorrectResponse = "False";
-//            QuestionsJson questionsJson = new QuestionsJson(text, options, correctIndex, correctResponse, incorrectResponse);
-//            questionsJsons.add(questionsJson);
-//        }
-//
-//        Gson gson = new Gson();
-//
-//        model.addAttribute("loggedInUser", userToLogin);
-//        model.addAttribute("questionsJson", gson.toJson(questionsJsons));
-//        model.addAttribute("quiz", quiz);
-//
-//        return "quiz";
-//    }
-//
-//    @PostMapping(path = "/results")
-//    @ResponseBody
-//    public String getResults(HttpServletRequest request, Model model, @RequestBody ResultsJson data) {
-//        Map<String, String> responseMap = new HashMap<>();
-//
-//        Gson gson = new Gson();
-//
-//        UserToLogin userToLogin = getLoggedInUser(request);
-//
-//        if (userToLogin == null) {
-//            responseMap.put("error", "login");
-//            return gson.toJson(responseMap);
-//        }
-//
-//        int quizId = data.getQuizId();
-//        long timeNow = data.getTimeNow();
-//        String username = data.getUsername();
-//        int correctAnswers = data.getCorrectAnswers();
-//        int incorrectAnswers = data.getIncorrectAnswers();
-//
-//        Date startTime = new Date(timeNow);
-//
-//        Quiz quiz = quizService.getQuiz(quizId);
-//
-//        if(quiz == null) {
-//            return null;
-//        }
-//
-//        User user = userService.getUserByUsername(username);
-//
-//        if (user == null) {
-//            return null;
-//        }
-//
-//        user.setTotalCorrectAnswers(user.getTotalCorrectAnswers() + correctAnswers);
-//        user.setTotalIncorrectAnswers(user.getTotalIncorrectAnswers() + incorrectAnswers);
-//
-//        Result result = new Result();
-//
-//        result.setQuiz(quiz);
-//        result.setUser(user);
-//        result.setCorrectAnswers(correctAnswers);
-//        result.setIncorrectAnswers(incorrectAnswers);
-//        result.setStartTime(startTime);
-//
-//        resultService.saveResult(result);
-//        userService.updateUser(user);
-//
-//
-//        responseMap.put("status", "all done");
-//
-//        return gson.toJson(responseMap);
-//    }
-//}
+
+
+    @RequestMapping("/quiz/{id}/submit")
+    public String submitQuiz(@PathVariable String id, HttpSession httpSession) throws IOException, DocumentException {
+        User user = (User) httpSession.getAttribute("user");
+        if (user == null)
+            return "redirect:/login";
+
+
+        QuizCertificate quizCertificate = new QuizCertificate();
+        quizCertificate.setQuiz(quizRepository.findById(Long.parseLong(id)).get());
+        quizCertificate.setUser(user);
+
+
+        String dest = user.getName() + quizCertificate.getQuiz().getName() + ".pdf";
+        quizCertificate.setCertificateURL(dest);
+        quizCertificateRepository.save(quizCertificate);
+
+
+        Document document = new Document(PageSize.A4.rotate());
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(dest));
+
+
+        document.open();
+
+
+        PdfContentByte canvas = writer.getDirectContentUnder();
+        Image image = Image.getInstance("https://certificate-template.com/wp-content/uploads/2019/03/certificate-of-appreciation.png");
+        image.scaleAbsolute(PageSize.A4.rotate());
+        image.setAbsolutePosition(0, 0);
+        canvas.addImage(image);
+        Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 22,
+                Font.BOLD, BaseColor.BLACK);
+
+        Font dateFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+                Font.BOLD, BaseColor.BLACK);
+        ColumnText ct = new ColumnText(canvas);
+
+        ct.setSimpleColumn(600f, 200f, 300f, 300f);
+
+        Paragraph p = new Paragraph(user.getName() + " " + user.getSurname(), redFont);
+        ct.addElement(p);
+        ct.go();
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy ");
+        LocalDateTime now = LocalDateTime.now();
+        String date = dtf.format(now).toString();
+
+        ColumnText ctdate = new ColumnText(canvas);
+
+        ctdate.setSimpleColumn(400f, 20f, 210f, 135f);
+        Paragraph pdate = new Paragraph(date, dateFont);
+        ctdate.addElement(pdate);
+        ctdate.go();
+
+
+        document.close();
+
+        return "";
+    }
+}

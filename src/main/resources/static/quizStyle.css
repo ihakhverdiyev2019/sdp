@@ -1,0 +1,54 @@
+#quessionDiv{
+    display: flex;
+    justify-content: space-around;
+    z-index: 0;
+    filter: blur(8px);
+}
+#StartDiv{
+	display: flex;
+    justify-content: center;
+    z-index: 20;
+    top: 20%;
+}
+
+#StartDiv .row{
+    display: flex;
+    justify-content: center;
+}
+
+#StartDiv .row .col-12{
+    width: 100%; 
+    background-color: white;
+    z-index: 10;
+    box-shadow: 3px 1px 51px -8px lemonchiffon;
+    padding: 12px;
+}
+#StartDiv .row .rules{
+    display: flex;
+    justify-content: center;
+}
+#StartDiv .row .rules div h3{
+    color: black;
+}
+#StartDiv .row .rules div p{
+    color: black;font-weight: bold; 
+}
+
+#StartDiv .row .rules .buttonDiv{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+#quessionDiv2{
+    filter: blur(8px);
+}
+
+#quessionDiv2 .mainStatement{
+    font-weight: bold;
+}
+
+#forSubmitDiv{
+    display: flex;
+    justify-content: center;
+}

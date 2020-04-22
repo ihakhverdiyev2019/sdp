@@ -1,9 +1,7 @@
-package ada.spd.startup.Controllers.Startup;
-
+package ada.spd.startup.Controllers.Investor;
 
 import ada.spd.startup.Domains.Startup;
 import ada.spd.startup.Domains.User;
-import ada.spd.startup.Domains.UserStartup;
 import ada.spd.startup.ENUMS.RoleENUM;
 import ada.spd.startup.ENUMS.StartupJoin;
 import ada.spd.startup.Repositories.StartupRepository;
@@ -13,55 +11,28 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @Controller
-public class StartupProfile {
-
+public class InvestorStartupView {
     private StartupRepository startupRepository;
     private UserStartupRepository userStartupRepository;
 
 
-    public StartupProfile(StartupRepository startupRepository, UserStartupRepository userStartupRepository) {
+    public InvestorStartupView(StartupRepository startupRepository, UserStartupRepository userStartupRepository) {
         this.startupRepository = startupRepository;
         this.userStartupRepository = userStartupRepository;
     }
 
-    @RequestMapping(value = "/startup/{id}/profile")
-    public String findStartupProfile(@PathVariable String id, Model model, HttpSession httpSession) {
-        User user = (User) httpSession.getAttribute("user");
-        if (user != null) {
-            model.addAttribute("user", user);
-            Startup startup = startupRepository.findById(Long.parseLong(id)).get();
-            model.addAttribute("startup", startup);
-            model.addAttribute("founder", userStartupRepository.findFounderByStartupIdAndUserRights(startup.getId(), RoleENUM.Founder));
-            model.addAttribute("userStartup", userStartupRepository.findByStartupAndUser(startup.getId(), user.getId()));
-            model.addAttribute("contributor", userStartupRepository.findUserStartupByStartupId(startup.getId(), RoleENUM.Contributor, StartupJoin.Joined));
-            model.addAttribute("investor", userStartupRepository.findUserStartupByStartupId(startup.getId(), RoleENUM.Investor, StartupJoin.Joined));
+    @RequestMapping(value = "/istartup/{id}/view", method = RequestMethod.GET)
+    public String startupProfileDisplayforInvestor(@PathVariable String id, Model model, HttpSession httpSession) throws IOException {
+        User user = (User) httpSession.getAttribute("investor");
 
-            return "startupProfile";
-
-        } else
-            return "redirect:/login";
-    }
-
-
-    @RequestMapping(value = "/startup/{id}/view", method = RequestMethod.GET)
-    public String startupProfileDisplay(@PathVariable String id, Model model, HttpSession httpSession) throws IOException {
-        User user = null;
-
-        if (httpSession.getAttribute("user") != null) {
-            user = (User) httpSession.getAttribute("user");
-        } else if (httpSession.getAttribute("investor") != null) {
-            user = (User) httpSession.getAttribute("investor");
-        }
         if (user != null) {
 
 
@@ -112,7 +83,6 @@ public class StartupProfile {
             model.addAttribute("startup", startup);
 
             model.addAttribute("founder", userStartupRepository.findFounderByStartupIdAndUserRights(startup.getId(), RoleENUM.Founder));
-            model.addAttribute("startupSession", userStartupRepository.findByStartupAndRights(user.getId(), StartupJoin.Joined));
 
             model.addAttribute("contributor", userStartupRepository.findUserStartupByStartupId(startup.getId(), RoleENUM.Contributor, StartupJoin.Joined));
 
@@ -120,9 +90,10 @@ public class StartupProfile {
 
 
             startupRepository.save(startup);
-            return "startupDisplayContributor";
+            return "startupDisplayInvestor";
 
         } else
             return "redirect:/login";
     }
+
 }

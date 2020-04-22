@@ -219,13 +219,13 @@
 
                                                 <div class="col-12 col-md-12 p-0">
                                                     <input title="An inventor is a person who creates or discovers a new method"
-                                                           type="radio" value="1"
-                                                           th:name="${T(ada.spd.startup.ENUMS.UserRoleInit).Investor}"
+                                                           type="radio" name="userRoleInit"
+                                                           th:value="${T(ada.spd.startup.ENUMS.UserRoleInit).Investor}"
                                                            class="whoSelect" id="inverstorId">
                                                     <label for="inverstorId" checked>Inverstor</label><br>
                                                     <input title="A contributor is someone who takes part in something or makes a contribution."
-                                                           type="radio" value="0"
-                                                           th:name="${T(ada.spd.startup.ENUMS.UserRoleInit).User}"
+                                                           type="radio" name="userRoleInit"
+                                                           th:value="${T(ada.spd.startup.ENUMS.UserRoleInit).User}"
                                                            class="whoSelect"
                                                            id="contributorId">
                                                     <label for="contributorId">Startupper or Contributor</label><br>

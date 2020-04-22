@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
     @Query("SELECT c FROM User c where c.login = :login and c.password=:pass")
-    Optional<User> findByCredentials(@Param("login") String login, @Param("pass") String pass);
+    User findByCredentials(@Param("login") String login, @Param("pass") String pass);
 
 
     @Query("SELECT c FROM User c where c.email = :email")

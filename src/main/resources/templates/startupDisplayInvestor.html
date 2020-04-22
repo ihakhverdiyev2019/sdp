@@ -47,7 +47,6 @@
     <link rel="stylesheet" type="text/css" href="../static/assets/css/style.css"
           th:href="@{/assets/css/style.css}">
     <!-- END: Custom CSS-->
-
 </head>
 <!-- END: Head-->
 
@@ -76,20 +75,21 @@
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
                                                                    href="#" data-toggle="dropdown">
                         <div class="user-nav d-sm-flex d-none"><span
-                                class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
+                                class="user-name text-bold-600"
+                                th:text="${user.name} + ' ' + ${user.surname}"></span>
                             <div class="badge badge-success mr-1 mb-1">
                                 <i class="feather icon-award white"></i>
-                                <span>New User</span>
+                                <span>New Investor</span>
                             </div>
                         </div>
                         <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
                                    height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
-                                                                          th:href="@{/user/profile}"><i
-                                class="feather icon-user"></i> Profile</a>
+                                                                          href="/user/profile"><i
+                                class="feather icon-user"></i> Edit Profile</a>
                             <a class="dropdown-item"
-                               href="app-email.html"><i
+                               th:href="@{email}"><i
                                     class="feather icon-mail"></i> My Inbox</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
@@ -119,7 +119,7 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="active nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
+            <li class=" nav-item"><a th:href="@{/indashboard}"><i class="feather icon-home"></i><span
                     class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
             </li>
             <li class=" navigation-header"><span>Menu</span>
@@ -127,21 +127,16 @@
             <li class=" nav-item"><a th:href="@{/email}"><i class="feather icon-mail"></i><span class="menu-title"
                                                                                                 data-i18n="Chat">E-mail</span></a>
             </li>
-            <li class="nav-item"><a th:href="@{/startup/list}"><i class="feather icon-file"></i><span class="menu-title"
-                                                                                                      data-i18n="Todo">My Projects</span></a>
-            </li>
-            <li class=" nav-item"><a th:href="@{/contributors}"><i class="feather icon-user"></i><span
+            <li class="nav-item"><a th:href="@{/invested/projects}"><i class="feather icon-file"></i><span
                     class="menu-title"
-                    data-i18n="User">List of Contributors</span></a>
+                    data-i18n="Todo">My Projects</span></a>
             </li>
-            <li class=" nav-item"><a th:href="@{/startups}"><i class="feather icon-folder"></i><span class="menu-title"
-                                                                                                     data-i18n="User">List of Startups</span></a>
+            <li class="active nav-item"><a th:href="@{/istartups} "><i class=" feather icon-folder"></i><span
+                    class="menu-title"
+                    data-i18n="User">List of Startups</span></a>
             </li>
-            <li class=" nav-item"><a><i class="fa fa-graduation-cap"></i><span class="menu-title"
-                                                                               data-i18n="User">List of Quizzes</span></a>
-            </li>
-            <li class=" nav-item"><a th:href="@{/requests}"><i class="fa fa-envelope-o"></i><span class="menu-title"
-                                                                                                  data-i18n="User">Requests</span></a>
+            <li class=" nav-item"><a th:href="@{/invest}"><i class="fa fa-envelope-o"></i><span class="menu-title"
+                                                                                                data-i18n="User">Requests</span></a>
             </li>
 
             <li class=" navigation-header"><span>Support</span>
@@ -229,56 +224,43 @@
                                             </table>
                                         </div>
                                         <div class="col-12">
-                                            <div class="modal-primary mr-1 mb-1 d-inline-block"
-                                                 th:if="${!#lists.contains(startupSession, startup)}">
+                                            <div class="modal-primary mr-1 mb-1 d-inline-block">
                                                 <!-- Button trigger modal -->
                                                 <button type="button" class="btn btn-outline-primary"
                                                         data-toggle="modal" data-target="#primary"><i
-                                                        class="feather icon-log-in"></i>
-                                                    Join
+                                                        class="fa fa-usd"></i>
+                                                    Invest
                                                 </button>
                                                 <div class="modal fade text-left" id="primary" tabindex="-1"
                                                      role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
                                                          role="document">
-                                                        <form th:action="@{'/startup/'+ ${startup.id} + '/send'}">
+                                                        <form th:action="@{'/startup/'+ ${startup.id} + '/invest'}">
 
                                                             <div class="modal-content">
                                                                 <div class="modal-header bg-primary white">
                                                                     <h5 class="modal-title" id="myModalLabel160">
-                                                                        Role</h5>
+                                                                        Amount</h5>
                                                                     <button type="button" class="close"
-                                                                            data-dismiss="modal"
                                                                             aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    Please, indicate for which role you are applying.
-                                                                    <input type="text" id="inputRole"
+                                                                    Please, indicate the amount you want to invest.
+                                                                    <input type="number" id="inputRole"
                                                                            class="form-control"
-                                                                           name="role"
-                                                                           placeholder="Role" required>
+                                                                           placeholder="Amount" name="amount" required>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <input type="submit" class="btn btn-primary">
+                                                                    <button type="submit" class="btn btn-primary">Submit
+                                                                    </button>
                                                                 </div>
-
                                                             </div>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <a th:if="${#lists.contains(startupSession, startup)}"
-                                               th:href="@{'/startup/' + ${startup.id} }">
-                                                <button class="btn btn-outline-primary"><i
-                                                        class="feather icon-log-in mr-25"></i>
-                                                    Enter
-                                                </button>
-                                            </a>
-                                            <a th:if="${#lists.contains(startupSession, startup)}"
-                                               th:href="@{'/startup/' + ${startup.id} }">
+                                            <a th:href="@{'/startup/' + ${startup.id} + '/delete'}">
                                                 <button class="btn btn-outline-primary"><i
                                                         class="fa fa-pencil"></i>
                                                     Chat
@@ -358,91 +340,91 @@
                             </div>
                         </div>
 
-                                                <div class="col-12 col-sm-9 col-md-6 col-lg-3">
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <div class="card-title mb-2">Similar Projects</div>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <div class="card">
-                                                                <section id="ecommerce-products" class="grid-view">
-                                                                    <div class="card ecommerce-card">
-                                                                        <div class="card-content">
-                                                                            <div class="item-img text-center">
-                                                                                <a th:href="@{'/startup/' + ${similar1.id} + '/view'}">
-                                                                                    <img class="img-fluid"
-                                                                                         src="../static/images/pages/eCommerce/7.png"
-                                                                                         th:src="@{${similar1.picture}}"
-                                                                                         style="width:60px;height:60px;">
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="item-wrapper">
-                                                                                    <div class="item-cost">
-                                                                                        <h6 class="item-price"
-                                                                                            th:text="${similar1.investAmount} + ' $'">
-                                                                                            Invest amount: $5000
-                                                                                        </h6>
+                        <div class="col-12 col-sm-9 col-md-6 col-lg-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title mb-2">Similar Projects</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="card">
+                                        <section id="ecommerce-products1" class="grid-view">
+                                            <div class="card ecommerce-card">
+                                                <div class="card-content">
+                                                    <div class="item-img text-center">
+                                                        <a th:href="@{'/startup/' + ${similar1.id} + '/view'}">
+                                                            <img class="img-fluid"
+                                                                 src="../static/images/pages/eCommerce/7.png"
+                                                                 th:src="@{${similar1.picture}}"
+                                                                 style="width:60px;height:60px;">
+                                                        </a>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="item-wrapper">
+                                                            <div class="item-cost">
+                                                                <h6 class="item-price"
+                                                                    th:text="${similar1.investAmount} + ' $'">
+                                                                    Invest amount: $5000
+                                                                </h6>
 
-                                                                                    </div>
-                                                                                    <div class="item-name">
-                                                                                        <a href="app-ecommerce-details.html"
-                                                                                           th:text="${similar1.startupName}">
-                                                                                            Startup Name
-                                                                                        </a>
-                                                                                        <p class="item-company">By <span class="company-name">Startupper Name</span>
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </section>
                                                             </div>
-
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <div class="card">
-                                                                <section id="ecommerce-products" class="grid-view">
-                                                                    <div class="card ecommerce-card">
-                                                                        <div class="card-content">
-                                                                            <div class="item-img text-center">
-                                                                                <a th:href="@{'/startup/' + ${similar2.id} + '/view'}">
-                                                                                    <img class="img-fluid"
-                                                                                         src="../static/images/pages/eCommerce/7.png"
-                                                                                         th:src="@{${similar2.picture}}"
-                                                                                         style="width:60px;height:60px;">
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="item-wrapper">
-                                                                                    <div class="item-cost">
-                                                                                        <h6 class="item-price"
-                                                                                            th:text="${similar2.investAmount} + ' $'">
-                                                                                            Invest amount: $5000
-                                                                                        </h6>
-
-                                                                                    </div>
-                                                                                    <div class="item-name">
-                                                                                        <a href="app-ecommerce-details.html"
-                                                                                           th:text="${similar2.startupName}">
-                                                                                            Startup Name
-                                                                                        </a>
-                                                                                        <p class="item-company">By <span class="company-name">Startupper Name</span>
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </section>
+                                                            <div class="item-name">
+                                                                <a href="app-ecommerce-details.html"
+                                                                   th:text="${similar1.startupName}">
+                                                                    Startup Name
+                                                                </a>
+                                                                <p class="item-company">By <span class="company-name">Startupper Name</span>
+                                                                </p>
                                                             </div>
-
                                                         </div>
+
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </section>
+                                    </div>
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="card">
+                                        <section id="ecommerce-products" class="grid-view">
+                                            <div class="card ecommerce-card">
+                                                <div class="card-content">
+                                                    <div class="item-img text-center">
+                                                        <a th:href="@{'/startup/' + ${similar2.id} + '/view'}">
+                                                            <img class="img-fluid"
+                                                                 src="../static/images/pages/eCommerce/7.png"
+                                                                 th:src="@{${similar2.picture}}"
+                                                                 style="width:60px;height:60px;">
+                                                        </a>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="item-wrapper">
+                                                            <div class="item-cost">
+                                                                <h6 class="item-price"
+                                                                    th:text="${similar2.investAmount} + ' $'">
+                                                                    Invest amount: $5000
+                                                                </h6>
+
+                                                            </div>
+                                                            <div class="item-name">
+                                                                <a href="app-ecommerce-details.html"
+                                                                   th:text="${similar2.startupName}">
+                                                                    Startup Name
+                                                                </a>
+                                                                <p class="item-company">By <span class="company-name">Startupper Name</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
 
 
                         <!-- social links end -->

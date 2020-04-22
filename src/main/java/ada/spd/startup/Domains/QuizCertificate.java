@@ -13,6 +13,7 @@ public class QuizCertificate {
     private int grade;
 
 
+    private String certificateURL;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "quiz_id", nullable = false)
     private Quiz quiz;
@@ -21,8 +22,9 @@ public class QuizCertificate {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public QuizCertificate(int grade) {
+    public QuizCertificate(int grade, String certificateURL) {
         this.grade = grade;
+        this.certificateURL = certificateURL;
     }
 
     public QuizCertificate() {
@@ -59,5 +61,13 @@ public class QuizCertificate {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getCertificateURL() {
+        return certificateURL;
+    }
+
+    public void setCertificateURL(String certificateURL) {
+        this.certificateURL = certificateURL;
     }
 }

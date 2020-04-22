@@ -1,10 +1,12 @@
 package ada.spd.startup.Controllers.User;
 
+import ada.spd.startup.Domains.QuizCertificate;
 import ada.spd.startup.Domains.Startup;
 import ada.spd.startup.Domains.User;
 import ada.spd.startup.ENUMS.RoleENUM;
 import ada.spd.startup.ENUMS.StartupJoin;
 import ada.spd.startup.ENUMS.UserRoleInit;
+import ada.spd.startup.Repositories.QuizCertificateRepository;
 import ada.spd.startup.Repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +22,12 @@ import javax.validation.Valid;
 public class UserProfile {
 
     private UserRepository userRepository;
+    private QuizCertificateRepository quizCertificateRepository;
 
 
-    public UserProfile(UserRepository userRepository) {
+    public UserProfile(UserRepository userRepository, QuizCertificateRepository quizCertificateRepository) {
         this.userRepository = userRepository;
+        this.quizCertificateRepository = quizCertificateRepository;
     }
 
     @RequestMapping(value = "/user/profile")
@@ -31,7 +35,7 @@ public class UserProfile {
         User user = (User) httpSession.getAttribute("user");
         if (user != null) {
             model.addAttribute("user", user);
-
+            model.addAttribute("quizResult", quizCertificateRepository.findQuizCertificateByUserIdAAndGrade(user.getId()));
             return "userProfile";
 
         } else
@@ -40,10 +44,10 @@ public class UserProfile {
 
 
     @RequestMapping(value = "/user/profile/edit")
-    public String userProfileEdit(@PathVariable String id, Model model, HttpSession httpSession) {
-        User user = userRepository.findById(Long.parseLong(id)).get();
+    public String userProfileEdit(Model model, HttpSession httpSession) {
+        User user = (User) httpSession.getAttribute("user");
         if (httpSession.getAttribute("user") != null) {
-            model.addAttribute("user", user);
+            model.addAttribute("user", userRepository.findById(user.getId()).get());
 
             return "userProfileEdit";
 

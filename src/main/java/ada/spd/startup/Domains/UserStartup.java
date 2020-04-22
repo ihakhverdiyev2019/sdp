@@ -15,7 +15,7 @@ public class UserStartup {
 
     private RoleENUM rights;
 
-
+    private double invest;
     private String role;
 
     private StartupJoin startupJoin;
@@ -31,8 +31,9 @@ public class UserStartup {
     private Startup startup;
 
 
-    public UserStartup(RoleENUM rights, String role, StartupJoin startupJoin, String date) {
+    public UserStartup(RoleENUM rights, double invest, String role, StartupJoin startupJoin, String date) {
         this.rights = rights;
+        this.invest = invest;
         this.role = role;
         this.startupJoin = startupJoin;
         this.date = date;
@@ -97,5 +98,13 @@ public class UserStartup {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public double getInvest() {
+        return invest;
+    }
+
+    public void setInvest(double invest) {
+        this.invest = invest;
     }
 }

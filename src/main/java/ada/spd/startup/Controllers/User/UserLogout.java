@@ -21,7 +21,13 @@ public class UserLogout {
 
     @GetMapping(value = "/logout")
     public String logoutUser(HttpSession session) {
-        User user = (User) session.getAttribute("user");
+        User user = null;
+        if (session.getAttribute("user") != null) {
+            user = (User) session.getAttribute("user");
+        }
+        if (session.getAttribute("investor") != null) {
+            user = (User) session.getAttribute("investor");
+        }
         user.setStatusEnum(StatusEnum.Offline);
         userRepository.save(user);
         session.invalidate();

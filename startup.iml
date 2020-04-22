@@ -70,6 +70,15 @@
     <orderEntry type="library" name="Maven: org.attoparser:attoparser:2.0.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.unbescape:unbescape:1.1.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.thymeleaf.extras:thymeleaf-extras-java8time:3.0.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: com.github.bengolder:pdf-rtf:1.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.bengolder:pdf-xml:1.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.bengolder:openpdf:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.54" level="project" />
+    <orderEntry type="library" name="Maven: org.bouncycastle:bcpkix-jdk15on:1.54" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:layout:7.0.0" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:kernel:7.0.0" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:io:7.0.0" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:itextpdf:5.5.10" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.springframework.boot:spring-boot-devtools:2.2.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.2.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.2.0.RELEASE" level="project" />

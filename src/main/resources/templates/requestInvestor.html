@@ -75,20 +75,21 @@
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
                                                                    href="#" data-toggle="dropdown">
                         <div class="user-nav d-sm-flex d-none"><span
-                                class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
+                                class="user-name text-bold-600"
+                                th:text="${user.name} + ' ' + ${user.surname}"></span>
                             <div class="badge badge-success mr-1 mb-1">
                                 <i class="feather icon-award white"></i>
-                                <span>New User</span>
+                                <span>New Investor</span>
                             </div>
                         </div>
                         <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
                                    height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
-                                                                          href="page-user-profile.html"><i
+                                                                          href="/user/profile"><i
                                 class="feather icon-user"></i> Edit Profile</a>
                             <a class="dropdown-item"
-                               href="app-email.html"><i
+                               th:href="@{email}"><i
                                     class="feather icon-mail"></i> My Inbox</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
@@ -118,7 +119,7 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
+            <li class=" nav-item"><a th:href="@{/indashboard}"><i class="feather icon-home"></i><span
                     class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
             </li>
             <li class=" navigation-header"><span>Menu</span>
@@ -126,22 +127,16 @@
             <li class=" nav-item"><a th:href="@{/email}"><i class="feather icon-mail"></i><span class="menu-title"
                                                                                                 data-i18n="Chat">E-mail</span></a>
             </li>
-            <li class="nav-item"><a th:href="@{/startup/list}"><i class="feather icon-file"></i><span class="menu-title"
-                                                                                                      data-i18n="Todo">My Projects</span></a>
-            </li>
-            <li class=" nav-item"><a th:href="@{/contributors}"><i class="feather icon-user"></i><span
+            <li class="nav-item"><a th:href="@{/invested/projects}"><i class="feather icon-file"></i><span
                     class="menu-title"
-                    data-i18n="User">List of Contributors</span></a>
+                    data-i18n="Todo">My Projects</span></a>
             </li>
-            <li class=" nav-item"><a th:href="@{/startups}"><i class="feather icon-folder"></i><span class="menu-title"
-                                                                                                     data-i18n="User">List of Startups</span></a>
-            </li>
-            <li class=" nav-item"><a><i class="fa fa-graduation-cap"></i><span class="menu-title"
-                                                                               data-i18n="User">List of Quizzes</span></a>
-            </li>
-            <li class="active nav-item"><a th:href="@{/requests}"><i class="fa fa-envelope-o"></i><span
+            <li class="nav-item"><a th:href="@{/istartups} "><i class=" feather icon-folder"></i><span
                     class="menu-title"
-                    data-i18n="User">Requests</span></a>
+                    data-i18n="User">List of Startups</span></a>
+            </li>
+            <li class="active nav-item"><a th:href="@{/invest}"><i class="fa fa-envelope-o"></i><span class="menu-title"
+                                                                                                data-i18n="User">Requests</span></a>
             </li>
 
             <li class=" navigation-header"><span>Support</span>
@@ -179,24 +174,13 @@
                                             class="d-none d-sm-block">Sent</span>
                                     </a>
                                 </li>
-                                <li class=" nav-item">
-                                    <a class="nav-link d-flex align-items-center" id="information-tab" data-toggle="tab"
-                                       href="#information" aria-controls="information" role="tab" aria-selected="false">
-                                        <i class="feather icon-log-in mr-25"></i><span class="d-none d-sm-block">Received</span>
-                                    </a>
-                                </li>
-                                <li class=" nav-item">
-                                    <a class="nav-link d-flex align-items-center" id="investment-tab" data-toggle="tab"
-                                       href="#investment" aria-controls="information" role="tab" aria-selected="false">
-                                        <i class="feather icon-log-in mr-25"></i><span class="d-none d-sm-block">Received</span>
-                                    </a>
-                                </li>
+
 
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="account" aria-labelledby="account-tab" role="tabpanel">
                                     <!-- users edit media object start -->
-                                    <section id="data-list-view1" class="data-list-view-header">
+                                    <section id="data-list-view" class="data-list-view-header">
 
 
                                         <!-- DataTable starts -->
@@ -206,25 +190,31 @@
                                                 <tr>
                                                     <th></th>
                                                     <th>PROJECT NAME</th>
-                                                    <th>ROLE</th>
+                                                    <th>PROJECT CATEGORY</th>
+                                                    <th>REQUESTED AMOUNT</th>
                                                     <th>DATE REQUESTED</th>
                                                     <th>ACTION</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr th:each="cont : ${startupSession}">
+                                                <tr th:each="req : ${request}">
                                                     <td></td>
-                                                    <td th:text="${cont.startup?.startupName}"> My Project1</td>
-                                                    <td class="product-category" th:text="${cont.role}">Front-end
-                                                        developer
+                                                    <td class="product-name" th:text="${req.startup.startupName}">
+                                                        Project Name
                                                     </td>
-                                                    <td th:text="${cont.date}">03/03/2020
+                                                    <td th:text="${req.startup.category}"> Software</td>
+                                                    <td class="product-category" th:text="${req.invest} + ' $'">3000$
                                                     </td>
+                                                    <td th:text="${req.date}">03/03/2020
+                                                    </td>
+
                                                     <td class="product-action">
-                                                        <button type="button"
-                                                                class="btn btn-icon btn-flat-danger mr-1 mb-1"><a
-                                                                th:href="@{'request/startup/' + ${cont.startup?.id} + '/reject'}">
-                                                            <i class="feather icon-x"></i></a></button>
+                                                        <a th:href="@{'/invest/' + ${req.id} + '/cancel'}">
+                                                            <button type="button"
+                                                                    class="btn btn-outline-danger mr-1 mb-1">
+                                                                Cancel Request
+                                                            </button>
+                                                        </a>
                                                     </td>
                                                 </tr>
 
@@ -240,108 +230,6 @@
 
                                     <!-- users edit account form ends -->
                                 </div>
-                                <div class="tab-pane" id="information" aria-labelledby="information-tab"
-                                     role="tabpanel">
-                                    <!-- users edit Info form start -->
-                                    <section id="data-list-view2" class="data-list-view-header">
-
-
-                                        <!-- DataTable starts -->
-                                        <div class="table-responsive">
-                                            <table class="table data-list-view">
-                                                <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>PROJECT NAME</th>
-                                                    <th>ROLE</th>
-                                                    <th>DATE REQUESTED</th>
-                                                    <th>ACTION</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr th:each="req : ${request}">
-                                                    <td></td>
-                                                    <td th:text="${req.startup.startupName}"> My Project1</td>
-                                                    <td class="product-category" th:text="${req.role}">Front-end
-                                                        developer
-                                                    </td>
-                                                    <td th:text="${req.date}">
-                                                    </td>
-                                                    <td class="product-action">
-                                                        <button type="button"
-                                                                class="btn btn-icon btn-flat-success mr-1 mb-1"><a
-                                                                th:href="@{'request/startup/' + ${req.startup?.id} + '/accept'}">
-                                                            <i class="feather icon-x"></i></a></button>
-                                                        <button type="button"
-                                                                class="btn btn-icon btn-flat-danger mr-1 mb-1"><a
-                                                                th:href="@{'request/startup/' + ${req.startup?.id} + '/reject'}"><i
-                                                                class="feather icon-x"></i></a></button>
-                                                    </td>
-                                                </tr>
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!-- DataTable ends -->
-
-                                        <!-- add new sidebar starts -->
-                                        <!-- add new sidebar ends -->
-                                    </section>
-                                    <!-- users edit Info form ends -->
-                                </div>
-                                <div class="tab-pane" id="investment" aria-labelledby="information-tab"
-                                     role="tabpanel">
-                                    <!-- users edit Info form start -->
-                                    <section id="data-list-view" class="data-list-view-header">
-
-
-                                        <!-- DataTable starts -->
-                                        <div class="table-responsive">
-                                            <table class="table data-list-view">
-                                                <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>INVESTOR</th>
-                                                    <th>AMOUNT</th>
-                                                    <th>DATE REQUESTED</th>
-
-                                                    <th>ACTION</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr th:each="req : ${request}">
-                                                    <td></td>
-                                                    <td th:text="${req.startup.startupName}"> My Project1</td>
-                                                    <td class="product-category" th:text="${req.role}">Front-end
-                                                        developer
-                                                    </td>
-                                                    <td th:text="${req.date}">
-                                                    </td>
-                                                    <td class="product-action">
-                                                        <button type="button"
-                                                                class="btn btn-icon btn-flat-success mr-1 mb-1"><a
-                                                                th:href="@{'request/startup/' + ${req.startup?.id} + '/accept'}">
-                                                            <i class="feather icon-x"></i></a></button>
-                                                        <button type="button"
-                                                                class="btn btn-icon btn-flat-danger mr-1 mb-1"><a
-                                                                th:href="@{'request/startup/' + ${req.startup?.id} + '/reject'}"><i
-                                                                class="feather icon-x"></i></a></button>
-                                                    </td>
-                                                </tr>
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!-- DataTable ends -->
-
-                                        <!-- add new sidebar starts -->
-                                        <!-- add new sidebar ends -->
-                                    </section>
-                                    <!-- users edit Info form ends -->
-                                </div>
-
                             </div>
                         </div>
                     </div>

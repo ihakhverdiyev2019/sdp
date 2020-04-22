@@ -40,6 +40,7 @@ public class User {
     private String joinDate;
     private Status status;
     private int code;
+    private double balance;
     private UserRoleInit userRoleInit;
 
 
@@ -52,7 +53,7 @@ public class User {
     private List<QuizCertificate> quizCertificates;
 
 
-    public User(String name, String surname, String phoneNo, String email, String emailPAss, String birth, String country, String city, String nationallity, String address, String gender, String login, String password, String companyName, String avatar, String facebook, String slack, String github, String otherSocial, StatusEnum statusEnum, String joinDate, Status status, int code, UserRoleInit userRoleInit) {
+    public User(String name, String surname, String phoneNo, String email, String emailPAss, String birth, String country, String city, String nationallity, String address, String gender, String login, String password, String companyName, String avatar, String facebook, String slack, String github, String otherSocial, StatusEnum statusEnum, String joinDate, Status status, int code, double balance) {
         this.name = name;
         this.surname = surname;
         this.phoneNo = phoneNo;
@@ -76,7 +77,7 @@ public class User {
         this.joinDate = joinDate;
         this.status = status;
         this.code = code;
-        this.userRoleInit = userRoleInit;
+        this.balance = balance;
     }
 
     public User() {
@@ -295,5 +296,13 @@ public class User {
 
     public void setUserRoleInit(UserRoleInit userRoleInit) {
         this.userRoleInit = userRoleInit;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }
