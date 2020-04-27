@@ -4,6 +4,7 @@ import ada.spd.startup.Domains.Startup;
 import ada.spd.startup.Domains.User;
 import ada.spd.startup.Domains.UserStartup;
 import ada.spd.startup.ENUMS.RoleENUM;
+import ada.spd.startup.ENUMS.StartupJoin;
 import ada.spd.startup.ENUMS.ToDoEnum;
 import ada.spd.startup.Repositories.StartupRepository;
 import ada.spd.startup.Repositories.ToDoRepository;
@@ -35,7 +36,15 @@ public class EnterProject {
 
     @GetMapping(value = "/startup/{tid}")
     public String projectWorkplace(@PathVariable String tid, Model model, HttpSession httpSession) {
-        User user = (User) httpSession.getAttribute("user");
+        User user = null;
+        if (httpSession.getAttribute("investor") != null) {
+            user = (User) httpSession.getAttribute("investor");
+        }
+        if (httpSession.getAttribute("user") != null) {
+            user = (User) httpSession.getAttribute("user");
+        }
+
+
         if (user != null) {
             Startup startup = startupRepository.findById(Long.parseLong(tid)).get();
             model.addAttribute("startup", startupRepository.findById(Long.parseLong(tid)).get());
@@ -47,6 +56,7 @@ public class EnterProject {
             model.addAttribute("contributor", userStartupRepository.findByStartupIdAndUserRights(Long.parseLong(tid), RoleENUM.Contributor).size());
             model.addAttribute("percentage", df2.format((startup.getInvested() * 100) / startup.getInvestAmount()));
 
+            model.addAttribute("cont", userStartupRepository.findUserStartupByStartupId(Long.parseLong(tid), RoleENUM.Contributor, StartupJoin.Joined));
 
             return "projectDashboard";
         } else

@@ -6,8 +6,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="description"
+          content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords"
+          content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>List of Contributors</title>
     <link rel="apple-touch-icon" href="../static/images/ico/apple-icon-120.png">
@@ -15,10 +17,14 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/vendors.min.css" th:href="@{/vendors/css/vendors.min.css}">
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/extensions/nouislider.min.css" th:href="@{/vendors/css/extensions/nouislider.min.css}">
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/ui/prism.min.css" th:href="@{/vendors/css/ui/prism.min.css}">
-    <link rel="stylesheet" type="text/css" href="../static/vendors/css/forms/select/select2.min.css" th:href="@{/vendors/css/forms/select/select2.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/vendors.min.css"
+          th:href="@{/vendors/css/vendors.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/extensions/nouislider.min.css"
+          th:href="@{/vendors/css/extensions/nouislider.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/ui/prism.min.css"
+          th:href="@{/vendors/css/ui/prism.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendors/css/forms/select/select2.min.css"
+          th:href="@{/vendors/css/forms/select/select2.min.css}">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -53,7 +59,8 @@
 
 <!-- BEGIN: Body-->
 
-<body class="vertical-layout vertical-menu-modern content-detached-left-sidebar ecommerce-application navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="content-detached-left-sidebar">
+<body class="vertical-layout vertical-menu-modern content-detached-left-sidebar ecommerce-application navbar-floating footer-static  "
+      data-open="click" data-menu="vertical-menu-modern" data-col="content-detached-left-sidebar">
 
 <!-- BEGIN: Header-->
 <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-light navbar-shadow">
@@ -76,19 +83,16 @@
                                                                    href="#" data-toggle="dropdown">
                         <div class="user-nav d-sm-flex d-none"><span
                                 class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
-                            <div class="badge badge-success mr-1 mb-1">
-                                <i class="feather icon-award white"></i>
-                                <span>New User</span>
-                            </div>
+
                         </div>
                         <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
                                    height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
-                                                                          href="page-user-profile.html"><i
-                                class="feather icon-user"></i> Edit Profile</a>
+                                                                          th:href="@{/user/profile}"><i
+                                class="feather icon-user"></i>My Profile</a>
                             <a class="dropdown-item"
-                               href="app-email.html"><i
+                               th:href="@{/email}"><i
                                     class="feather icon-mail"></i> My Inbox</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
@@ -109,7 +113,7 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand"
-                                            href="../../../html/ltr/vertical-menu-template/index.html">
+                                            href="#">
                 <div class="brand-logo"></div>
                 <h2 class="brand-text mb-0">StartUP</h2>
             </a></li>
@@ -118,7 +122,7 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
+            <li class="nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
                     class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
             </li>
             <li class=" navigation-header"><span>Menu</span>
@@ -130,13 +134,13 @@
                                                                                                       data-i18n="Todo">My Projects</span></a>
             </li>
             <li class="active nav-item"><a th:href="@{/contributors}"><i class="feather icon-user"></i><span class="menu-title"
-                                                                                                       data-i18n="User">List of Contributors</span></a>
+                                                                                                             data-i18n="User">List of Contributors</span></a>
             </li>
             <li class=" nav-item"><a th:href="@{/startups}" ><i class="feather icon-folder"></i><span class="menu-title"
                                                                                                       data-i18n="User">List of Startups</span></a>
             </li>
-            <li class=" nav-item"><a ><i class="fa fa-graduation-cap"></i><span class="menu-title"
-                                                                                data-i18n="User">List of Quizzes</span></a>
+            <li class=" nav-item"><a th:href="@{/quizes}" ><i class="fa fa-graduation-cap"></i><span class="menu-title"
+                                                                                                     data-i18n="User">List of Quizzes</span></a>
             </li>
             <li class=" nav-item"><a th:href="@{/requests}"><i class="fa fa-envelope-o"></i><span class="menu-title"
                                                                                                   data-i18n="User">Requests</span></a>
@@ -150,7 +154,6 @@
         </ul>
     </div>
 </div><!-- END: Main Menu-->
-<!-- END: Main Menu-->
 
 <!-- BEGIN: Content-->
 <div class="app-content content">
@@ -183,10 +186,12 @@
                         <div class="col-sm-12">
                             <div class="ecommerce-header-items">
                                 <div class="result-toggler">
-                                    <button class="navbar-toggler shop-sidebar-toggler" type="button" data-toggle="collapse">
-                                        <span class="navbar-toggler-icon d-block d-lg-none"><i class="feather icon-menu"></i></span>
+                                    <button class="navbar-toggler shop-sidebar-toggler" type="button"
+                                            data-toggle="collapse">
+                                        <span class="navbar-toggler-icon d-block d-lg-none"><i
+                                                class="feather icon-menu"></i></span>
                                     </button>
-                                    <div class="search-results"  th:text="${result} + ' results found'">
+                                    <div class="search-results" th:text="${result} + ' results found'">
 
                                     </div>
                                 </div>
@@ -214,10 +219,13 @@
                     <div class="row mt-1">
                         <div class="col-sm-12">
                             <fieldset class="form-group position-relative">
-                                <input type="text" class="form-control search-product" id="iconLeft5" placeholder="Search here">
-                                <div class="form-control-position">
-                                    <i class="feather icon-search"></i>
-                                </div>
+                                <form th:href="@{/contributor}">
+                                    <input type="text" class="form-control search-product" name="name" id="iconLeft5"
+                                           placeholder="Search here">
+                                    <div class="form-control-position">
+                                        <i class="feather icon-search"></i>
+                                    </div>
+                                </form>
                             </fieldset>
                         </div>
                     </div>
@@ -232,24 +240,30 @@
                             <div class="card ecommerce-card" th:each="cont : ${contributorList}">
                                 <div class="card-content">
                                     <div class="item-img text-center">
-                                        <a href="app-ecommerce-details.html">
-                                            <img class="img-fluid" src="../static/images/pages/eCommerce/7.png" th:src="@{${cont.avatar}}"  alt="img-placeholder">
+                                        <a th:href="@{'/profile/'+ ${cont.id}}">
+                                            <img class="img-fluid" src="../static/images/pages/eCommerce/7.png"
+                                                 th:src="@{${cont.avatar}}" alt="img-placeholder">
                                         </a>
                                     </div>
-                                    <div class="card-body" >
+                                    <div class="card-body">
                                         <div class="item-wrapper">
 
                                             <div class="item-cost">
-                                                <h6 class="item-price" th:if="${cont.statusEnum ==T(ada.spd.startup.ENUMS.StatusEnum).Online}"> Online
+                                                <h6 class="item-price"
+                                                    th:if="${cont.statusEnum ==T(ada.spd.startup.ENUMS.StatusEnum).Online}">
+                                                    Online
                                                     <span class="mr-1 bullet bullet-success bullet-sm"></span>
                                                 </h6>
-                                                <h6 class="item-price" th:if="${cont.statusEnum ==T(ada.spd.startup.ENUMS.StatusEnum).Offline}"> Offline
+                                                <h6 class="item-price"
+                                                    th:if="${cont.statusEnum ==T(ada.spd.startup.ENUMS.StatusEnum).Offline}">
+                                                    Offline
                                                     <span class="mr-1 bullet bullet-danger bullet-sm"></span>
                                                 </h6>
                                             </div>
                                         </div>
                                         <div class="item-name">
-                                            <a href="app-ecommerce-details.html" th:text=" ${cont.name} + ' ' + ${cont.surname}">
+                                            <a href="app-ecommerce-details.html"
+                                               th:text=" ${cont.name} + ' ' + ${cont.surname}">
                                                 Contributor Name
                                             </a>
 
@@ -263,13 +277,13 @@
                                     <div class="item-options text-center">
 
 
-
-
                                         <div class="wishlist" th:if="${cont == user}">
-                                            <i class="fa fa-pencil-square-o mr-25"></i> <span class="add-to-cart">Chat</span>
+                                            <i class="fa fa-pencil-square-o mr-25"></i> <span
+                                                class="add-to-cart">Chat</span>
                                         </div>
                                         <div class="wishlist" th:if="${cont != user}">
-                                            <i class="fa fa-pencil-square-o mr-25"></i> <span class="add-to-cart">View</span>
+                                            <i class="fa fa-pencil-square-o mr-25"></i> <span
+                                                class="add-to-cart">View</span>
                                         </div>
 
                                     </div>
@@ -304,88 +318,92 @@
 
                     <!-- /Price Filter -->
                     <hr>
-                    <!-- /Price Slider -->
-                    <div id="product-categories">
-                        <select class="price-options form-control" id="ecommerce-price-options">
-                            <option selected disabled>Nationality</option>
-                            <option  th:each="nat : ${contributorList}" th:text="${nat.nationallity}" th:value="${nat.nationallity}">All</option>
+                    <form th:action="@{/contributors}">
+                        <!-- /Price Slider -->
+                        <div id="product-categories">
+                            <select class="price-options form-control" name="nationality" id="ecommerce-price-options">
+                                <option selected disabled>Nationality</option>
+                                <option  th:each="nat : ${contributorList}"
+                                        th:text="${nat.nationallity}"
+                                        th:value="${nat.nationallity}">All
+                                </option>
 
-                        </select>
-                    </div>
-                    <!-- /Price Range -->
-                    <hr>
-                    <!-- Categories Starts -->
-                    <div id="product-categories">
-                        <div class="product-category-title">
-                            <h6 class="filter-title mb-1">Gender</h6>
+                            </select>
                         </div>
-                        <ul class="list-unstyled categories-list">
-                            <li>
+                        <!-- /Price Range -->
+                        <hr>
+                        <!-- Categories Starts -->
+                        <div id="product-categories">
+                            <div class="product-category-title">
+                                <h6 class="filter-title mb-1">Gender</h6>
+                            </div>
+                            <ul class="list-unstyled categories-list">
+                                <li>
                                             <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="category-filter" value="false">
+                                                <input type="radio" name="gender" value="Man">
                                                 <span class="vs-radio">
                                                     <span class="vs-radio--border"></span>
                                                     <span class="vs-radio--circle"></span>
                                                 </span>
                                                 <span class="ml-50">Male</span>
                                             </span>
-                            </li>
-                            <li>
+                                </li>
+                                <li>
                                             <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="category-filter" value="false">
+                                                <input type="radio" name="gender" value="Woman">
                                                 <span class="vs-radio">
                                                     <span class="vs-radio--border"></span>
                                                     <span class="vs-radio--circle"></span>
                                                 </span>
                                                 <span class="ml-50">Female</span>
                                             </span>
-                            </li>
+                                </li>
 
 
-                        </ul>
-                    </div>
-                    <hr>
-                    <div id="product-categories">
-                        <div class="product-category-title">
-                            <h6 class="filter-title mb-1">Activity Status</h6>
+                            </ul>
                         </div>
-                        <ul class="list-unstyled categories-list">
-                            <li>
+                        <hr>
+                        <div id="product-categories">
+                            <div class="product-category-title">
+                                <h6 class="filter-title mb-1">Activity Status</h6>
+                            </div>
+                            <ul class="list-unstyled categories-list">
+                                <li>
                                             <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="category-filter" value="false">
+                                                <input type="radio" name="status" th:value="${T(ada.spd.startup.ENUMS.StatusEnum).Online}">
                                                 <span class="vs-radio">
                                                     <span class="vs-radio--border"></span>
                                                     <span class="vs-radio--circle"></span>
                                                 </span>
                                                 <span class="ml-50">Online</span>
                                             </span>
-                            </li>
-                            <li>
+                                </li>
+                                <li>
                                             <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="category-filter" value="false">
+                                                <input type="radio" name="status" th:value="${T(ada.spd.startup.ENUMS.StatusEnum).Offline}">
                                                 <span class="vs-radio">
                                                     <span class="vs-radio--border"></span>
                                                     <span class="vs-radio--circle"></span>
                                                 </span>
                                                 <span class="ml-50">Offline</span>
                                             </span>
-                            </li>
+                                </li>
 
 
-                        </ul>
-                    </div>
-                    <!-- Categories Ends -->
+                            </ul>
+                        </div>
+                        <!-- Categories Ends -->
 
-                    <!-- Rating section starts -->
+                        <!-- Rating section starts -->
 
-                    <!-- Rating section Ends -->
-                    <hr>
-                    <!-- Clear Filters Starts -->
-                    <div id="clear-filters">
-                        <button class="btn btn-block btn-primary">CLEAR ALL FILTERS</button>
-                    </div>
-                    <!-- Clear Filters Ends -->
-
+                        <!-- Rating section Ends -->
+                        <hr>
+                        <!-- Clear Filters Starts -->
+                        <div id="clear-filters">
+                            <button type="submit" class="btn btn-block btn-primary">Search</button>
+                        </div>
+                        <!-- Clear Filters Ends -->
+                    </form>
                 </div>
             </div>
         </div>
@@ -409,20 +427,23 @@
 <!-- BEGIN Vendor JS-->
 
 <!-- BEGIN: Page Vendor JS-->
-<script src="../static/vendors/js/ui/prism.min.js"  th:src="@{/vendors/js/ui/prism.min.js}"></script>
+<script src="../static/vendors/js/ui/prism.min.js" th:src="@{/vendors/js/ui/prism.min.js}"></script>
 <script src="../static/vendors/js/extensions/wNumb.js" th:src="@{/vendors/js/extensions/wNumb.js}"></script>
-<script src="../static/vendors/js/extensions/nouislider.min.js" th:src="@{/vendors/js/extensions/nouislider.min.js}"></script>
-<script src="../static/vendors/js/forms/select/select2.full.min.js" th:src="@{/vendors/js/forms/select/select2.full.min.js}"></script>
+<script src="../static/vendors/js/extensions/nouislider.min.js"
+        th:src="@{/vendors/js/extensions/nouislider.min.js}"></script>
+<script src="../static/vendors/js/forms/select/select2.full.min.js"
+        th:src="@{/vendors/js/forms/select/select2.full.min.js}"></script>
 <!-- END: Page Vendor JS-->
 
 <!-- BEGIN: Theme JS-->
-<script src="../static/js/core/app-menu.js"  th:src="@{/js/core/app-menu.js}"></script>
-<script src="../static/js/core/app.js"  th:src="@{/js/core/app.js}"></script>
-<script src="../static/js/scripts/components.js"  th:src="@{/js/scripts/components.js}"></script>
+<script src="../static/js/core/app-menu.js" th:src="@{/js/core/app-menu.js}"></script>
+<script src="../static/js/core/app.js" th:src="@{/js/core/app.js}"></script>
+<script src="../static/js/scripts/components.js" th:src="@{/js/scripts/components.js}"></script>
 <!-- END: Theme JS-->
 
 <!-- BEGIN: Page JS-->
-<script src="../static/js/scripts/pages/app-ecommerce-shop.js"  th:src="@{/js/scripts/pages/app-ecommerce-shop.js}"></script>
+<script src="../static/js/scripts/pages/app-ecommerce-shop.js"
+        th:src="@{/js/scripts/pages/app-ecommerce-shop.js}"></script>
 <!-- END: Page JS-->
 
 </body>

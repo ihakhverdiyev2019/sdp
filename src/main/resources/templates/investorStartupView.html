@@ -66,6 +66,9 @@
                                 class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
                                 class="ficon feather icon-menu"></i></a></li>
                     </ul>
+                    <ul class="nav navbar-nav bookmark-icons">
+
+                    </ul>
 
                 </div>
 
@@ -75,21 +78,17 @@
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
                                                                    href="#" data-toggle="dropdown">
                         <div class="user-nav d-sm-flex d-none"><span
-                                class="user-name text-bold-600"
-                                th:text="${investor.name} + ' ' + ${investor.surname}"></span>
-                            <div class="badge badge-success mr-1 mb-1">
-                                <i class="feather icon-award white"></i>
-                                <span>New Investor</span>
-                            </div>
+                                class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
+
                         </div>
-                        <span><img class="round" th:src="@{${investor.avatar}}" alt="avatar"
+                        <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
                                    height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
-                                                                          href="/user/profile"><i
-                                class="feather icon-user"></i> Edit Profile</a>
+                                                                          th:href="@{/user/profile}"><i
+                                class="feather icon-user"></i>My Profile</a>
                             <a class="dropdown-item"
-                               th:href="@{email}"><i
+                               th:href="@{/email}"><i
                                     class="feather icon-mail"></i> My Inbox</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
@@ -119,7 +118,7 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="active nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
+            <li class=" nav-item"><a th:href="@{/indashboard}"><i class="feather icon-home"></i><span
                     class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
             </li>
             <li class=" navigation-header"><span>Menu</span>
@@ -127,11 +126,11 @@
             <li class=" nav-item"><a th:href="@{/email}"><i class="feather icon-mail"></i><span class="menu-title"
                                                                                                 data-i18n="Chat">E-mail</span></a>
             </li>
-            <li class="nav-item"><a th:href="@{/invested/projects}"><i class="feather icon-file"></i><span
+            <li class=" nav-item"><a th:href="@{/invested/projects}"><i class="feather icon-file"></i><span
                     class="menu-title"
-                    data-i18n="Todo">My Projects</span></a>
+                    data-i18n="Todo">Invested Projects</span></a>
             </li>
-            <li class="nav-item"><a th:href="@{/istartups} "><i class=" feather icon-folder"></i><span
+            <li class=" active nav-item"><a th:href="@{/istartups} "><i class=" feather icon-folder"></i><span
                     class="menu-title"
                     data-i18n="User">List of Startups</span></a>
             </li>
@@ -147,7 +146,6 @@
         </ul>
     </div>
 </div><!-- END: Main Menu-->
-
 <!-- BEGIN: Content-->
 <div class="app-content content">
     <div class="content-overlay"></div>

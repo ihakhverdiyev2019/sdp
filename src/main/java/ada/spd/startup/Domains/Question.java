@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String question;
@@ -17,6 +17,8 @@ public class Question {
     private String option4;
     private String correctAsnwer;
 
+    private String optionName;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "quiz_id", nullable = false)
     private Quiz quiz;
@@ -24,13 +26,15 @@ public class Question {
     public Question() {
     }
 
-    public Question(String question, String option1, String option2, String option3, String option4, String correctAsnwer) {
+    public Question(String question, String option1, String option2, String option3, String option4, String correctAsnwer, String optionName, Quiz quiz) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
         this.option4 = option4;
         this.correctAsnwer = correctAsnwer;
+        this.optionName = optionName;
+        this.quiz = quiz;
     }
 
     public long getId() {
@@ -95,5 +99,13 @@ public class Question {
 
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
+    }
+
+    public String getOptionName() {
+        return optionName;
+    }
+
+    public void setOptionName(String optionName) {
+        this.optionName = optionName;
     }
 }

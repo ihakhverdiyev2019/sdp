@@ -27,7 +27,7 @@ public class investorDashboard {
             model.addAttribute("investor", user);
             model.addAttribute("invested", userStartupRepository.findUserStartupByStartupId(user.getId(), RoleENUM.Investor, StartupJoin.Joined).size());
             model.addAttribute("investing", userStartupRepository.findUserStartupByStartupId(user.getId(), RoleENUM.Investor, StartupJoin.WantToJoin).size());
-            model.addAttribute("investingDetail", userStartupRepository.findUserStartupByStartupId(user.getId(), RoleENUM.Investor, StartupJoin.Joined));
+            model.addAttribute("investingDetail", userStartupRepository.findUserID(user.getId(), RoleENUM.Investor, StartupJoin.Joined));
 
 
             return "investorDashboard";

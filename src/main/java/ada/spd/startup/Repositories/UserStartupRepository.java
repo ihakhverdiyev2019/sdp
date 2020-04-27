@@ -18,6 +18,9 @@ public interface UserStartupRepository extends CrudRepository<UserStartup, Long>
     @Query(value = "select u.startup from UserStartup u where u.user.id= :userId")
     List<Startup> findByUserId(long userId);
 
+    @Query(value = "select u from UserStartup u where u.user.id=:userId and u.rights=:roleENUM")
+    List<UserStartup> findUserStartupByuserID(long userId, RoleENUM roleENUM);
+
 
     @Query(value = "select u from UserStartup u where u.startup.id= :startupId")
     List<UserStartup> findUserStartupByStartupId(long startupId);
@@ -44,5 +47,6 @@ public interface UserStartupRepository extends CrudRepository<UserStartup, Long>
     @Query(value = "select u from UserStartup u where u.user.id= :userId and  u.startupJoin =:startupJoin")
     List<UserStartup> findByUserAndStartupJoin(long userId, StartupJoin startupJoin);
 
-
+    @Query(value = "select u from UserStartup u where u.user.id=:userID and u.rights =:roleENUM and u.startupJoin =:startupJoin")
+    List<UserStartup> findUserID(long userID, RoleENUM roleENUM, StartupJoin startupJoin);
 }

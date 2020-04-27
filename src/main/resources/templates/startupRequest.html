@@ -11,7 +11,7 @@
     <meta name="keywords"
           content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>User View - Vuexy - Bootstrap HTML admin template</title>
+    <title>Investment Request</title>
     <link rel="apple-touch-icon" href="../static/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../static/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
@@ -67,6 +67,7 @@
                                 class="ficon feather icon-menu"></i></a></li>
                     </ul>
 
+
                 </div>
 
 
@@ -74,21 +75,17 @@
 
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
                                                                    href="#" data-toggle="dropdown">
-                        <div class="user-nav d-sm-flex d-none"><span
-                                class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
-                            <div class="badge badge-success mr-1 mb-1">
-                                <i class="feather icon-award white"></i>
-                                <span>New User</span>
-                            </div>
+                        <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600"
+                                                                     th:text="${user.name} + ' ' + ${user.surname}"></span>
+
                         </div>
-                        <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
-                                   height="40" width="40"></span>
+                        <span><img class="round" th:src="@{${user.avatar}}" alt="avatar" height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
-                                                                          href="page-user-profile.html"><i
-                                class="feather icon-user"></i> Edit Profile</a>
+                                                                          th:href="@{/user/profile}"><i
+                                class="feather icon-user"></i>My Profile</a>
                             <a class="dropdown-item"
-                               href="app-email.html"><i
+                               th:href="@{/email}"><i
                                     class="feather icon-mail"></i> My Inbox</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
@@ -100,8 +97,6 @@
         </div>
     </div>
 </nav>
-
-<!-- END: Header-->
 
 
 <!-- BEGIN: Main Menu-->
@@ -118,30 +113,39 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
-                    class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+            <li class=" nav-item"><a th:href="@{'/startup/' + ${startup.id}}"><i
+                    class="feather icon-home"></i><span class="menu-title"
+                                                        data-i18n="Dashboard">Dashboard</span></a>
             </li>
             <li class=" navigation-header"><span>Menu</span>
             </li>
-            <li class=" nav-item"><a th:href="@{/email}"><i class="feather icon-mail"></i><span class="menu-title"
-                                                                                                data-i18n="Chat">E-mail</span></a>
+            <li class=" nav-item"><a th:href="@{'/startup/' + ${startup.id} +'/chat'}"><i
+                    class="feather icon-message-square"></i><span
+                    class="menu-title" data-i18n="Chat">Chat</span></a>
             </li>
-            <li class="nav-item"><a th:href="@{/startup/list}"><i class="feather icon-file"></i><span class="menu-title"
-                                                                                                      data-i18n="Todo">My Projects</span></a>
+            <li class=" nav-item"><a th:href="@{'/startup/' + ${startup.id} +'/todo'}"><i
+                    class="feather icon-check-square"></i><span
+                    class="menu-title" data-i18n="Todo">Todo</span></a>
             </li>
-            <li class=" nav-item"><a th:href="@{/contributors}"><i class="feather icon-user"></i><span
+            <li><a th:href="@{'/startup/' + ${startup.id} +'/profile'}"><i class="feather icon-user"></i><span
+                    class="menu-title" data-i18n="User">Startup Page</span></a>
+            </li>
+            <li class="active nav-item"><a th:href="@{'/request/' + ${startup.id}}"><i class="fa fa-money"></i><span
                     class="menu-title"
-                    data-i18n="User">List of Contributors</span></a>
+                    data-i18n="User">Investment Request</span></a>
             </li>
-            <li class=" nav-item"><a th:href="@{/startups}"><i class="feather icon-folder"></i><span class="menu-title"
-                                                                                                     data-i18n="User">List of Startups</span></a>
-            </li>
-            <li class=" nav-item"><a><i class="fa fa-graduation-cap"></i><span class="menu-title"
-                                                                               data-i18n="User">List of Quizzes</span></a>
-            </li>
-            <li class="active nav-item"><a th:href="@{/requests}"><i class="fa fa-envelope-o"></i><span
-                    class="menu-title"
-                    data-i18n="User">Requests</span></a>
+            <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title"
+                                                                                     data-i18n="User">Users</span></a>
+                <ul class="  menu-content">
+                    <li><a th:href="@{'/startup/' + ${startup.id} +'/contributor'}"><i
+                            class="feather icon-circle"></i><span class="menu-item"
+                                                                  data-i18n="List">Contributors List</span></a>
+                    </li>
+                    <li><a th:href="@{'/startup/' + ${startup.id} +'/contributor/waiting'}"><i
+                            class="feather icon-circle"></i><span class="menu-item"
+                                                                  data-i18n="View">Pending Requests</span></a>
+                    </li>
+                </ul>
             </li>
 
             <li class=" navigation-header"><span>Support</span>
@@ -151,9 +155,8 @@
             </li>
         </ul>
     </div>
-</div><!-- END: Main Menu-->
+</div>
 <!-- END: Main Menu-->
-
 <!-- BEGIN: Content-->
 <div class="app-content content">
     <div class="content-overlay"></div>

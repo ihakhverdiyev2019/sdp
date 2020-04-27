@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -52,7 +53,7 @@ public class InvestorStartupView {
             }
 
 
-            URL url = new URL("http://31.171.108.141:1801/" + startup.getStartupName() + "/2");
+            URL url = new URL("http://31.171.108.141:1802/" + startup.getStartupName() + "/2");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
             //optional default is GET

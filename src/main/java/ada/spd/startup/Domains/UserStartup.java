@@ -9,8 +9,7 @@ import javax.persistence.*;
 @Entity
 public class UserStartup {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private RoleENUM rights;

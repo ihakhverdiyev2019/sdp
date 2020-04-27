@@ -84,19 +84,16 @@
                                                                    href="#" data-toggle="dropdown">
                         <div class="user-nav d-sm-flex d-none"><span
                                 class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
-                            <div class="badge badge-success mr-1 mb-1">
-                                <i class="feather icon-award white"></i>
-                                <span>New User</span>
-                            </div>
+
                         </div>
                         <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
                                    height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
                                                                           th:href="@{/user/profile}"><i
-                                class="feather icon-user"></i>  Profile</a>
+                                class="feather icon-user"></i>My Profile</a>
                             <a class="dropdown-item"
-                               href="app-email.html"><i
+                               th:href="@{/email}"><i
                                     class="feather icon-mail"></i> My Inbox</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
@@ -117,7 +114,7 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand"
-                                            href="../../../html/ltr/vertical-menu-template/index.html">
+                                            href="#">
                 <div class="brand-logo"></div>
                 <h2 class="brand-text mb-0">StartUP</h2>
             </a></li>
@@ -126,7 +123,7 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="active nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
+            <li class=" nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
                     class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
             </li>
             <li class=" navigation-header"><span>Menu</span>
@@ -140,11 +137,11 @@
             <li class=" nav-item"><a th:href="@{/contributors}"><i class="feather icon-user"></i><span class="menu-title"
                                                                                                        data-i18n="User">List of Contributors</span></a>
             </li>
-            <li class=" nav-item"><a th:href="@{/startups}" ><i class="feather icon-folder"></i><span class="menu-title"
-                                                                                                      data-i18n="User">List of Startups</span></a>
+            <li class="active nav-item"><a th:href="@{/startups}" ><i class="feather icon-folder"></i><span class="menu-title"
+                                                                                                            data-i18n="User">List of Startups</span></a>
             </li>
-            <li class=" nav-item"><a ><i class="fa fa-graduation-cap"></i><span class="menu-title"
-                                                                                data-i18n="User">List of Quizzes</span></a>
+            <li class=" nav-item"><a th:href="@{/quizes}" ><i class="fa fa-graduation-cap"></i><span class="menu-title"
+                                                                                                     data-i18n="User">List of Quizzes</span></a>
             </li>
             <li class=" nav-item"><a th:href="@{/requests}"><i class="fa fa-envelope-o"></i><span class="menu-title"
                                                                                                   data-i18n="User">Requests</span></a>
@@ -158,7 +155,6 @@
         </ul>
     </div>
 </div><!-- END: Main Menu-->
-
 <!-- BEGIN: Content-->
 <div class="app-content content">
     <div class="content-overlay"></div>
@@ -223,11 +219,15 @@
                     <div class="row mt-1">
                         <div class="col-sm-12">
                             <fieldset class="form-group position-relative">
-                                <input type="text" class="form-control search-product" id="iconLeft5"
-                                       placeholder="Search here">
-                                <div class="form-control-position">
-                                    <i class="feather icon-search"></i>
-                                </div>
+                                <form th:href="@{/startups}">
+                                    <input type="text" name="projectName" class="form-control search-product"
+                                           id="iconLeft5"
+                                           placeholder="Search here">
+                                    <div class="form-control-position">
+                                        <i class="feather icon-search"></i>
+                                    </div>
+
+                                </form>
                             </fieldset>
                         </div>
                     </div>
@@ -317,171 +317,124 @@
                     <span class="sidebar-close-icon d-block d-md-none">
                             <i class="feather icon-x"></i>
                         </span>
-
-                    <!-- /Price Filter -->
-                    <hr>
-                    <!-- /Price Slider -->
-                    <div class="price-slider">
-                        <div class="price-slider-title mt-1">
-                            <h6 class="filter-title mb-0">Price</h6>
-                        </div>
-                        <ul class="list-unstyled price-range" id="price-range">
-                            <li>
-                                            <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="price-range" checked value="false">
-                                                <span class="vs-radio">
-                                                    <span class="vs-radio--border"></span>
-                                                    <span class="vs-radio--circle"></span>
-                                                </span>
-                                                <span class="ml-50">All</span>
-                                            </span>
-                            </li>
-                            <li>
-                                            <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="price-range" value="false">
-                                                <span class="vs-radio">
-                                                    <span class="vs-radio--border"></span>
-                                                    <span class="vs-radio--circle"></span>
-                                                </span>
-                                                <span class="ml-50"> less than $100</span>
-                                            </span>
-                            </li>
-                            <li>
-                                            <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="price-range" value="false">
-                                                <span class="vs-radio">
-                                                    <span class="vs-radio--border"></span>
-                                                    <span class="vs-radio--circle"></span>
-                                                </span>
-                                                <span class="ml-50">$100 - $1000</span>
-                                            </span>
-                            </li>
-                            <li>
-                                            <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="price-range" value="false">
-                                                <span class="vs-radio">
-                                                    <span class="vs-radio--border"></span>
-                                                    <span class="vs-radio--circle"></span>
-                                                </span>
-                                                <span class="ml-50">$1000 - $5000</span>
-                                            </span>
-                            </li>
-                            <li>
-                                            <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="price-range" value="false">
-                                                <span class="vs-radio">
-                                                    <span class="vs-radio--border"></span>
-                                                    <span class="vs-radio--circle"></span>
-                                                </span>
-                                                <span class="ml-50">over $5000</span>
-                                            </span>
-                            </li>
-
-                        </ul>
-                    </div>
                 </div>
                 <!-- /Price Range -->
                 <hr>
                 <!-- Categories Starts -->
                 <div id="product-categories">
-                    <div class="product-category-title">
-                        <h6 class="filter-title mb-1">Categories</h6>
-                    </div>
-                    <ul class="list-unstyled categories-list">
-                        <li>
+                    <form th:href="@{/startups}">
+
+                        <div class="product-category-title">
+                            <h6 class="filter-title mb-1">Categories</h6>
+                        </div>
+                        <ul class="list-unstyled categories-list">
+                            <li>
                                             <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="category-filter" value="false">
+                                                <input type="radio" name="category" value="All">
+                                                <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                                <span class="ml-50">ALL</span>
+                                            </span>
+                            </li>
+                            <li>
+                                            <span class="vs-radio-con vs-radio-primary py-25">
+                                                <input type="radio" name="category" value="AI/ML">
                                                 <span class="vs-radio">
                                                     <span class="vs-radio--border"></span>
                                                     <span class="vs-radio--circle"></span>
                                                 </span>
                                                 <span class="ml-50">AI/ML</span>
                                             </span>
-                        </li>
-                        <li>
+                            </li>
+                            <li>
                                             <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="category-filter" value="false">
+                                                <input type="radio" name="category" value="Website">
                                                 <span class="vs-radio">
                                                     <span class="vs-radio--border"></span>
                                                     <span class="vs-radio--circle"></span>
                                                 </span>
                                                 <span class="ml-50">Website</span>
                                             </span>
-                        </li>
-                        <li>
+                            </li>
+                            <li>
                                             <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="category-filter" value="false">
+                                                <input type="radio" name="category" value="Software">
                                                 <span class="vs-radio">
                                                     <span class="vs-radio--border"></span>
                                                     <span class="vs-radio--circle"></span>
                                                 </span>
                                                 <span class="ml-50">Software</span>
                                             </span>
-                        </li>
+                            </li>
 
-                        <li>
+                            <li>
                                             <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="category-filter" value="false">
+                                                <input type="radio" name="category" value="Business">
                                                 <span class="vs-radio">
                                                     <span class="vs-radio--border"></span>
                                                     <span class="vs-radio--circle"></span>
                                                 </span>
                                                 <span class="ml-50">Business</span>
                                             </span>
-                        </li>
-                        <li>
+                            </li>
+                            <li>
                                             <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="category-filter" value="false">
+                                                <input type="radio" name="category" value="Hardware">
                                                 <span class="vs-radio">
                                                     <span class="vs-radio--border"></span>
                                                     <span class="vs-radio--circle"></span>
                                                 </span>
                                                 <span class="ml-50">Hardware</span>
                                             </span>
-                        </li>
-                        <li>
+                            </li>
+                            <li>
                                             <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="category-filter" value="false">
+                                                <input type="radio" name="category" value="Agriculture">
                                                 <span class="vs-radio">
                                                     <span class="vs-radio--border"></span>
                                                     <span class="vs-radio--circle"></span>
                                                 </span>
-                                                <span class="ml-50">Agticulture</span>
+                                                <span class="ml-50">Agriculture</span>
                                             </span>
-                        </li>
-                        <li>
+                            </li>
+                            <li>
                                             <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="category-filter" value="false">
+                                                <input type="radio" name="category" value="Game">
                                                 <span class="vs-radio">
                                                     <span class="vs-radio--border"></span>
                                                     <span class="vs-radio--circle"></span>
                                                 </span>
                                                 <span class="ml-50">Game</span>
                                             </span>
-                        </li>
-                        <li>
+                            </li>
+                            <li>
                                             <span class="vs-radio-con vs-radio-primary py-25">
-                                                <input type="radio" name="category-filter" value="false">
+                                                <input type="radio" name="category" value="Other">
                                                 <span class="vs-radio">
                                                     <span class="vs-radio--border"></span>
                                                     <span class="vs-radio--circle"></span>
                                                 </span>
                                                 <span class="ml-50">Other</span>
                                             </span>
-                        </li>
+                            </li>
 
 
-                    </ul>
-                </div>
-                <!-- Categories Ends -->
+                        </ul>
 
-                <!-- Rating section starts -->
 
-                <!-- Rating section Ends -->
-                <hr>
-                <!-- Clear Filters Starts -->
-                <div id="clear-filters">
-                    <button class="btn btn-block btn-primary">CLEAR ALL FILTERS</button>
+                        <!-- Categories Ends -->
+
+                        <!-- Rating section starts -->
+
+                        <!-- Rating section Ends -->
+                        <hr>
+                        <!-- Clear Filters Starts -->
+                        <div id="clear-filters">
+                            <button type="submit" class="btn btn-block btn-primary">Search</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- Clear Filters Ends -->
 
@@ -502,20 +455,7 @@
 <!-- BEGIN: Footer-->
 <!-- END: Footer-->
 
-<!--<script th:inline="javascript">-->
-<!--    $(document).ready(function(){-->
-<!--        $("#iconLeft5").on("keyup", function() {-->
-<!--            var value = $(this).val().toLowerCase();-->
-<!--            console.log(value);-->
-<!--            $("#1").filter(function() {-->
-<!--             console.log("gedge");-->
-<!--                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)-->
 
-<!--            });-->
-
-<!--        });-->
-<!--    });-->
-<!--</script>-->
 <!-- BEGIN: Vendor JS-->
 <script src="../static/vendors/js/vendors.min.js" th:src="@{/vendors/js/vendors.min.js}"></script>
 <!-- BEGIN Vendor JS-->

@@ -35,10 +35,19 @@ public class ListOfContributor {
 
     @GetMapping(value = "/startup/{tid}/contributor")
     public String listOfContributor(@PathVariable String tid, Model model, HttpSession httpSession) {
+        User user = null;
+
         if (httpSession.getAttribute("user") != null) {
+            user = (User) httpSession.getAttribute("user");
+        } else if (httpSession.getAttribute("investor") != null) {
+            user = (User) httpSession.getAttribute("investor");
+        }
+        if (user != null) {
             model.addAttribute("startup", startupRepository.findById(Long.parseLong(tid)).get());
-            model.addAttribute("user", (User) httpSession.getAttribute("user"));
+            model.addAttribute("user", user);
             model.addAttribute("contributor", userStartupRepository.findUserStartupByStartupId(Long.parseLong(tid), RoleENUM.Contributor, StartupJoin.Joined));
+            model.addAttribute("cont", userStartupRepository.findUserStartupByStartupId(Long.parseLong(tid), RoleENUM.Contributor, StartupJoin.Joined));
+
             return "usersList";
         } else
             return "redirect:/login";
@@ -73,6 +82,7 @@ public class ListOfContributor {
             model.addAttribute("startup", startupRepository.findById(Long.parseLong(tid)).get());
             model.addAttribute("user", (User) httpSession.getAttribute("user"));
             model.addAttribute("contributor", userStartupRepository.findUserStartupByStartupId(Long.parseLong(tid), RoleENUM.Contributor, StartupJoin.WantToJoin));
+            model.addAttribute("cont", userStartupRepository.findUserStartupByStartupId(Long.parseLong(tid), RoleENUM.Contributor, StartupJoin.Joined));
             return "pendingRequests";
         } else
             return "redirect:/login";

@@ -36,7 +36,13 @@ public class StartupProfile {
 
     @RequestMapping(value = "/startup/{id}/profile")
     public String findStartupProfile(@PathVariable String id, Model model, HttpSession httpSession) {
-        User user = (User) httpSession.getAttribute("user");
+        User user = null;
+
+        if (httpSession.getAttribute("user") != null) {
+            user = (User) httpSession.getAttribute("user");
+        } else if (httpSession.getAttribute("investor") != null) {
+            user = (User) httpSession.getAttribute("investor");
+        }
         if (user != null) {
             model.addAttribute("user", user);
             Startup startup = startupRepository.findById(Long.parseLong(id)).get();
@@ -81,7 +87,7 @@ public class StartupProfile {
             }
 
 
-            URL url = new URL("http://31.171.108.141:1801/" + startup.getStartupName() + "/2");
+            URL url = new URL("http://31.171.108.141:1802/" + startup.getStartupName() + "/2");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
             //optional default is GET

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <!-- BEGIN: Head-->
 
 <head>
@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="description"
-          content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+          content="">
     <meta name="keywords"
-          content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+          content="">
     <meta name="author" content="PIXINVENT">
-    <title>User View - Vuexy - Bootstrap HTML admin template</title>
+    <title>User Profile Edit - StartUP</title>
     <link rel="apple-touch-icon" href="../static/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../static/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
@@ -76,17 +76,14 @@
                                                                    href="#" data-toggle="dropdown">
                         <div class="user-nav d-sm-flex d-none"><span
                                 class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
-                            <div class="badge badge-success mr-1 mb-1">
-                                <i class="feather icon-award white"></i>
-                                <span>New User</span>
-                            </div>
+
                         </div>
                         <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
                                    height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
-                                                                          href="page-user-profile.html"><i
-                                class="feather icon-user"></i> My Profile</a>
+                                                                          th:href="@{/user/profile}"><i
+                                class="feather icon-user"></i>My Profile</a>
                             <a class="dropdown-item"
                                href="app-email.html"><i
                                     class="feather icon-mail"></i> My Inbox</a>
@@ -129,17 +126,18 @@
             <li class="nav-item"><a th:href="@{/startup/list}"><i class="feather icon-file"></i><span class="menu-title"
                                                                                                       data-i18n="Todo">My Projects</span></a>
             </li>
-            <li class=" nav-item"><a><i class="feather icon-user"></i><span class="menu-title"
-                                                                            data-i18n="User">List of Contributors</span></a>
+            <li class=" nav-item"><a th:href="@{/contributors}"><i class="feather icon-user"></i><span
+                    class="menu-title"
+                    data-i18n="User">List of Contributors</span></a>
             </li>
-            <li class=" nav-item"><a><i class="feather icon-folder"></i><span class="menu-title"
-                                                                              data-i18n="User">List of Startups</span></a>
+            <li class=" nav-item"><a th:href="@{/startups}"><i class="feather icon-folder"></i><span class="menu-title"
+                                                                                                     data-i18n="User">List of Startups</span></a>
             </li>
-            <li class=" nav-item"><a><i class="fa fa-graduation-cap"></i><span class="menu-title"
-                                                                               data-i18n="User">List of Quizzes</span></a>
+            <li class=" nav-item"><a th:href="@{/quizes}"><i class="fa fa-graduation-cap"></i><span class="menu-title"
+                                                                                                    data-i18n="User">List of Quizzes</span></a>
             </li>
-            <li class=" nav-item"><a><i class="fa fa-envelope-o"></i><span class="menu-title"
-                                                                           data-i18n="User">Requests</span></a>
+            <li class=" nav-item"><a th:href="@{/requests}"><i class="fa fa-envelope-o"></i><span class="menu-title"
+                                                                                                  data-i18n="User">Requests</span></a>
             </li>
 
             <li class=" navigation-header"><span>Support</span>
@@ -167,7 +165,7 @@
                         <div class="card-body">
                             <ul class="nav nav-tabs mb-3" role="tablist">
                                 <li class="nav-item">
-                                    <a href="contributorPage.html" class="btn btn-outline-primary mr-1 mb-1"><i
+                                    <a th:href="@{/user/profile}" class="btn btn-outline-primary mr-1 mb-1"><i
                                             class="feather icon-corner-down-left"></i>Back</a>
 
                                 </li>
@@ -176,266 +174,237 @@
                                        data-toggle="tab" href="#account" aria-controls="account" role="tab"
                                        aria-selected="true">
                                         <i class="feather icon-user mr-25"></i><span
-                                            class="d-none d-sm-block">Account</span>
+                                            class="d-none d-sm-block">Edit Profile</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center" id="information-tab" data-toggle="tab"
-                                       href="#information" aria-controls="information" role="tab" aria-selected="false">
-                                        <i class="feather icon-info mr-25"></i><span class="d-none d-sm-block">Information</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center" id="social-tab" data-toggle="tab"
-                                       href="#social" aria-controls="social" role="tab" aria-selected="false">
-                                        <i class="feather icon-share-2 mr-25"></i><span
-                                            class="d-none d-sm-block">Social</span>
-                                    </a>
-                                </li>
+
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="account" aria-labelledby="account-tab" role="tabpanel">
-                                    <!-- users edit media object start -->
-                                    <div class="media mb-2">
-                                        <a class="mr-2 my-25" href="#">
-                                            <img src="../static/images/portrait/small/avatar-s-18.jpg"
-                                                 th:href="@{${user.avatar}}" alt="users avatar"
-                                                 class="users-avatar-shadow rounded" height="90" width="90">
-                                        </a>
-                                        <div class="media-body mt-50">
-                                            <h4 class="media-heading" th:text="${user.name + ' ' + user.surname}">Angelo
-                                                Sashington</h4>
+                                <!-- users edit media object start -->
+                                <div class="media mb-2">
+                                    <a class="mr-2 my-25" href="#">
+                                        <img src="../static/images/portrait/small/avatar-s-18.jpg"
+                                             th:src="@{${user.avatar}}" alt="users avatar"
+                                             class="users-avatar-shadow rounded" height="90" width="90">
+                                    </a>
+                                    <div class="media-body mt-50">
+                                        <h4 class="media-heading" th:text="${user.name + ' ' + user.surname}">Angelo
+                                            Sashington</h4>
 
+                                    </div>
+                                </div>
+                                <!-- users edit media object ends -->
+                                <!-- users edit account form start -->
+
+
+                                <form novalidate action="/user/profile/save/" th:object="${user}" method="post">
+                                    <input type="hidden" name="id" th:value="${user.id}"><br>
+                                    <input type="hidden" name="balance" th:value="${user.balance}"><br>
+                                    <input type="hidden" name="userRoleInit" th:value="${user.userRoleInit}"><br>
+                                    <input type="hidden" name="numberOfJoinedStartup"
+                                           th:value="${user.numberOfJoinedStartup}"><br>
+                                    <input type="hidden" name="numberOfStartup" th:value="${user.numberOfStartup}"><br>
+                                    <input type="hidden" name="avatar" th:value="${user.avatar}"><br>
+                                    <input type="hidden" name="gender" th:value="${user.gender}"><br>
+                                    <input type="hidden" name="statusEnum" th:value="${user.statusEnum}"><br>
+                                    <input type="hidden" name="status" th:value="${user.status}"><br>
+                                    <input type="hidden" name="code" th:value="${user.code}"><br>
+
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Username</label>
+                                                    <input type="text" class="form-control" placeholder="Username"
+                                                           th:value="${user.login}" name="login" required
+                                                           data-validation-required-message="This username field is required">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Name</label>
+                                                    <input type="text" class="form-control" placeholder="Name"
+                                                           th:value="${user.name}" name="name" required
+                                                           data-validation-required-message="This name field is required">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Password</label>
+                                                    <input type="text" class="form-control" placeholder="Password"
+                                                           th:value="${user.password}" name="password" required
+                                                           data-validation-required-message="This name field is required">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-12 col-sm-9  col-lg-5">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Surname</label>
+                                                    <input type="text" class="form-control" placeholder="Surname"
+                                                           th:value="${user.surname}" name="surname" required
+                                                           data-validation-required-message="This name field is required">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>E-mail</label>
+                                                    <input type="email" class="form-control" placeholder="Email"
+                                                           th:value="${user.email}" name="email" required
+                                                           data-validation-required-message="This email field is required">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <!-- users edit account form ends -->
+
+
+                                    <div class="row mt-1">
+                                        <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+                                            <h5 class="mb-1"><i class="feather icon-user mr-25"></i>Personal
+                                                Information</h5>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <div class="controls">
+                                                            <label>Birth date</label>
+                                                            <input type="date" class="form-control birthdate-picker"
+                                                                   name="birth" th:value="${user.birth}"
+                                                                   required
+                                                                   placeholder="Birth date"
+                                                                   data-validation-required-message="This birthdate field is required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Mobile</label>
+                                                    <input type="text" class="form-control"
+                                                           th:value="${user.phoneNo}" name="phoneNo"
+                                                           placeholder="Mobile number here..."
+                                                           data-validation-required-message="This mobile number is required">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Nationality</label>
+                                                    <input type="text" class="form-control"
+                                                           th:value="${user.nationallity}" name="nationallity"
+                                                           placeholder="Nationality"
+                                                           data-validation-required-message="This nationality  is required">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="col-12 col-sm-9  col-lg-5">
+                                            <h5 class="mb-1 mt-2 mt-sm-0"><i class="feather icon-map-pin mr-25"></i>Address
+                                            </h5>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Address Line</label>
+                                                    <input type="text" class="form-control"
+                                                           th:value="${user.address}" name="address" required
+                                                           placeholder="Address Line 1"
+                                                           data-validation-required-message="This Address field is required">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>City</label>
+                                                    <input type="text" class="form-control" name="city" required
+                                                           th:value="${user.city}"
+                                                           data-validation-required-message="This Time Zone field is required">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Country</label>
+                                                    <input type="text" class="form-control" required
+                                                           th:value="${user.country}" name="country"
+                                                           data-validation-required-message="This Time Zone field is required">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <!-- users edit media object ends -->
-                                    <!-- users edit account form start -->
-                                    <form novalidate action="/user/profile/save/" th:object="${user}" method="post">
-                                        <input type="hidden" name="id" th:value="${user.id}"><br>
 
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6">
 
-                                        <div class="row">
-                                            <div class="col-12 col-sm-6">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <label>Username</label>
-                                                        <input type="text" class="form-control" placeholder="Username"
-                                                               th:value="${user.login}" name="login" required
-                                                               data-validation-required-message="This username field is required">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <label>Name</label>
-                                                        <input type="text" class="form-control" placeholder="Name"
-                                                               th:value="${user.name}" name="name" required
-                                                               data-validation-required-message="This name field is required">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <label>Name</label>
-                                                        <input type="text" class="form-control" placeholder="Surname"
-                                                               th:value="${user.surname}" name="surname" required
-                                                               data-validation-required-message="This name field is required">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <label>E-mail</label>
-                                                        <input type="email" class="form-control" placeholder="Email"
-                                                               th:value="${user.email}" name="email" required
-                                                               data-validation-required-message="This email field is required">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-sm-6">
+                                            <fieldset>
 
-
-                                            </div>
-
-                                            <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
-                                                <button type="submit"
-                                                        class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">Save
-                                                    Changes
-                                                </button>
-                                                <button type="reset" class="btn btn-outline-warning">Reset</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <!-- users edit account form ends -->
-                                </div>
-                                <div class="tab-pane" id="information" aria-labelledby="information-tab"
-                                     role="tabpanel">
-                                    <!-- users edit Info form start -->
-                                    <form novalidate action="/user/profile/save/" th:object="${user}" method="post">
-                                        <input type="hidden" name="id" th:value="${user.id}"><br>
-
-
-                                        <div class="row mt-1">
-                                            <div class="col-12 col-sm-6">
-                                                <h5 class="mb-1"><i class="feather icon-user mr-25"></i>Personal
-                                                    Information</h5>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <div class="controls">
-                                                                <label>Birth date</label>
-                                                                <input type="date" class="form-control birthdate-picker"
-                                                                       name="birth" th:value="${user.birth}"
-                                                                       name="birth" required
-                                                                       placeholder="Birth date"
-                                                                       data-validation-required-message="This birthdate field is required">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <label>Mobile</label>
-                                                        <input type="text" class="form-control"
-                                                               th:value="${user.phoneNo}" name="phoneNo"
-                                                               placeholder="Mobile number here..."
-                                                               data-validation-required-message="This mobile number is required">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <label>Nationality</label>
-                                                        <input type="text" class="form-control"
-                                                               th:value="${user.nationallity}" name="nationallity"
-                                                               placeholder="Nationality"
-                                                               data-validation-required-message="This nationality  is required">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-
-                                                    <ul class="list-unstyled mb-0">
-
-                                                        <div class="form-group">
-                                                            <div class="controls">
-                                                                <div>
-                                                                    <button class="btn btn-primary btn-icon"
-                                                                            style="margin-top:10px;margin-bottom: 10px;">
-                                                                        Take quiz
-                                                                    </button>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </ul>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-12 col-sm-6">
-                                                <h5 class="mb-1 mt-2 mt-sm-0"><i class="feather icon-map-pin mr-25"></i>Address
-                                                </h5>
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <label>Address Line</label>
-                                                        <input type="text" class="form-control"
-                                                               th:value="${user.address}" name="address" required
-                                                               placeholder="Address Line 1"
-                                                               data-validation-required-message="This Address field is required">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <label>City</label>
-                                                        <input type="text" class="form-control" name="city" required
-                                                               th:value="${user.city}"
-                                                               data-validation-required-message="This Time Zone field is required">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <label>Country</label>
-                                                        <input type="text" class="form-control" required
-                                                               th:value="${user.country}" name="country"
-                                                               data-validation-required-message="This Time Zone field is required">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
-                                                <button type="submit"
-                                                        class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">Save
-                                                    Changes
-                                                </button>
-                                                <button type="reset" class="btn btn-outline-warning">Reset</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <!-- users edit Info form ends -->
-                                </div>
-                                <div class="tab-pane" id="social" aria-labelledby="social-tab" role="tabpanel">
-                                    <!-- users edit socail form start -->
-                                    <form novalidate action="/user/profile/save/" th:object="${user}" method="post">
-                                        <input type="hidden" name="id" th:value="${user.id}"><br>
-                                        <div class="row">
-                                            <div class="col-12 col-sm-6">
-
-                                                <fieldset>
-
-                                                    <label>Facebook</label>
-                                                    <div class="input-group mb-75">
-                                                        <div class="input-group-prepend">
+                                                <label>Facebook</label>
+                                                <div class="input-group mb-75">
+                                                    <div class="input-group-prepend">
                                                             <span class="input-group-text feather icon-facebook"
                                                                   id="basic-addon4"></span>
-                                                        </div>
-                                                        <input type="text" class="form-control"
-                                                               th:value="${user.facebook}" name="facebook"
-                                                               placeholder="https://www.facebook.com/"
-                                                               aria-describedby="basic-addon4">
-                                                    </div>
-                                                    <label>Github</label>
-                                                    <div class="input-group mb-75">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text feather icon-github"
-                                                                  id="basic-addon9"></span>
-                                                        </div>
-                                                        <input type="text" class="form-control"
-                                                               th:value="${user.github}" name="github"
-                                                               placeholder="https://www.github.com/"
-                                                               aria-describedby="basic-addon9">
-                                                    </div>
-
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-12 col-sm-6">
-                                                <label>Slack</label>
-                                                <div class="input-group mb-75">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text feather icon-slack"
-                                                              id="basic-addon11"></span>
-                                                    </div>
-                                                    <input type="text" class="form-control" name="slack"
-                                                           th:value="${user.slack}"
-                                                           placeholder="https://www.slack.com/"
-                                                           aria-describedby="basic-addon11">
-                                                </div>
-                                                <label>Other Personal Link</label>
-                                                <div class="input-group mb-75">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text feather icon-link"
-                                                              id="basic-addon18"></span>
                                                     </div>
                                                     <input type="text" class="form-control"
-                                                           th:value="${user.otherSocial}" name="otherSocial"
-                                                           placeholder="https://www.slack.com/"
-                                                           aria-describedby="basic-addon11">
+                                                           th:value="${user.facebook}" name="facebook"
+                                                           placeholder="https://www.facebook.com/"
+                                                           aria-describedby="basic-addon4">
                                                 </div>
+                                                <label>Github</label>
+                                                <div class="input-group mb-75">
+                                                    <div class="input-group-prepend">
+                                                            <span class="input-group-text feather icon-github"
+                                                                  id="basic-addon9"></span>
+                                                    </div>
+                                                    <input type="text" class="form-control"
+                                                           th:value="${user.github}" name="github"
+                                                           placeholder="https://www.github.com/"
+                                                           aria-describedby="basic-addon9">
+                                                </div>
+
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <label>Slack</label>
+                                            <div class="input-group mb-75">
+                                                <div class="input-group-prepend">
+                                                        <span class="input-group-text feather icon-slack"
+                                                              id="basic-addon11"></span>
+                                                </div>
+                                                <input type="text" class="form-control" name="slack"
+                                                       th:value="${user.slack}"
+                                                       placeholder="https://www.slack.com/"
+                                                       aria-describedby="basic-addon11">
                                             </div>
-                                            <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
-                                                <button type="submit"
-                                                        class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">Save
-                                                    Changes
-                                                </button>
-                                                <button type="reset" class="btn btn-outline-warning">Reset</button>
+                                            <label>Other Personal Link</label>
+                                            <div class="input-group mb-75">
+                                                <div class="input-group-prepend">
+                                                        <span class="input-group-text feather icon-link"
+                                                              id="basic-addon18"></span>
+                                                </div>
+                                                <input type="text" class="form-control"
+                                                       th:value="${user.otherSocial}" name="otherSocial"
+                                                       placeholder="https://www.slack.com/"
+                                                       aria-describedby="basic-addon11">
                                             </div>
                                         </div>
-                                    </form>
-                                    <!-- users edit socail form ends -->
-                                </div>
+                                    </div>
+
+
+                                    <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
+                                        <button type="submit"
+                                                class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">Save
+                                            Changes
+                                        </button>
+                                        <button type="reset" class="btn btn-outline-warning">Reset</button>
+                                    </div>
+
+                                    <!-- users edit Info form ends -->
+                                </form>
+
                             </div>
                         </div>
                     </div>

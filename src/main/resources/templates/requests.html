@@ -11,7 +11,7 @@
     <meta name="keywords"
           content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>User View - Vuexy - Bootstrap HTML admin template</title>
+    <title>Requests</title>
     <link rel="apple-touch-icon" href="../static/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../static/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
@@ -76,19 +76,16 @@
                                                                    href="#" data-toggle="dropdown">
                         <div class="user-nav d-sm-flex d-none"><span
                                 class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
-                            <div class="badge badge-success mr-1 mb-1">
-                                <i class="feather icon-award white"></i>
-                                <span>New User</span>
-                            </div>
+
                         </div>
                         <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
                                    height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
-                                                                          href="page-user-profile.html"><i
-                                class="feather icon-user"></i> Edit Profile</a>
+                                                                          th:href="@{/user/profile}"><i
+                                class="feather icon-user"></i>My Profile</a>
                             <a class="dropdown-item"
-                               href="app-email.html"><i
+                               th:href="@{/email}"><i
                                     class="feather icon-mail"></i> My Inbox</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
@@ -109,7 +106,7 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand"
-                                            href="../../../html/ltr/vertical-menu-template/index.html">
+                                            href="#">
                 <div class="brand-logo"></div>
                 <h2 class="brand-text mb-0">StartUP</h2>
             </a></li>
@@ -129,19 +126,17 @@
             <li class="nav-item"><a th:href="@{/startup/list}"><i class="feather icon-file"></i><span class="menu-title"
                                                                                                       data-i18n="Todo">My Projects</span></a>
             </li>
-            <li class=" nav-item"><a th:href="@{/contributors}"><i class="feather icon-user"></i><span
-                    class="menu-title"
-                    data-i18n="User">List of Contributors</span></a>
+            <li class=" nav-item"><a th:href="@{/contributors}"><i class="feather icon-user"></i><span class="menu-title"
+                                                                                                       data-i18n="User">List of Contributors</span></a>
             </li>
-            <li class=" nav-item"><a th:href="@{/startups}"><i class="feather icon-folder"></i><span class="menu-title"
-                                                                                                     data-i18n="User">List of Startups</span></a>
+            <li class=" nav-item"><a th:href="@{/startups}" ><i class="feather icon-folder"></i><span class="menu-title"
+                                                                                                      data-i18n="User">List of Startups</span></a>
             </li>
-            <li class=" nav-item"><a><i class="fa fa-graduation-cap"></i><span class="menu-title"
-                                                                               data-i18n="User">List of Quizzes</span></a>
+            <li class=" nav-item"><a th:href="@{/quizes}" ><i class="fa fa-graduation-cap"></i><span class="menu-title"
+                                                                                                     data-i18n="User">List of Quizzes</span></a>
             </li>
-            <li class="active nav-item"><a th:href="@{/requests}"><i class="fa fa-envelope-o"></i><span
-                    class="menu-title"
-                    data-i18n="User">Requests</span></a>
+            <li class="active nav-item"><a th:href="@{/requests}"><i class="fa fa-envelope-o"></i><span class="menu-title"
+                                                                                                  data-i18n="User">Requests</span></a>
             </li>
 
             <li class=" navigation-header"><span>Support</span>
@@ -152,7 +147,6 @@
         </ul>
     </div>
 </div><!-- END: Main Menu-->
-<!-- END: Main Menu-->
 
 <!-- BEGIN: Content-->
 <div class="app-content content">
@@ -185,12 +179,7 @@
                                         <i class="feather icon-log-in mr-25"></i><span class="d-none d-sm-block">Received</span>
                                     </a>
                                 </li>
-                                <li class=" nav-item">
-                                    <a class="nav-link d-flex align-items-center" id="investment-tab" data-toggle="tab"
-                                       href="#investment" aria-controls="information" role="tab" aria-selected="false">
-                                        <i class="feather icon-log-in mr-25"></i><span class="d-none d-sm-block">Received</span>
-                                    </a>
-                                </li>
+
 
                             </ul>
                             <div class="tab-content">
@@ -255,57 +244,6 @@
                                                     <th>PROJECT NAME</th>
                                                     <th>ROLE</th>
                                                     <th>DATE REQUESTED</th>
-                                                    <th>ACTION</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr th:each="req : ${request}">
-                                                    <td></td>
-                                                    <td th:text="${req.startup.startupName}"> My Project1</td>
-                                                    <td class="product-category" th:text="${req.role}">Front-end
-                                                        developer
-                                                    </td>
-                                                    <td th:text="${req.date}">
-                                                    </td>
-                                                    <td class="product-action">
-                                                        <button type="button"
-                                                                class="btn btn-icon btn-flat-success mr-1 mb-1"><a
-                                                                th:href="@{'request/startup/' + ${req.startup?.id} + '/accept'}">
-                                                            <i class="feather icon-x"></i></a></button>
-                                                        <button type="button"
-                                                                class="btn btn-icon btn-flat-danger mr-1 mb-1"><a
-                                                                th:href="@{'request/startup/' + ${req.startup?.id} + '/reject'}"><i
-                                                                class="feather icon-x"></i></a></button>
-                                                    </td>
-                                                </tr>
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!-- DataTable ends -->
-
-                                        <!-- add new sidebar starts -->
-                                        <!-- add new sidebar ends -->
-                                    </section>
-                                    <!-- users edit Info form ends -->
-                                </div>
-                                <div class="tab-pane" id="investment" aria-labelledby="information-tab"
-                                     role="tabpanel">
-                                    <!-- users edit Info form start -->
-                                    <section id="data-list-view" class="data-list-view-header">
-
-
-                                        <!-- DataTable starts -->
-                                        <div class="table-responsive">
-                                            <table class="table data-list-view">
-                                                <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>INVESTOR</th>
-                                                    <th>AMOUNT</th>
-                                                    <th>DATE REQUESTED</th>
-
                                                     <th>ACTION</th>
                                                 </tr>
                                                 </thead>

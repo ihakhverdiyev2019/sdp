@@ -29,6 +29,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserQuizList {
@@ -69,20 +70,14 @@ public class UserQuizList {
         User user = (User) httpSession.getAttribute("user");
         if (user == null)
             return "redirect:/login";
-        ListGetResult listGetResult = new ListGetResult();
 
-        for (int i = 0; i < 4; i++) {
-            listGetResult.addResult(new GetResult());
-        }
 
-        model.addAttribute("form", listGetResult);
         QuizCertificate quizCertificate = new QuizCertificate();
         quizCertificate.setQuiz(quizRepository.findById(Long.parseLong(id)).get());
         quizCertificate.setUser(user);
         model.addAttribute("user", user);
         model.addAttribute("questions", questionRepository.findQuestionByQuizId(Long.parseLong(id)));
         model.addAttribute("quiz", id);
-        model.addAttribute("resultList", new ArrayList<GetResult>());
 
         quizCertificateRepository.save(quizCertificate);
 
@@ -90,79 +85,81 @@ public class UserQuizList {
     }
 
 
-//    @RequestMapping("/quiz/{id}/question/{queID}/save")
-//    public void EnterQuize(@PathVariable String id, @PathVariable String queID, @RequestParam("answer") String answer, Model model, HttpSession httpSession) {
-//        User user = (User) httpSession.getAttribute("user");
-//        QuizCertificate quizCertificate = quizCertificateRepository.findQuestionByQuizId(Long.parseLong(id), user.getId());
-//        Question question = questionRepository.findById(Long.parseLong(queID)).get();
-//
-//        if (question.getCorrectAsnwer().equals(answer)) {
-//            quizCertificate.setGrade(quizCertificate.getGrade() + 1);
-//        } else {
-//
-//        }
-//
-//        quizCertificateRepository.save(quizCertificate);
-//
-//    }
-
-
     @RequestMapping("/quiz/{id}/submit")
-    public String submitQuiz(@PathVariable String id, HttpSession httpSession) throws IOException, DocumentException {
+    public String submitQuiz(@PathVariable String id, @RequestParam("1") String one, @RequestParam("2") String two, @RequestParam("3") String three, @RequestParam("4") String four, HttpSession httpSession) throws IOException, DocumentException {
         User user = (User) httpSession.getAttribute("user");
+        int result = 0;
         if (user == null)
             return "redirect:/login";
 
+        Quiz quiz = quizRepository.findById(Long.parseLong(id)).get();
+        if (quiz.getQuestions().get(0).getCorrectAsnwer().equals(one)) {
+            result++;
+        }
+        if (quiz.getQuestions().get(1).getCorrectAsnwer().equals(two)) {
+            result++;
+        }
+        if (quiz.getQuestions().get(2).getCorrectAsnwer().equals(three)) {
+            result++;
+        }
+        if (quiz.getQuestions().get(3).getCorrectAsnwer().equals(four)) {
+            result++;
+        }
 
-        QuizCertificate quizCertificate = new QuizCertificate();
-        quizCertificate.setQuiz(quizRepository.findById(Long.parseLong(id)).get());
-        quizCertificate.setUser(user);
+        if ((result * 100) / quiz.getQuestions().size() >= 73) {
 
-
-        String dest = user.getName() + quizCertificate.getQuiz().getName() + ".pdf";
-        quizCertificate.setCertificateURL(dest);
-        quizCertificateRepository.save(quizCertificate);
-
-
-        Document document = new Document(PageSize.A4.rotate());
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(dest));
-
-
-        document.open();
-
-
-        PdfContentByte canvas = writer.getDirectContentUnder();
-        Image image = Image.getInstance("https://certificate-template.com/wp-content/uploads/2019/03/certificate-of-appreciation.png");
-        image.scaleAbsolute(PageSize.A4.rotate());
-        image.setAbsolutePosition(0, 0);
-        canvas.addImage(image);
-        Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 22,
-                Font.BOLD, BaseColor.BLACK);
-
-        Font dateFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
-                Font.BOLD, BaseColor.BLACK);
-        ColumnText ct = new ColumnText(canvas);
-
-        ct.setSimpleColumn(600f, 200f, 300f, 300f);
-
-        Paragraph p = new Paragraph(user.getName() + " " + user.getSurname(), redFont);
-        ct.addElement(p);
-        ct.go();
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy ");
-        LocalDateTime now = LocalDateTime.now();
-        String date = dtf.format(now).toString();
-
-        ColumnText ctdate = new ColumnText(canvas);
-
-        ctdate.setSimpleColumn(400f, 20f, 210f, 135f);
-        Paragraph pdate = new Paragraph(date, dateFont);
-        ctdate.addElement(pdate);
-        ctdate.go();
+            QuizCertificate quizCertificate = new QuizCertificate();
+            quizCertificate.setQuiz(quizRepository.findById(Long.parseLong(id)).get());
+            quizCertificate.setUser(user);
+            quizCertificate.setGrade((result * 100) / quiz.getQuestions().size());
 
 
-        document.close();
+            String dest = user.getName() + quizCertificate.getQuiz().getName() + ".pdf";
+            quizCertificate.setCertificateURL(dest);
+            quizCertificateRepository.save(quizCertificate);
 
-        return "";
+
+            Document document = new Document(PageSize.A4.rotate());
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(dest));
+
+
+            document.open();
+
+
+            PdfContentByte canvas = writer.getDirectContentUnder();
+            Image image = Image.getInstance("https://certificate-template.com/wp-content/uploads/2019/03/certificate-of-appreciation.png");
+            image.scaleAbsolute(PageSize.A4.rotate());
+            image.setAbsolutePosition(0, 0);
+            canvas.addImage(image);
+            Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 22,
+                    Font.BOLD, BaseColor.BLACK);
+
+            Font dateFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+                    Font.BOLD, BaseColor.BLACK);
+            ColumnText ct = new ColumnText(canvas);
+
+            ct.setSimpleColumn(600f, 200f, 300f, 300f);
+
+            Paragraph p = new Paragraph(user.getName() + " " + user.getSurname(), redFont);
+            ct.addElement(p);
+            ct.go();
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy ");
+            LocalDateTime now = LocalDateTime.now();
+            String date = dtf.format(now).toString();
+
+            ColumnText ctdate = new ColumnText(canvas);
+
+            ctdate.setSimpleColumn(400f, 20f, 210f, 135f);
+            Paragraph pdate = new Paragraph(date, dateFont);
+            ctdate.addElement(pdate);
+            ctdate.go();
+
+
+            document.close();
+
+            return "redirect:/user/profile";
+        } else
+            return "redirect:/quizes";
     }
 }

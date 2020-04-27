@@ -1,6 +1,5 @@
 package ada.spd.startup.Domains;
 
-import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.sql.Blob;
@@ -11,8 +10,8 @@ import java.util.List;
 @Entity
 @Table(name = "STARTUP")
 public class Startup {
-    @Id()
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String startupName;
     private String duration;

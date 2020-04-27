@@ -11,7 +11,7 @@
     <meta name="keywords"
           content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>User List</title>
+    <title>List of Quizzes</title>
     <link rel="apple-touch-icon" href="../static/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../static/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
@@ -97,19 +97,16 @@
                                                                    href="#" data-toggle="dropdown">
                         <div class="user-nav d-sm-flex d-none"><span
                                 class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
-                            <div class="badge badge-success mr-1 mb-1">
-                                <i class="feather icon-award white"></i>
-                                <span>New User</span>
-                            </div>
+
                         </div>
                         <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
                                    height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
-                                                                          href="page-user-profile.html"><i
-                                class="feather icon-user"></i> Edit Profile</a>
+                                                                          th:href="@{/user/profile}"><i
+                                class="feather icon-user"></i>My Profile</a>
                             <a class="dropdown-item"
-                               href="app-email.html"><i
+                               th:href="@{/email}"><i
                                     class="feather icon-mail"></i> My Inbox</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
@@ -130,7 +127,7 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand"
-                                            href="../../../html/ltr/vertical-menu-template/index.html">
+                                            href="#">
                 <div class="brand-logo"></div>
                 <h2 class="brand-text mb-0">StartUP</h2>
             </a></li>
@@ -139,7 +136,7 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
+            <li class="nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
                     class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
             </li>
             <li class=" navigation-header"><span>Menu</span>
@@ -157,18 +154,12 @@
             <li class=" nav-item"><a th:href="@{/startups}"><i class="feather icon-folder"></i><span class="menu-title"
                                                                                                      data-i18n="User">List of Startups</span></a>
             </li>
-            <li class="active nav-item"><a><i class="fa fa-graduation-cap"></i><span class="menu-title"
-                                                                                     data-i18n="User">List of Quizzes</span></a>
+            <li class="active nav-item"><a th:href="@{/quizes}"><i class="fa fa-graduation-cap"></i><span
+                    class="menu-title"
+                    data-i18n="User">List of Quizzes</span></a>
             </li>
-            <li class=" nav-item"><a><i class="fa fa-envelope-o"></i><span class="menu-title"
-                                                                           data-i18n="User">Requests</span></a>
-                <ul class=" menu-content">
-                    <li><a><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">Sent</span></a>
-                    </li>
-                    <li><a><i class="feather icon-circle"></i><span class="menu-item"
-                                                                    data-i18n="View">Received</span></a>
-                    </li>
-                </ul>
+            <li class=" nav-item"><a th:href="@{/requests}"><i class="fa fa-envelope-o"></i><span class="menu-title"
+                                                                                                  data-i18n="User">Requests</span></a>
             </li>
 
             <li class=" navigation-header"><span>Support</span>
@@ -179,7 +170,6 @@
         </ul>
     </div>
 </div><!-- END: Main Menu-->
-<!-- END: Main Menu-->
 
 <!-- BEGIN: Content-->
 <div class="app-content content">
@@ -221,27 +211,26 @@
                             <th></th>
                             <th>NAME</th>
                             <th>LEVEL</th>
-                            <th>DURATION</th>
                             <th>Price</th>
                             <th>ACTIVITY</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="quiz : ${quizes}">
-                            <td>1</td>
-                            <td class="product-name" th:text="${quiz.name}">Back-end</td>
-                            <td th:text="${quiz.quizLevel}"> Beginner</td>
-                            <td>40 minutes</td>
+                        <tr th:each="qu : ${quizes}">
+                            <td></td>
+                            <td th:text="${qu.name}">1</td>
+                            <td class="product-name" th:text="${qu.quizLevel}">Back-end</td>
 
-                            </td>
-                            <td th:text="${quiz.price}"> 4$</td>
+                            <td th:text="${qu.price} + ' $'"> 4$</td>
 
                             <td class="product-action">
                                 <div class="btn-group dropdown mr-1 mb-1">
-                                    <button type="button" class="btn btn-outline-primary" aria-haspopup="true"
-                                            aria-expanded="false">
-                                        Take quiz
-                                    </button>
+                                    <a th:href="@{'/quiz/'  +  ${qu.id}}">
+                                        <button type="button" class="btn btn-outline-primary" aria-haspopup="true"
+                                                aria-expanded="false">
+                                            Take quiz
+                                        </button>
+                                    </a>
 
                                 </div>
                             </td>
@@ -253,46 +242,7 @@
                 </div>
                 <!-- DataTable ends -->
 
-                <!-- add new sidebar starts -->
-                <div class="add-new-data-sidebar">
-                    <div class="overlay-bg"></div>
-                    <div class="add-new-data">
-                        <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
-                            <div>
-                                <h4 class="text-uppercase">Invite Contributor</h4>
-                            </div>
-                            <div class="hide-data-sidebar">
-                                <i class="feather icon-x"></i>
-                            </div>
-                        </div>
-                        <div class="data-items pb-3">
-                            <div class="data-fields px-2 mt-3">
-                                <div class="row">
-                                    <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">E-mail</label>
-                                        <input type="text" class="form-control" id="data-name">
-                                    </div>
 
-
-                                    <div class="col-sm-12 data-field-col">
-                                        <label for="data-price">Role</label>
-                                        <input type="text" class="form-control" id="data-price">
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
-                            <div class="add-data-btn">
-                                <button class="btn btn-primary">Send Invitation</button>
-                            </div>
-                            <div class="cancel-data-btn">
-                                <button class="btn btn-outline-danger">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- add new sidebar ends -->
             </section>
             <!-- Data list view end -->
 
@@ -344,7 +294,7 @@
 <!-- END: Theme JS-->
 
 <!-- BEGIN: Page JS-->
-<script src="../static/js/scripts/ui/data-list-view.js" th:src="@{/js/scripts/ui/data-list-view.js}"></script>
+<!--<script src="../static/js/scripts/ui/data-list-view.js" th:src="@{/js/scripts/ui/data-list-view.js}"></script>-->
 <script src="../static/js/scripts/pages/app-user.js" th:src="@{/js/scripts/pages/app-user.js}"></script>
 <!-- END: Page JS-->
 

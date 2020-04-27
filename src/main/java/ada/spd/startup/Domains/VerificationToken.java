@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Table(name = "VERIFICATION")
 public class VerificationToken {
 
-    @Id()
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private int token;
@@ -18,7 +18,7 @@ public class VerificationToken {
         this.token = token;
     }
 
-    public VerificationToken(){
+    public VerificationToken() {
 
     }
 

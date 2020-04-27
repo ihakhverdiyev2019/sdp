@@ -34,7 +34,7 @@ public class StartupInvestmentRequest {
             model.addAttribute("startupList", startupRepository.findAll());
             model.addAttribute("startupSession", userStartupRepository.findByUserAndStartupJoin(user.getId(), StartupJoin.WantToJoin));
             model.addAttribute("request", userStartupRepository.findUserStartupByStartupId(Long.parseLong(id), RoleENUM.Investor, StartupJoin.WantToJoin));
-
+            model.addAttribute("startup", startupRepository.findById(Long.parseLong(id)).get());
             model.addAttribute("result", ((Collection<?>) startupRepository.findAll()).size());
             return "startupRequest";
         } else

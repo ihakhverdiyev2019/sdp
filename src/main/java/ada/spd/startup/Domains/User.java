@@ -14,8 +14,8 @@ import java.util.List;
 public class User {
 
 
-    @Id()
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
     private String surname;
@@ -44,6 +44,11 @@ public class User {
     private UserRoleInit userRoleInit;
 
 
+    private int numberOfStartup;
+
+    private int numberOfJoinedStartup;
+
+
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<UserStartup> userStartups = new ArrayList<>();
@@ -53,7 +58,12 @@ public class User {
     private List<QuizCertificate> quizCertificates;
 
 
-    public User(String name, String surname, String phoneNo, String email, String emailPAss, String birth, String country, String city, String nationallity, String address, String gender, String login, String password, String companyName, String avatar, String facebook, String slack, String github, String otherSocial, StatusEnum statusEnum, String joinDate, Status status, int code, double balance) {
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<BadgeUser> badgeUsers = new ArrayList<>();
+
+
+    public User(String name, String surname, String phoneNo, String email, String emailPAss, String birth, String country, String city, String nationallity, String address, String gender, String login, String password, String companyName, String avatar, String facebook, String slack, String github, String otherSocial, StatusEnum statusEnum, String joinDate, Status status, int code, double balance, UserRoleInit userRoleInit, int numberOfStartup, int numberOfJoinedStartup) {
         this.name = name;
         this.surname = surname;
         this.phoneNo = phoneNo;
@@ -78,6 +88,9 @@ public class User {
         this.status = status;
         this.code = code;
         this.balance = balance;
+        this.userRoleInit = userRoleInit;
+        this.numberOfStartup = numberOfStartup;
+        this.numberOfJoinedStartup = numberOfJoinedStartup;
     }
 
     public User() {
@@ -304,5 +317,21 @@ public class User {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public int getNumberOfStartup() {
+        return numberOfStartup;
+    }
+
+    public void setNumberOfStartup(int numberOfStartup) {
+        this.numberOfStartup = numberOfStartup;
+    }
+
+    public int getNumberOfJoinedStartup() {
+        return numberOfJoinedStartup;
+    }
+
+    public void setNumberOfJoinedStartup(int numberOfJoinedStartup) {
+        this.numberOfJoinedStartup = numberOfJoinedStartup;
     }
 }

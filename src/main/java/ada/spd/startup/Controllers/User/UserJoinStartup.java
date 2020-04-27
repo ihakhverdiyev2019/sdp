@@ -1,14 +1,13 @@
 package ada.spd.startup.Controllers.User;
 
 
+import ada.spd.startup.Domains.BadgeUser;
 import ada.spd.startup.Domains.Startup;
 import ada.spd.startup.Domains.User;
 import ada.spd.startup.Domains.UserStartup;
 import ada.spd.startup.ENUMS.RoleENUM;
 import ada.spd.startup.ENUMS.StartupJoin;
-import ada.spd.startup.Repositories.StartupRepository;
-import ada.spd.startup.Repositories.UserRepository;
-import ada.spd.startup.Repositories.UserStartupRepository;
+import ada.spd.startup.Repositories.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,11 +22,17 @@ public class UserJoinStartup {
 
     private StartupRepository startupRepository;
     private UserStartupRepository userStartupRepository;
+    private UserRepository userRepository;
+    private BadgeUserRepository badgeUserRepository;
+    private BadgeRepository badgeRepository;
 
 
-    public UserJoinStartup(StartupRepository startupRepository, UserStartupRepository userStartupRepository) {
+    public UserJoinStartup(StartupRepository startupRepository, UserStartupRepository userStartupRepository, UserRepository userRepository, BadgeUserRepository badgeUserRepository, BadgeRepository badgeRepository) {
         this.startupRepository = startupRepository;
         this.userStartupRepository = userStartupRepository;
+        this.userRepository = userRepository;
+        this.badgeUserRepository = badgeUserRepository;
+        this.badgeRepository = badgeRepository;
     }
 
     @RequestMapping(value = "/startup/{id}/send")
@@ -62,6 +67,23 @@ public class UserJoinStartup {
         userStartup.setStartupJoin(StartupJoin.Joined);
         userStartupRepository.save(userStartup);
 
+        User contributor = userStartup.getUser();
+        BadgeUser badgeUser = new BadgeUser();
+        badgeUser.setUser(contributor);
+
+        if (userStartup.getUser().getNumberOfJoinedStartup() + 1 == 1) {
+            badgeUser.setBadge(badgeRepository.findById(Long.parseLong(String.valueOf(4))).get());
+        } else if (userStartup.getUser().getNumberOfJoinedStartup() + 1 == 3) {
+            badgeUser.setBadge(badgeRepository.findById(Long.parseLong(String.valueOf(5))).get());
+
+        } else if (userStartup.getUser().getNumberOfJoinedStartup() + 1 == 5) {
+            badgeUser.setBadge(badgeRepository.findById(Long.parseLong(String.valueOf(6))).get());
+
+        }
+        contributor.setNumberOfJoinedStartup(contributor.getNumberOfJoinedStartup() + 1);
+
+        badgeUserRepository.save(badgeUser);
+        userRepository.save(contributor);
 
         return "redirect:/startup/" + id + "/contributor";
     }

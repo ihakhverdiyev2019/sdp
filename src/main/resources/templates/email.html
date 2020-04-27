@@ -11,7 +11,7 @@
     <meta name="keywords"
           content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Email Application - Vuexy - Bootstrap HTML admin template</title>
+    <title>Email Application</title>
     <link rel="apple-touch-icon" href="../static/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../static/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
@@ -66,27 +66,32 @@
         <div class="navbar-container content">
             <div class="navbar-collapse" id="navbar-mobile">
                 <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
-
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item mobile-menu d-xl-none mr-auto"><a
+                                class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
+                                class="ficon feather icon-menu"></i></a></li>
+                    </ul>
 
                 </div>
+
+
                 <ul class="nav navbar-nav float-right">
-                    </li>
+
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
                                                                    href="#" data-toggle="dropdown">
-                        <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
+                        <div class="user-nav d-sm-flex d-none"><span
+                                class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
+
                         </div>
                         <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
                                    height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
-                                                                          href="page-user-profile.html"><i
-                                class="feather icon-user"></i> Edit Profile</a><a class="dropdown-item"
-                                                                                  href="email.html"><i
-                                class="feather icon-mail"></i> My Inbox</a><a class="dropdown-item"
-                                                                              href="app-todo.html"><i
-                                class="feather icon-check-square"></i> Task</a><a class="dropdown-item"
-                                                                                  href="app-chat.html"><i
-                                class="feather icon-message-square"></i> Chats</a>
+                                                                          th:href="@{/user/profile}"><i
+                                class="feather icon-user"></i>My Profile</a>
+                            <a class="dropdown-item"
+                               th:href="@{/email}"><i
+                                    class="feather icon-mail"></i> My Inbox</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
                                 Logout</a>
@@ -106,9 +111,9 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand"
-                                            href="../../../html/ltr/vertical-menu-template/index.html">
+                                            href="#">
                 <div class="brand-logo"></div>
-                <h2 class="brand-text mb-0">Vuexy</h2>
+                <h2 class="brand-text mb-0">StartUP</h2>
             </a></li>
         </ul>
     </div>
@@ -121,15 +126,24 @@
             <li class=" navigation-header"><span>Menu</span>
             </li>
             <li class="active nav-item"><a th:href="@{/email}"><i class="feather icon-mail"></i><span class="menu-title"
-                                                                                                data-i18n="Chat">E-mail</span></a>
+                                                                                                      data-i18n="Chat">E-mail</span></a>
             </li>
             <li class="nav-item"><a th:href="@{/startup/list}"><i class="feather icon-file"></i><span class="menu-title"
                                                                                                       data-i18n="Todo">My Projects</span></a>
             </li>
-            <li><a href="startupDescription.html"><i class="feather icon-user"></i><span class="menu-title"
-                                                                                         data-i18n="User">List of Contributors</span></a>
+            <li class=" nav-item"><a th:href="@{/contributors}"><i class="feather icon-user"></i><span
+                    class="menu-title"
+                    data-i18n="User">List of Contributors</span></a>
             </li>
-
+            <li class=" nav-item"><a th:href="@{/startups}"><i class="feather icon-folder"></i><span class="menu-title"
+                                                                                                     data-i18n="User">List of Startups</span></a>
+            </li>
+            <li class=" nav-item"><a th:href="@{/quizes}"><i class="fa fa-graduation-cap"></i><span class="menu-title"
+                                                                                                    data-i18n="User">List of Quizzes</span></a>
+            </li>
+            <li class=" nav-item"><a th:href="@{/requests}"><i class="fa fa-envelope-o"></i><span class="menu-title"
+                                                                                                  data-i18n="User">Requests</span></a>
+            </li>
 
             <li class=" navigation-header"><span>Support</span>
             </li>
@@ -138,8 +152,7 @@
             </li>
         </ul>
     </div>
-</div>
-<!-- END: Main Menu-->
+</div><!-- END: Main Menu-->
 
 <!-- BEGIN: Content-->
 <div class="app-content content">
@@ -161,20 +174,18 @@
                         <div class="sidebar-menu-list">
                             <div class="list-group list-group-messages font-medium-1">
                                 <a href="#" class="list-group-item list-group-item-action border-0 pt-0 active">
-                                    <i class="font-medium-5 feather icon-mail mr-50"></i> Inbox <span
-                                        class="badge badge-primary badge-pill float-right">10</span>
+                                    <i class="font-medium-5 feather icon-mail mr-50"></i> Inbox
                                 </a>
                                 <a href="#" class="list-group-item list-group-item-action border-0"><i
                                         class="font-medium-5 fa fa-paper-plane-o mr-50"></i> Sent</a>
                                 <a href="#" class="list-group-item list-group-item-action border-0"><i
-                                        class="font-medium-5 feather icon-edit-2 mr-50"></i> Draft <span
-                                        class="badge badge-warning badge-pill float-right">4</span> </a>
+                                        class="font-medium-5 feather icon-edit-2 mr-50"></i> Draft </a>
                                 <a href="#" class="list-group-item list-group-item-action border-0"><i
                                         class="font-medium-5 feather icon-star mr-50"></i>
                                     Starred</a>
                                 <a href="#" class="list-group-item list-group-item-action border-0"><i
                                         class="font-medium-5 feather icon-info mr-50"></i>
-                                    Spam <span class="badge badge-danger badge-pill float-right">3</span> </a>
+                                    Spam </a>
                                 <a href="#" class="list-group-item list-group-item-action border-0"><i
                                         class="font-medium-5 feather icon-trash mr-50"></i>
                                     Trash</a>
@@ -195,42 +206,43 @@
                                 </button>
                             </div>
                             <form th:action="@{/email/send}">
-                            <div class="modal-body pt-1">
-                                <div class="form-label-group mt-1">
-                                    <input type="text" id="emailTo" class="form-control" placeholder="To"
-                                           name="emailto">
-                                    <label for="emailTo">To</label>
-                                </div>
-                                <div class="form-label-group">
-                                    <input type="text" id="emailSubject" class="form-control" placeholder="Subject"
-                                           name="emailsubject">
-                                    <label for="emailSubject">Subject</label>
-                                </div>
-                                <div class="form-label-group">
-                                    <input type="text" id="emailCC" class="form-control" placeholder="CC"
-                                           name="emailcc">
-                                    <label for="emailCC">CC</label>
-                                </div>
-                                <div class="form-label-group">
-                                    <input type="text" id="emailBCC" class="form-control" placeholder="BCC"
-                                           name="emailbcc">
-                                    <label for="emailBCC">BCC</label>
-                                </div>
-                                <div id="email-container">
-                                    <div class="editor" data-placeholder="Message" name="message">
+                                <div class="modal-body pt-1">
+                                    <div class="form-label-group mt-1">
+                                        <input type="text" id="emailTo" class="form-control" placeholder="To"
+                                               name="emailto">
+                                        <label for="emailTo">To</label>
+                                    </div>
+                                    <div class="form-label-group">
+                                        <input type="text" id="emailSubject" class="form-control" placeholder="Subject"
+                                               name="emailsubject">
+                                        <label for="emailSubject">Subject</label>
+                                    </div>
+                                    <div class="form-label-group">
+                                        <input type="text" id="emailCC" class="form-control" placeholder="CC"
+                                               name="emailcc">
+                                        <label for="emailCC">CC</label>
+                                    </div>
+                                    <div class="form-label-group">
+                                        <input type="text" id="emailBCC" class="form-control" placeholder="BCC"
+                                               name="emailbcc">
+                                        <label for="emailBCC">BCC</label>
+                                    </div>
+                                    <div id="email-container">
+                                        <div class="editor" data-placeholder="Message" name="message">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="emailAttach"
+                                                   name="emailattach">
+                                            <label class="custom-file-label" for="emailAttach">Attach file</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group mt-2">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="emailAttach" name="emailattach">
-                                        <label class="custom-file-label" for="emailAttach">Attach file</label>
-                                    </div>
+                                <div class="modal-footer">
+                                    <input type="submit" value="Send" class="btn btn-primary">
+                                    <input type="Reset" value="Cancel" class="btn btn-white" data-dismiss="modal">
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <input type="submit" value="Send" class="btn btn-primary">
-                                <input type="Reset" value="Cancel" class="btn btn-white" data-dismiss="modal">
-                            </div>
                             </form>
                         </div>
                     </div>
@@ -274,7 +286,8 @@
                                                 <div class="user-details">
                                                     <div class="mail-items">
                                                         <h5 class="list-group-item-heading text-bold-600 mb-25"
-                                                            th:each="from : ${con.getFrom()}" th:text="${from.toString()}"></h5>
+                                                            th:each="from : ${con.getFrom()}"
+                                                            th:text="${from.toString()}"></h5>
                                                         <span class="list-group-item-text text-truncate"
                                                               th:text="${con.getSubject()}"></span>
                                                     </div>
@@ -288,7 +301,7 @@
                                                 </div>
                                                 <div class="mail-message">
                                                     <p class="list-group-item-text truncate mb-0"
-                                                       th:object="${con.getContent()}" >
+                                                       th:object="${con.getContent()}">
 
                                                     </p>
                                                 </div>

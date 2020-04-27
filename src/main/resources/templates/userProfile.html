@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="description"
-          content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+          content="">
     <meta name="keywords"
-          content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+          content="">
     <meta name="author" content="PIXINVENT">
-    <title>Contributor Page - Vuexy - Bootstrap HTML admin template</title>
+    <title>User Profile - StartUP</title>
     <link rel="apple-touch-icon" href="../static/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../static/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
@@ -75,20 +75,17 @@
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
                                                                    href="#" data-toggle="dropdown">
                         <div class="user-nav d-sm-flex d-none"><span
-                                class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
-                            <div class="badge badge-success mr-1 mb-1">
-                                <i class="feather icon-award white"></i>
-                                <span>New User</span>
-                            </div>
+                                class="user-name text-bold-600" th:text="${sesUser.name} + ' ' + ${sesUser.surname}"></span>
+
                         </div>
-                        <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
+                        <span><img class="round" th:src="@{${sesUser.avatar}}" alt="avatar"
                                    height="40" width="40"></span>
                     </a>
-                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
-                                                                          href="page-user-profile.html"><i
-                                class="feather icon-user"></i> My Profile</a>
+                        <div class="dropdown-menu dropdown-menu-right"><a class="active dropdown-item"
+                                                                          th:href="@{/user/profile}"><i
+                                class="feather icon-user"></i>My Profile</a>
                             <a class="dropdown-item"
-                               href="app-email.html"><i
+                               th:href="@{/email}"><i
                                     class="feather icon-mail"></i> My Inbox</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
@@ -109,7 +106,7 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand"
-                                            href="../../../html/ltr/vertical-menu-template/index.html">
+                                            href="#">
                 <div class="brand-logo"></div>
                 <h2 class="brand-text mb-0">StartUP</h2>
             </a></li>
@@ -118,7 +115,7 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
+            <li class="nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
                     class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
             </li>
             <li class=" navigation-header"><span>Menu</span>
@@ -129,17 +126,18 @@
             <li class="nav-item"><a th:href="@{/startup/list}"><i class="feather icon-file"></i><span class="menu-title"
                                                                                                       data-i18n="Todo">My Projects</span></a>
             </li>
-            <li class=" nav-item"><a><i class="feather icon-user"></i><span class="menu-title"
-                                                                            data-i18n="User">List of Contributors</span></a>
+            <li class=" nav-item"><a th:href="@{/contributors}"><i class="feather icon-user"></i><span
+                    class="menu-title"
+                    data-i18n="User">List of Contributors</span></a>
             </li>
-            <li class=" nav-item"><a><i class="feather icon-folder"></i><span class="menu-title"
-                                                                              data-i18n="User">List of Startups</span></a>
+            <li class=" nav-item"><a th:href="@{/startups}"><i class="feather icon-folder"></i><span class="menu-title"
+                                                                                                     data-i18n="User">List of Startups</span></a>
             </li>
-            <li class=" nav-item"><a><i class="fa fa-graduation-cap"></i><span class="menu-title"
-                                                                               data-i18n="User">List of Quizzes</span></a>
+            <li class=" nav-item"><a th:href="@{/quizes}"><i class="fa fa-graduation-cap"></i><span class="menu-title"
+                                                                                                    data-i18n="User">List of Quizzes</span></a>
             </li>
-            <li class=" nav-item"><a><i class="fa fa-envelope-o"></i><span class="menu-title"
-                                                                           data-i18n="User">Requests</span></a>
+            <li class=" nav-item"><a th:href="@{/requests}"><i class="fa fa-envelope-o"></i><span class="menu-title"
+                                                                                                  data-i18n="User">Requests</span></a>
             </li>
 
             <li class=" navigation-header"><span>Support</span>
@@ -149,6 +147,7 @@
             </li>
         </ul>
     </div>
+</div><!-- END: Main Menu-->
 </div><!-- END: Main Menu-->
 <!-- END: Main Menu-->
 
@@ -173,7 +172,7 @@
                                 <div class="row">
                                     <div class="users-view-image">
                                         <img src="../static/images/portrait/small/avatar-s-12.jpg"
-                                             th:href="@{${user.avatar}}"
+                                             th:src="@{${user.avatar}}"
                                              class="users-avatar-shadow w-100 rounded mb-2 pr-2 ml-1" alt="avatar">
                                     </div>
                                     <div class="col-12 col-sm-9 col-md-6 col-lg-5">
@@ -218,7 +217,7 @@
                                             </tr>
                                         </table>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12" th:if="${sesUser.id==user.id}">
                                         <a th:href="@{/user/profile/edit}" class="btn btn-primary mr-1"><i
                                                 class="feather icon-edit-1"></i> Edit</a>
                                     </div>
@@ -234,6 +233,7 @@
                                 <div class="card-title mb-2">Quiz Results</div>
                             </div>
                             <div class="card-body">
+
                                 <table>
 
 
@@ -243,11 +243,39 @@
                                         </td>
                                         <td><a th:href="@{'/download/' + ${quiz.id}}"
                                                class="btn btn-primary mr-1"><i
-                                                class="feather icon-edit-1"></i> Download Certificate</a>
+                                                class="feather icon-download"></i>Certificate</a>
 
                                         </td>
                                     </tr>
                                 </table>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title mb-2">Gained Badges</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+                                    <table>
+
+
+                                        <tr th:each="bad : ${badge}">
+                                            <td>
+                                                <div th:class="${bad.badge?.divIcon}" data-toggle="popover"
+                                                     th:data-content="${bad.badge?.dataContent}"
+                                                     data-trigger="hover"
+                                                     th:data-original-title="${bad.badge?.dataTitle}">
+                                                    <i th:class="${bad.badge?.textIcon}"></i>
+                                                    <span th:text="${bad.badge?.name}">Junior</span>
+                                                </div>
+
+                                            </td>
+
+
+                                        </tr>
+
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -321,7 +349,7 @@
 <!-- BEGIN: Page JS-->
 <script src="../static/js/scripts/pages/app-user.js" th:src="@{/js/scripts/pages/app-user.js}"></script>
 <!-- END: Page JS-->
-
+<script src="../static/js/scripts/popover/popover.js" th:src="@{/js/scripts/popover/popover.js}"></script>
 </body>
 <!-- END: Body-->
 

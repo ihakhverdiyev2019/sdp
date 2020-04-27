@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!-- BEGIN: Head-->
 
@@ -10,13 +11,10 @@
     <meta name="keywords"
           content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>User List</title>
+    <title>QUIZ</title>
     <link rel="apple-touch-icon" href="../static/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../static/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}">
-    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js}"></script>
-    <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="../static/vendors/css/vendors.min.css"
@@ -101,19 +99,16 @@
                                                                    href="#" data-toggle="dropdown">
                         <div class="user-nav d-sm-flex d-none"><span
                                 class="user-name text-bold-600" th:text="${user.name} + ' ' + ${user.surname}"></span>
-                            <div class="badge badge-success mr-1 mb-1">
-                                <i class="feather icon-award white"></i>
-                                <span>New User</span>
-                            </div>
+
                         </div>
                         <span><img class="round" th:src="@{${user.avatar}}" alt="avatar"
                                    height="40" width="40"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
-                                                                          href="page-user-profile.html"><i
-                                class="feather icon-user"></i> My Profile</a>
+                                                                          th:href="@{/user/profile}"><i
+                                class="feather icon-user"></i>My Profile</a>
                             <a class="dropdown-item"
-                               href="app-email.html"><i
+                               th:href="@{/email}"><i
                                     class="feather icon-mail"></i> My Inbox</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/logout}"><i class="feather icon-power"></i>
@@ -134,7 +129,7 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand"
-                                            href="../../../html/ltr/vertical-menu-template/index.html">
+                                            href="#">
                 <div class="brand-logo"></div>
                 <h2 class="brand-text mb-0">StartUP</h2>
             </a></li>
@@ -143,7 +138,7 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
+            <li class="nav-item"><a th:href="@{/dashboard}"><i class="feather icon-home"></i><span
                     class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
             </li>
             <li class=" navigation-header"><span>Menu</span>
@@ -154,19 +149,19 @@
             <li class="nav-item"><a th:href="@{/startup/list}"><i class="feather icon-file"></i><span class="menu-title"
                                                                                                       data-i18n="Todo">My Projects</span></a>
             </li>
-            <li class="nav-item"><a><i class="feather icon-user"></i><span class="menu-title"
-                                                                           data-i18n="User">List of Contributors</span></a>
+            <li class=" nav-item"><a th:href="@{/contributors}"><i class="feather icon-user"></i><span
+                    class="menu-title"
+                    data-i18n="User">List of Contributors</span></a>
             </li>
-            <li class=" nav-item"><a><i class="feather icon-folder"></i><span class="menu-title"
-                                                                              data-i18n="User">List of Startups</span></a>
+            <li class=" nav-item"><a th:href="@{/startups}"><i class="feather icon-folder"></i><span class="menu-title"
+                                                                                                     data-i18n="User">List of Startups</span></a>
             </li>
-            <li class="active nav-item"><a th:href="@{/quizzes}"><i class="fa fa-graduation-cap"></i><span
+            <li class="active nav-item"><a th:href="@{/quizes}"><i class="fa fa-graduation-cap"></i><span
                     class="menu-title"
                     data-i18n="User">List of Quizzes</span></a>
             </li>
             <li class=" nav-item"><a th:href="@{/requests}"><i class="fa fa-envelope-o"></i><span class="menu-title"
                                                                                                   data-i18n="User">Requests</span></a>
-            </li>
             </li>
 
             <li class=" navigation-header"><span>Support</span>
@@ -177,7 +172,7 @@
         </ul>
     </div>
 </div><!-- END: Main Menu-->
-<!-- END: Main Menu-->
+</div><!-- END: Main Menu-->
 
 <!-- BEGIN: Content-->
 <div class="app-content content">
@@ -220,18 +215,17 @@
                                     <div class="col-12 col-xs-12 col-md-6 col-lg-12 col-xl-12">
                                         <div class="rules">
                                             <div>
-                                                <h3 style=" font-weight: bold">WELCOME TO THE Full Stack Quiz!!</h3>
+                                                <h3 style=" font-weight: bold">WELCOME TO THE Quiz!!</h3>
                                                 <h4>Rules: </h4>
-                                                <p style="color: black;font-weight: bold;">1. Loremiautem. Pariatur
-                                                    vitae distinctio molestias!</p>
-                                                <p style="color: black;font-weight: bold;">2. Loremiautem. Pariatur
-                                                    vitae distinctio molestias!</p>
-                                                <p style="color: black;font-weight: bold;">3. Loremiautem. Pariatur
-                                                    vitae distinctio molestias!</p>
-                                                <p style="color: black;font-weight: bold;">4. Loremiautem. Pariatur
-                                                    vitae distinctio molestias!</p>
-                                                <p style="color: black;font-weight: bold;">5. Loremiautem. Pariatur
-                                                    vitae distinctio molestias!</p>
+                                                <p style="color: black;font-weight: bold;">1. You have 5 minutes to
+                                                    complete the quiz.
+                                                </p>
+                                                <p style="color: black;font-weight: bold;">2. If you leave the page, all
+                                                    answers will be cleared.
+                                                </p>
+                                                <p style="color: black;font-weight: bold;">3. For getting certificate,
+                                                    you have to score more than or equal 73%.!</p>
+
                                                 <div class="buttonDiv"
                                                      style="display: flex;justify-content: center;padding: 10px;">
                                                     <button class="btn gradient-light-primary" id="startQuizButton">
@@ -244,48 +238,55 @@
                                 </div>
                             </div>
                         </div>
-
-                        <form th:action="@{'/quiz/' +${quiz} + '/submit'} " th:object="${form}" method="POST">
+                        <form th:action="@{'/quiz/'+${quiz}+'/submit'}">
                             <div class="content-body" id="quessionDiv2" style="filter: blur(8px);">
 
                                 <div class="col-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
-                                     th:each="question : ${questions}" th:each="currentClient, stat : *{getResults}">
+                                     th:each="question : ${questions}">
 
-                                    <p th:text="'1. ' + ${question.question}">1.First Question </p>
-                                    <input type="hidden" th:value="${question.id}"
-                                           th:field="*{getResults[__${stat.index}__].id}">
+
+                                    <p th:text="${question.question}">1.First Question </p>
+
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block mr-2">
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input"
+                                                       th:name="${question.optionName}"
                                                        th:value="${question.option1}"
-                                                       th:field="*{getResults[__${stat.index}__].value}"
-                                                       id="customRadio1" checked>
-                                                <label class="custom-control-label" for="customRadio1"
+                                                       th:id="${question.id+'-'+question.option1}"
+                                                       checked>
+                                                <label class="custom-control-label"
+                                                       th:for="${question.id+'-'+question.option1}"
                                                        th:text="${question.option1}">Answer1</label>
                                             </div>
 
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input"
+                                                       th:name="${question.optionName}"
                                                        th:value="${question.option2}"
-                                                       th:field="*{getResults[__${stat.index}__].value}"
-                                                       id="customRadio2">
-                                                <label class="custom-control-label" for="customRadio2"
-                                                       th:text="${question.option2}">Answer2</label></div>
+                                                       th:id="${question.id+'-'+question.option2}">
+                                                <label class="custom-control-label"
+                                                       th:for="${question.id+'-'+question.option2}"
+                                                       th:text="${question.option2}">Answer2</label>
+                                            </div>
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input"
+                                                       th:name="${question.optionName}"
                                                        th:value="${question.option3}"
-                                                       th:field="*{getResults[__${stat.index}__].value}"
-                                                       id="customRadio3">
-                                                <label class="custom-control-label" for="customRadio3"
-                                                       th:text="${question.option3}">Answer3</label></div>
+                                                       th:id="${question.id+'-'+question.option3}">
+                                                <label class="custom-control-label"
+                                                       th:for="${question.id+'-'+question.option3}"
+                                                       th:text="${question.option3}">Answer3</label>
+                                            </div>
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input"
+                                                       th:name="${question.optionName}"
                                                        th:value="${question.option4}"
-                                                       th:field="*{getResults[__${stat.index}__].value}"
-                                                       id="customRadio4">
-                                                <label class="custom-control-label" for="customRadio4"
-                                                       th:text="${question.option4}">Answer4</label></div>
+                                                       th:id="${question.id+'-'+question.option4}">
+                                                <label class="custom-control-label"
+                                                       th:for="${question.id+'-'+question.option4}"
+                                                       th:text="${question.option4}">Answer4</label>
+                                            </div>
 
                                         </li>
                                     </ul>
@@ -297,8 +298,9 @@
 
                             <div class="col-12 col-xs-12 col-md-12 col-lg-12 col-xl-12" id="forSubmitDiv"
                                  style="display: flex;justify-content: center;">
-                                <button type="submit" class="btn gradient-light-primary" id="submitButton">Submit
-                                </button>
+                                <a class="btn gradient-light-primary" id="submitButton">
+                                    <button type="submit" class="btn gradient-light-primary">Submit</button>
+                                </a>
                             </div>
                         </form>
                     </div>
@@ -362,7 +364,7 @@
 <!-- END: Page JS-->
 
 
-<script th:inline="javascript">$("#startQuizButton").click(function () {
+<script>$("#startQuizButton").click(function () {
 
     var timer2 = "5:01";
     var interval = setInterval(function () {
@@ -387,8 +389,6 @@
     $("#StartDiv").css("display", "none")
     $("#quessionDiv").css("filter", "blur(0px)")
     $("#quessionDiv2").css("filter", "blur(0px)")
-
-
     setTimeout(document.getElementById('submitButton').click(), 300000);
 })
 
